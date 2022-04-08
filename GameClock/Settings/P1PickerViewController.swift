@@ -28,10 +28,6 @@ class P1PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         }
     }
     
-    @IBAction func decisionButtonPressed(_ sender: UIButton) {
-        self.dismiss(animated: true)
-    }
-    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
