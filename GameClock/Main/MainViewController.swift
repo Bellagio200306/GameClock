@@ -20,11 +20,10 @@ class MainViewController: UIViewController {
     @IBOutlet weak var pauseButton: UIButton!
     @IBOutlet weak var settingButton: UIButton!
     
-    //    var mainModel = MainModel()
     var player: AVAudioPlayer?
     var timer = Timer()
     var count = 0
-    var nowTurn: Player?
+    var nowTurn: Player = .P1
     var timerValue = 0
     
     let p1TimeKey = "p1_time"
@@ -39,13 +38,8 @@ class MainViewController: UIViewController {
         
         p2ButtonLabel.transform = flipUpsideDown()
     }
-    //
-    //    override func viewDidAppear(_ animated: Bool) {
-    //        count = 0
-    //    }
     
-    @IBAction func playerButtonPressed(_ sender: UIButton) {
-//        UIView.setAnimationsEnabled(false) //アニメーション無効化
+    func playerButtonPressed(nowTurn: UIButton, restTurn: UIButton) {
         
         if let soundURL = Bundle.main.url(forResource: "Move2", withExtension: "mp3") {
             do {
@@ -55,16 +49,24 @@ class MainViewController: UIViewController {
                 print("error")
             }
         }
+        
         timerStart()
-        turnChange()
+        nowTurn.backgroundColor = UIColor(hex: "B54434")
+        nowTurn.setTitleColor(UIColor.white, for: .normal)
+        nowTurn.isEnabled = true
+        restTurn.backgroundColor = UIColor(hex: "818181")
+        restTurn.setTitleColor(UIColor.darkGray, for: .normal)
+        restTurn.isEnabled = false
     }
     
     @IBAction func p1ButtonPressed(_ sender: UIButton) {
         nowTurn = .P2
+        playerButtonPressed(nowTurn: p2ButtonLabel, restTurn: p1ButtonLabel)
     }
     
     @IBAction func p2ButtonPressed(_ sender: UIButton) {
         nowTurn = .P1
+        playerButtonPressed(nowTurn: p1ButtonLabel, restTurn: p2ButtonLabel)
     }
     
     @IBAction func pauseButtonPressed(_ sender: UIButton) {
@@ -95,8 +97,6 @@ class MainViewController: UIViewController {
             timerValue = settings.integer(forKey: p1TimeKey)
         case .P2:
             timerValue = settings.integer(forKey: p2TimeKey)
-        case .none:
-            print("displayUpdate()でエラー")
         }
         
         let remainCount = timerValue - count
@@ -107,8 +107,6 @@ class MainViewController: UIViewController {
             p1ButtonLabel.setTitle(stringRemainCount, for: .normal)
         case .P2:
             p2ButtonLabel.setTitle(stringRemainCount, for: .normal)
-        case .none:
-            print("displayUpdate()でエラー")
         }
         
         return remainCount
@@ -119,28 +117,6 @@ class MainViewController: UIViewController {
         count = 0
         _ = displayUpdate()
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerInterrupt(_:)), userInfo: nil, repeats: true)
-    }
-    
-    func turnChange() {
-        switch nowTurn {
-        case .P1:
-            p1ButtonLabel.backgroundColor = UIColor(hex: "B54434")
-            p1ButtonLabel.setTitleColor(UIColor.white, for: .normal)
-            p1ButtonLabel.isEnabled = true
-            p2ButtonLabel.backgroundColor = UIColor(hex: "818181")
-            p2ButtonLabel.setTitleColor(UIColor.darkGray, for: .normal)
-            p2ButtonLabel.isEnabled = false
-        case .P2:
-            p2ButtonLabel.backgroundColor = UIColor(hex: "B54434")
-            p2ButtonLabel.setTitleColor(UIColor.white, for: .normal)
-            p2ButtonLabel.isEnabled = true
-            p1ButtonLabel.backgroundColor = UIColor(hex: "818181")
-            p1ButtonLabel.setTitleColor(UIColor.darkGray, for: .normal)
-            p1ButtonLabel.isEnabled = false
-            
-        case .none:
-            print("turnChange()でエラー")
-        }
     }
     
     func flipUpsideDown() -> CGAffineTransform {

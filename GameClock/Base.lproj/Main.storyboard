@@ -29,7 +29,6 @@
                                         </state>
                                         <connections>
                                             <action selector="p2ButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bIg-Po-8cM"/>
-                                            <action selector="playerButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GpO-TD-RXn"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nXf-k1-BNc">
@@ -42,7 +41,6 @@
                                         </state>
                                         <connections>
                                             <action selector="p1ButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jRb-t9-bY3"/>
-                                            <action selector="playerButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VkZ-FX-g7y"/>
                                         </connections>
                                     </button>
                                 </subviews>
