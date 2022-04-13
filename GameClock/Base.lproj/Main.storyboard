@@ -66,9 +66,9 @@
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="RbN-aV-aca"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="Button" image="設定"/>
+                                <state key="normal" image="設定"/>
                                 <connections>
-                                    <segue destination="yHH-bK-b0m" kind="presentation" id="CTa-SX-T5q"/>
+                                    <segue destination="yHH-bK-b0m" kind="presentation" id="LC3-GG-DiZ"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -146,7 +146,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="FyR-Oj-1p1" kind="push" id="MLh-Sm-rJS"/>
+                                    <segue destination="FyR-Oj-1p1" kind="show" id="MLh-Sm-rJS"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -156,9 +156,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="oHU-4k-enN"/>
-                    <connections>
-                        <outlet property="settingsTableView" destination="4jy-D0-2Lg" id="hw5-Vz-BCi"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cUa-vL-ybo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

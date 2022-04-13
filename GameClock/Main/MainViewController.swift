@@ -71,7 +71,7 @@ class MainViewController: UIViewController {
     
     @IBAction func pauseButtonPressed(_ sender: UIButton) {
         timer.invalidate()
-        if let soundURL = Bundle.main.url(forResource: "Move3", withExtension: "mp3") {
+        if let soundURL = Bundle.main.url(forResource: "Pause", withExtension: "mp3") {
             do {
                 player = try AVAudioPlayer(contentsOf: soundURL)
                 player?.play()
