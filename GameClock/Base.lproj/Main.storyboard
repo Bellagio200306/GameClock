@@ -68,7 +68,7 @@
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="設定"/>
                                 <connections>
-                                    <segue destination="yHH-bK-b0m" kind="presentation" id="LC3-GG-DiZ"/>
+                                    <segue destination="yHH-bK-b0m" kind="show" identifier="goToSettings" id="LC3-GG-DiZ"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -101,6 +101,7 @@
         <scene sceneID="DQ3-Ma-Ver">
             <objects>
                 <navigationController id="yHH-bK-b0m" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="62T-Vl-2Xv"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="srv-4i-zhI">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>

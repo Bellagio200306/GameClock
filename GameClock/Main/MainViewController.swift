@@ -25,18 +25,36 @@ class MainViewController: UIViewController {
     var count = 0
     var nowTurn: Player = .P1
     var timerValue = 0
+    var totalSec = 0
     
+    let settings = UserDefaults.standard
     let p1TimeKey = "p1_time"
     let p2TimeKey = "p2_time"
+    let hourKey = "hour"
+    let minKey = "min"
+    let secKey = "sec"
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let settings = UserDefaults.standard
-        settings.register(defaults: [p1TimeKey: 10])
-        settings.register(defaults: [p2TimeKey: 20])
         
+//        settings.register(defaults: [p1TimeKey: 10])
+//        settings.register(defaults: [p2TimeKey: 20])
         p2ButtonLabel.transform = flipUpsideDown()
+        print(settings.integer(forKey: hourKey))
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let hour = String(settings.integer(forKey: hourKey))
+        let min = String(settings.integer(forKey: minKey))
+        let sec = String(settings.integer(forKey: secKey))
+        let stringTime = "\(hour):\(min):\(sec)"
+        p1ButtonLabel.setTitle(stringTime, for: .normal)
+        print("\(type(of: self)): \(#function)")
     }
     
     func playerButtonPressed(nowTurn: UIButton, restTurn: UIButton) {
@@ -50,7 +68,7 @@ class MainViewController: UIViewController {
             }
         }
         
-        timerStart()
+        startTimer()
         nowTurn.backgroundColor = UIColor(hex: "B54434")
         nowTurn.setTitleColor(UIColor.white, for: .normal)
         nowTurn.isEnabled = true
@@ -90,17 +108,21 @@ class MainViewController: UIViewController {
     }
     
     func displayUpdate() -> Int {
-        let settings = UserDefaults.standard
         
-        switch nowTurn {
-        case .P1:
-            timerValue = settings.integer(forKey: p1TimeKey)
-        case .P2:
-            timerValue = settings.integer(forKey: p2TimeKey)
-        }
+//        switch nowTurn {
+//        case .P1:
+//        timerValue = settings.integer(forKey: p1TimeKey)
+//        case .P2:
+//            timerValue = settings.integer(forKey: p2TimeKey)
+//        }
         
-        let remainCount = timerValue - count
-        let stringRemainCount = String(remainCount)
+//        let remainCount = timerValue - count
+        let remainCount = totalSec - count
+//        let stringRemainCount = String(remainCount)
+        let hour = String(remainCount / 3600)
+        let min = String(remainCount % 3600 / 60)
+        let sec = String(remainCount % 3600 % 60)
+        let stringRemainCount = "\(hour):\(min):\(sec)"
         
         switch nowTurn {
         case .P1:
@@ -112,7 +134,7 @@ class MainViewController: UIViewController {
         return remainCount
     }
     
-    func timerStart() {
+    func startTimer() {
         timer.invalidate()
         count = 0
         _ = displayUpdate()
@@ -124,5 +146,25 @@ class MainViewController: UIViewController {
         let flipUpsideDown = CGAffineTransform(rotationAngle: CGFloat(angle));
         return flipUpsideDown
     }
+    
+    func totalSecConversion() {
+        let hour = settings.integer(forKey: hourKey)
+        let min = settings.integer(forKey: minKey)
+        let sec = settings.integer(forKey: secKey)
+        totalSec = hour * 60 * 60 + min * 60 + sec
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToSettings", let vc = segue.destination as? SettingsViewController {
+            vc.delegate = self
+        }
+    }
+    
 }
 
+
+extension MainViewController: SettingsViewControllerDelegate {
+    func viewDidDismiss() {
+        print("\(type(of: self)): \(#function)")
+    }
+}

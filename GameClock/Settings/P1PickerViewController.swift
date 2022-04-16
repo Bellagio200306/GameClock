@@ -12,7 +12,11 @@ class P1PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     @IBOutlet weak var p1PickerView: UIPickerView!
     
     let dataList = [[Int](0...10), [Int](0...60), [Int](0...60)]
+    let settings = UserDefaults.standard
     let p1TimeKey = "p1_time"
+    let hourKey = "hour"
+    let minKey = "min"
+    let secKey = "sec"
     
     var hour = 0
     var min = 0
@@ -21,11 +25,12 @@ class P1PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let settings = UserDefaults.standard
 //        let timerValue = settings.integer(forKey: p1TimeKey)
+        settings.register(defaults: [hourKey: 0])
+        settings.register(defaults: [minKey: 0])
+        settings.register(defaults: [secKey: 0])
         p1PickerView.delegate = self
         p1PickerView.dataSource = self
-        print(totalSec)
         //        for row in 0..<dataList.count {
         //            if dataList[row] == timerValue {
         //                p1PickerView.selectRow(row, inComponent: 0, animated: true)
@@ -44,19 +49,26 @@ class P1PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return String(dataList[component][row])
     }
-    
-    
-/*時、分、秒のピッカーから取得した値を秒に変換し足し合わせてUserDefaultsに保存したい
- hourなどに正しい値を入れられず困っています*/
+
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        hour = dataList[0][row]
-        min = dataList[1][row]
-        sec = dataList[2][row]
-        totalSec = hour * 60 * 60 + min * 60 + sec
-        print(totalSec)
         
-        let settings = UserDefaults.standard
-        settings.setValue(totalSec, forKey: p1TimeKey)
-        settings.synchronize()
+        switch component {
+        case 0:
+            hour = row
+            settings.setValue(hour, forKey: hourKey)
+            settings.synchronize()
+            
+        case 1:
+            min = row
+            settings.setValue(min, forKey: minKey)
+            settings.synchronize()
+            
+        case 2:
+            sec = row
+            settings.setValue(sec, forKey: secKey)
+            settings.synchronize()
+        default:
+            print("pickerでエラー")
+        }
     }
 }
