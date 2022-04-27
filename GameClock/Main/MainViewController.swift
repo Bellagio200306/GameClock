@@ -22,6 +22,7 @@ class MainViewController: UIViewController {
     
     var player: AVAudioPlayer?
     var timer = Timer()
+    var observer: NSKeyValueObservation?
     var count = 0
     var nowTurn: Player = .P1
     var timerValue = 0
@@ -30,31 +31,20 @@ class MainViewController: UIViewController {
     let settings = UserDefaults.standard
     let p1TimeKey = "p1_time"
     let p2TimeKey = "p2_time"
-    let hourKey = "hour"
-    let minKey = "min"
-    let secKey = "sec"
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        settings.register(defaults: [p1TimeKey: 10])
-//        settings.register(defaults: [p2TimeKey: 20])
         p2ButtonLabel.transform = flipUpsideDown()
-        print(settings.integer(forKey: hourKey))
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
         
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        let hour = String(settings.integer(forKey: hourKey))
-        let min = String(settings.integer(forKey: minKey))
-        let sec = String(settings.integer(forKey: secKey))
-        let stringTime = "\(hour):\(min):\(sec)"
-        p1ButtonLabel.setTitle(stringTime, for: .normal)
-        print("\(type(of: self)): \(#function)")
+        observer = settings.observe(\.hour, options: [.initial, .new], changeHandler: { [weak self] (defaults, change) in
+            print(UserDefaults.standard.integer(forKey: "hour"))
+        })
+        
+        observer = settings.observe(\.min, options: [.initial, .new], changeHandler: { [weak self] (defaults, change) in
+            print(UserDefaults.standard.integer(forKey: "min"))
+        })
     }
     
     func playerButtonPressed(nowTurn: UIButton, restTurn: UIButton) {
@@ -109,16 +99,7 @@ class MainViewController: UIViewController {
     
     func displayUpdate() -> Int {
         
-//        switch nowTurn {
-//        case .P1:
-//        timerValue = settings.integer(forKey: p1TimeKey)
-//        case .P2:
-//            timerValue = settings.integer(forKey: p2TimeKey)
-//        }
-        
-//        let remainCount = timerValue - count
         let remainCount = totalSec - count
-//        let stringRemainCount = String(remainCount)
         let hour = String(remainCount / 3600)
         let min = String(remainCount % 3600 / 60)
         let sec = String(remainCount % 3600 % 60)
@@ -148,23 +129,21 @@ class MainViewController: UIViewController {
     }
     
     func totalSecConversion() {
-        let hour = settings.integer(forKey: hourKey)
-        let min = settings.integer(forKey: minKey)
-        let sec = settings.integer(forKey: secKey)
+        let hour = settings.integer(forKey: "hour")
+        let min = settings.integer(forKey: "min")
+        let sec = settings.integer(forKey: "sec")
         totalSec = hour * 60 * 60 + min * 60 + sec
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "goToSettings", let vc = segue.destination as? SettingsViewController {
-            vc.delegate = self
-        }
-    }
-    
 }
 
-
-extension MainViewController: SettingsViewControllerDelegate {
-    func viewDidDismiss() {
-        print("\(type(of: self)): \(#function)")
+extension UserDefaults {
+    @objc dynamic var hour: Int {
+        return integer(forKey: "hour")
+    }
+    @objc dynamic var min: Int {
+        return integer(forKey: "min")
+    }
+    @objc dynamic var sec: Int {
+        return integer(forKey: "sec")
     }
 }

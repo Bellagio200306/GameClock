@@ -7,20 +7,14 @@
 import Foundation
 import UIKit
 
-protocol SettingsViewControllerDelegate {
-    func viewDidDismiss()
-}
-
 class SettingsViewController: UITableViewController {
     
-    var delegate: SettingsViewControllerDelegate?
     var settings: [Setting] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationController?.navigationBar.tintColor = .gray
-        presentationController?.delegate = self
         loadData()
     }
     
@@ -46,25 +40,5 @@ class SettingsViewController: UITableViewController {
         cell.contentConfiguration = content
         
         return cell
-    }
-}
-
-extension SettingsViewController: UIAdaptivePresentationControllerDelegate {
-    func presentationControllerShouldDismiss(_ presentationController: UIPresentationController) -> Bool {
-        print("\(type(of: self)): \(#function)")
-        return true
-    }
-    
-    func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController) {
-        print("\(type(of: self)): \(#function)")
-    }
-    
-    func presentationControllerWillDismiss(_ presentationController: UIPresentationController) {
-        print("\(type(of: self)): \(#function)")
-    }
-    
-    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
-        print("\(type(of: self)): \(#function)")
-        delegate?.viewDidDismiss()
     }
 }
