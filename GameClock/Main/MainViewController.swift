@@ -22,21 +22,29 @@ class MainViewController: UIViewController {
     
     var player: AVAudioPlayer?
     var timer = Timer()
+    var observer: NSKeyValueObservation?
     var count = 0
     var nowTurn: Player = .P1
     var timerValue = 0
+    var totalSec = 0
     
+    let settings = UserDefaults.standard
     let p1TimeKey = "p1_time"
     let p2TimeKey = "p2_time"
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let settings = UserDefaults.standard
-        settings.register(defaults: [p1TimeKey: 10])
-        settings.register(defaults: [p2TimeKey: 20])
         
         p2ButtonLabel.transform = flipUpsideDown()
+        
+        observer = settings.observe(\.hour, options: [.initial, .new], changeHandler: { [weak self] (defaults, change) in
+            print(UserDefaults.standard.integer(forKey: "hour"))
+        })
+        
+        observer = settings.observe(\.min, options: [.initial, .new], changeHandler: { [weak self] (defaults, change) in
+            print(UserDefaults.standard.integer(forKey: "min"))
+        })
     }
     
     func playerButtonPressed(nowTurn: UIButton, restTurn: UIButton) {
@@ -50,7 +58,7 @@ class MainViewController: UIViewController {
             }
         }
         
-        timerStart()
+        startTimer()
         nowTurn.backgroundColor = UIColor(hex: "B54434")
         nowTurn.setTitleColor(UIColor.white, for: .normal)
         nowTurn.isEnabled = true
@@ -71,7 +79,7 @@ class MainViewController: UIViewController {
     
     @IBAction func pauseButtonPressed(_ sender: UIButton) {
         timer.invalidate()
-        if let soundURL = Bundle.main.url(forResource: "Move3", withExtension: "mp3") {
+        if let soundURL = Bundle.main.url(forResource: "Pause", withExtension: "mp3") {
             do {
                 player = try AVAudioPlayer(contentsOf: soundURL)
                 player?.play()
@@ -90,17 +98,12 @@ class MainViewController: UIViewController {
     }
     
     func displayUpdate() -> Int {
-        let settings = UserDefaults.standard
         
-        switch nowTurn {
-        case .P1:
-            timerValue = settings.integer(forKey: p1TimeKey)
-        case .P2:
-            timerValue = settings.integer(forKey: p2TimeKey)
-        }
-        
-        let remainCount = timerValue - count
-        let stringRemainCount = String(remainCount)
+        let remainCount = totalSec - count
+        let hour = String(remainCount / 3600)
+        let min = String(remainCount % 3600 / 60)
+        let sec = String(remainCount % 3600 % 60)
+        let stringRemainCount = "\(hour):\(min):\(sec)"
         
         switch nowTurn {
         case .P1:
@@ -112,7 +115,7 @@ class MainViewController: UIViewController {
         return remainCount
     }
     
-    func timerStart() {
+    func startTimer() {
         timer.invalidate()
         count = 0
         _ = displayUpdate()
@@ -124,5 +127,23 @@ class MainViewController: UIViewController {
         let flipUpsideDown = CGAffineTransform(rotationAngle: CGFloat(angle));
         return flipUpsideDown
     }
+    
+    func totalSecConversion() {
+        let hour = settings.integer(forKey: "hour")
+        let min = settings.integer(forKey: "min")
+        let sec = settings.integer(forKey: "sec")
+        totalSec = hour * 60 * 60 + min * 60 + sec
+    }
 }
 
+extension UserDefaults {
+    @objc dynamic var hour: Int {
+        return integer(forKey: "hour")
+    }
+    @objc dynamic var min: Int {
+        return integer(forKey: "min")
+    }
+    @objc dynamic var sec: Int {
+        return integer(forKey: "sec")
+    }
+}
