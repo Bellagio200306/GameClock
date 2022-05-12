@@ -22,28 +22,23 @@ class MainViewController: UIViewController {
     
     var player: AVAudioPlayer?
     var timer = Timer()
-    var observer: NSKeyValueObservation?
     var count = 0
     var nowTurn: Player = .P1
-    var timerValue = 0
     var totalSec = 0
+    var stringRemainCount = "0"
+    var observer: NSKeyValueObservation?
     
     let settings = UserDefaults.standard
-    let p1TimeKey = "p1_time"
-    let p2TimeKey = "p2_time"
-    
+    let p1TimeKey = "p1TimeKey"
+    let p2TimeKey = "p2TimeKey"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         p2ButtonLabel.transform = flipUpsideDown()
-        
-        observer = settings.observe(\.hour, options: [.initial, .new], changeHandler: { [weak self] (defaults, change) in
-            print(UserDefaults.standard.integer(forKey: "hour"))
-        })
-        
-        observer = settings.observe(\.min, options: [.initial, .new], changeHandler: { [weak self] (defaults, change) in
-            print(UserDefaults.standard.integer(forKey: "min"))
+        settings.register(defaults: [p1TimeKey : 0])
+        observer = UserDefaults.standard.observe(\.p1Time, options: [.initial, .new], changeHandler: { [weak self] (defaults, change) in
+            _ = self!.displayUpdate()
         })
     }
     
@@ -69,11 +64,13 @@ class MainViewController: UIViewController {
     
     @IBAction func p1ButtonPressed(_ sender: UIButton) {
         nowTurn = .P2
+        totalSec = settings.integer(forKey: p1TimeKey)
         playerButtonPressed(nowTurn: p2ButtonLabel, restTurn: p1ButtonLabel)
     }
     
     @IBAction func p2ButtonPressed(_ sender: UIButton) {
         nowTurn = .P1
+        totalSec = settings.integer(forKey: p1TimeKey)
         playerButtonPressed(nowTurn: p1ButtonLabel, restTurn: p2ButtonLabel)
     }
     
@@ -98,12 +95,8 @@ class MainViewController: UIViewController {
     }
     
     func displayUpdate() -> Int {
-        
         let remainCount = totalSec - count
-        let hour = String(remainCount / 3600)
-        let min = String(remainCount % 3600 / 60)
-        let sec = String(remainCount % 3600 % 60)
-        let stringRemainCount = "\(hour):\(min):\(sec)"
+        convertHMS(time: remainCount)
         
         switch nowTurn {
         case .P1:
@@ -128,22 +121,27 @@ class MainViewController: UIViewController {
         return flipUpsideDown
     }
     
-    func totalSecConversion() {
-        let hour = settings.integer(forKey: "hour")
-        let min = settings.integer(forKey: "min")
-        let sec = settings.integer(forKey: "sec")
-        totalSec = hour * 60 * 60 + min * 60 + sec
+    func convertHMS(time: Int) {
+        let hour = time / 3600
+        let min = time % 3600 / 60
+        let sec = time % 3600 % 60
+        
+        let stringHour = String(hour)
+        let stringMin = String(format: "%02d", min)
+        let stringSec = String(format: "%02d", sec)
+        
+        if hour > 0 {
+            stringRemainCount = "\(stringHour):\(stringMin):\(stringSec)"
+        } else if hour <= 0 {
+            stringRemainCount = "\(stringMin):\(stringSec)"
+        } else if min <= 0 {
+            stringRemainCount = "\(stringSec)"
+        }
     }
 }
 
 extension UserDefaults {
-    @objc dynamic var hour: Int {
-        return integer(forKey: "hour")
-    }
-    @objc dynamic var min: Int {
-        return integer(forKey: "min")
-    }
-    @objc dynamic var sec: Int {
-        return integer(forKey: "sec")
+    @objc dynamic var p1Time: Int {
+        return integer(forKey: "p1TimeKey")
     }
 }
