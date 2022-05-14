@@ -13,7 +13,7 @@ class P1PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     let dataList = [[Int](0...10), [Int](0...60), [Int](0...60)]
     let settings = UserDefaults.standard
-    let p1TimeKey = "p1_time"
+    let p1TimeKey = "p1TimeKey"
     
     var hour = 0
     var min = 0
@@ -22,17 +22,8 @@ class P1PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let timerValue = settings.integer(forKey: p1TimeKey)
-        settings.register(defaults: ["hour": 0])
-        settings.register(defaults: ["min": 0])
-        settings.register(defaults: ["sec": 0])
         p1PickerView.delegate = self
         p1PickerView.dataSource = self
-        //        for row in 0..<dataList.count {
-        //            if dataList[row] == timerValue {
-        //                p1PickerView.selectRow(row, inComponent: 0, animated: true)
-        //            }
-        //        }
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -52,20 +43,16 @@ class P1PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         switch component {
         case 0:
             hour = row
-            settings.setValue(hour, forKey: "hour")
-            settings.synchronize()
-            
         case 1:
             min = row
-            settings.setValue(min, forKey: "min")
-            settings.synchronize()
-            
         case 2:
             sec = row
-            settings.setValue(sec, forKey: "sec")
-            settings.synchronize()
         default:
             print("pickerでエラー")
         }
+        
+        totalSec = hour * 60 * 60 + min * 60 + sec
+        settings.setValue(totalSec, forKey: p1TimeKey)
+        settings.synchronize()
     }
 }
