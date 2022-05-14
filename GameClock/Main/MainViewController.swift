@@ -11,6 +11,7 @@ import AVFoundation
 enum Player {
     case P1
     case P2
+    case Pause
 }
 
 class MainViewController: UIViewController {
@@ -23,7 +24,7 @@ class MainViewController: UIViewController {
     var player: AVAudioPlayer?
     var timer = Timer()
     var count = 0
-    var nowTurn: Player = .P1
+    var nowTurn: Player = .Pause
     var totalSec = 0
     var stringRemainCount = "0"
     var observer: NSKeyValueObservation?
@@ -37,8 +38,11 @@ class MainViewController: UIViewController {
         
         p2ButtonLabel.transform = flipUpsideDown()
         settings.register(defaults: [p1TimeKey : 0])
-        observer = UserDefaults.standard.observe(\.p1Time, options: [.initial, .new], changeHandler: { [weak self] (defaults, change) in
-            _ = self!.displayUpdate()
+        observer = UserDefaults.standard.observe(\.p1TimeKey, options: [.initial, .new], changeHandler: { [weak self] (defaults, change) in
+            self!.nowTurn = .Pause
+            self!.count = 0
+            self!.totalSec = UserDefaults.standard.integer(forKey: self!.p1TimeKey)
+            self!.displayUpdate()
         })
     }
     
@@ -75,7 +79,9 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func pauseButtonPressed(_ sender: UIButton) {
+        nowTurn = .Pause
         timer.invalidate()
+        
         if let soundURL = Bundle.main.url(forResource: "Pause", withExtension: "mp3") {
             do {
                 player = try AVAudioPlayer(contentsOf: soundURL)
@@ -88,13 +94,14 @@ class MainViewController: UIViewController {
     
     @objc func timerInterrupt(_ timer: Timer) {
         count += 1
-        if displayUpdate() <= 0 {
+        displayUpdate()
+        if totalSec - count <= 0 {
             count = 0
             timer.invalidate()
         }
     }
     
-    func displayUpdate() -> Int {
+    func displayUpdate() {
         let remainCount = totalSec - count
         convertHMS(time: remainCount)
         
@@ -103,15 +110,16 @@ class MainViewController: UIViewController {
             p1ButtonLabel.setTitle(stringRemainCount, for: .normal)
         case .P2:
             p2ButtonLabel.setTitle(stringRemainCount, for: .normal)
+        case .Pause:
+            p1ButtonLabel.setTitle(stringRemainCount, for: .normal)
+            p2ButtonLabel.setTitle(stringRemainCount, for: .normal)
         }
-        
-        return remainCount
     }
     
     func startTimer() {
         timer.invalidate()
         count = 0
-        _ = displayUpdate()
+        displayUpdate()
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerInterrupt(_:)), userInfo: nil, repeats: true)
     }
     
@@ -129,19 +137,20 @@ class MainViewController: UIViewController {
         let stringHour = String(hour)
         let stringMin = String(format: "%02d", min)
         let stringSec = String(format: "%02d", sec)
-        
-        if hour > 0 {
-            stringRemainCount = "\(stringHour):\(stringMin):\(stringSec)"
-        } else if hour <= 0 {
-            stringRemainCount = "\(stringMin):\(stringSec)"
-        } else if min <= 0 {
+
+        switch time {
+        case (0..<60):
             stringRemainCount = "\(stringSec)"
+        case (60..<3600):
+            stringRemainCount = "\(stringMin):\(stringSec)"
+        default :
+            stringRemainCount = "\(stringHour):\(stringMin):\(stringSec)"
         }
     }
 }
 
 extension UserDefaults {
-    @objc dynamic var p1Time: Int {
+    @objc dynamic var p1TimeKey: Int {
         return integer(forKey: "p1TimeKey")
     }
 }
