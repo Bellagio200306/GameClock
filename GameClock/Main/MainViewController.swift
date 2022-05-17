@@ -11,7 +11,6 @@ import AVFoundation
 enum Player {
     case P1
     case P2
-    case Pause
 }
 
 enum GameStatus {
@@ -29,7 +28,7 @@ class MainViewController: UIViewController {
     var player: AVAudioPlayer?
     var timer = Timer()
     var count = 0
-    var nowTurn: Player = .Pause
+    var nowTurn: Player = .P1
     var gameStatus: GameStatus = .Paused
     var totalSec = 0
     var stringRemainCount = "0"
@@ -86,7 +85,7 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func pauseButtonPressed(_ sender: UIButton) {
-        nowTurn = .Pause
+        gameStatus = .Paused
         timer.invalidate()
         
         if let soundURL = Bundle.main.url(forResource: "Pause", withExtension: "mp3") {
@@ -121,9 +120,6 @@ class MainViewController: UIViewController {
             case .P1:
                 p1ButtonLabel.setTitle(stringRemainCount, for: .normal)
             case .P2:
-                p2ButtonLabel.setTitle(stringRemainCount, for: .normal)
-            case .Pause:
-                p1ButtonLabel.setTitle(stringRemainCount, for: .normal)
                 p2ButtonLabel.setTitle(stringRemainCount, for: .normal)
             }
         }
