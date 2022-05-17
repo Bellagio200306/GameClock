@@ -11,7 +11,11 @@ import AVFoundation
 enum Player {
     case P1
     case P2
-    case Pause
+}
+
+enum GameStatus {
+    case Paused
+    case Playing
 }
 
 class MainViewController: UIViewController {
@@ -24,7 +28,8 @@ class MainViewController: UIViewController {
     var player: AVAudioPlayer?
     var timer = Timer()
     var count = 0
-    var nowTurn: Player = .Pause
+    var nowTurn: Player = .P1
+    var gameStatus: GameStatus = .Paused
     var totalSec = 0
     var stringRemainCount = "0"
     var observer: NSKeyValueObservation?
@@ -39,9 +44,9 @@ class MainViewController: UIViewController {
         p2ButtonLabel.transform = flipUpsideDown()
         settings.register(defaults: [p1TimeKey : 0])
         observer = UserDefaults.standard.observe(\.p1TimeKey, options: [.initial, .new], changeHandler: { [weak self] (defaults, change) in
-            self!.nowTurn = .Pause
+            self!.gameStatus = .Paused
             self!.count = 0
-            self!.totalSec = UserDefaults.standard.integer(forKey: self!.p1TimeKey)
+            self!.totalSec = change.newValue!
             self!.displayUpdate()
         })
     }
@@ -57,6 +62,7 @@ class MainViewController: UIViewController {
             }
         }
         
+        gameStatus = .Playing
         startTimer()
         nowTurn.backgroundColor = UIColor(hex: "B54434")
         nowTurn.setTitleColor(UIColor.white, for: .normal)
@@ -79,7 +85,7 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func pauseButtonPressed(_ sender: UIButton) {
-        nowTurn = .Pause
+        gameStatus = .Paused
         timer.invalidate()
         
         if let soundURL = Bundle.main.url(forResource: "Pause", withExtension: "mp3") {
@@ -105,14 +111,17 @@ class MainViewController: UIViewController {
         let remainCount = totalSec - count
         convertHMS(time: remainCount)
         
-        switch nowTurn {
-        case .P1:
-            p1ButtonLabel.setTitle(stringRemainCount, for: .normal)
-        case .P2:
-            p2ButtonLabel.setTitle(stringRemainCount, for: .normal)
-        case .Pause:
+        switch gameStatus {
+        case .Paused:
             p1ButtonLabel.setTitle(stringRemainCount, for: .normal)
             p2ButtonLabel.setTitle(stringRemainCount, for: .normal)
+        case .Playing:
+            switch nowTurn {
+            case .P1:
+                p1ButtonLabel.setTitle(stringRemainCount, for: .normal)
+            case .P2:
+                p2ButtonLabel.setTitle(stringRemainCount, for: .normal)
+            }
         }
     }
     
@@ -137,7 +146,7 @@ class MainViewController: UIViewController {
         let stringHour = String(hour)
         let stringMin = String(format: "%02d", min)
         let stringSec = String(format: "%02d", sec)
-
+        
         switch time {
         case (0..<60):
             stringRemainCount = "\(stringSec)"
