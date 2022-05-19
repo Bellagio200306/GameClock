@@ -18,9 +18,8 @@
 		34417AE02805530B00F82CB0 /* Pause.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 34417ADC2805530B00F82CB0 /* Pause.mp3 */; };
 		3470308D27A8B013009CDF94 /* UIColorHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3470308C27A8B013009CDF94 /* UIColorHex.swift */; };
 		34AC39E727F202AF0099F51C /* Move.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 34AC39E627F202AF0099F51C /* Move.mp3 */; };
-		34AC9D0727D3A80800873B01 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AC9D0627D3A80800873B01 /* SettingsTableViewController.swift */; };
 		34B4F23227EDFA7700939CF1 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B4F23127EDFA7700939CF1 /* Setting.swift */; };
-		34B4F23427EE0D1700939CF1 /* P1PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B4F23327EE0D1700939CF1 /* P1PickerViewController.swift */; };
+		34B4F23427EE0D1700939CF1 /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B4F23327EE0D1700939CF1 /* PickerViewController.swift */; };
 		34B9D87B280039F300D73C28 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B9D87A280039F300D73C28 /* SettingsViewController.swift */; };
 		34B9D87D280074ED00D73C28 /* Move2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 34B9D87C280074ED00D73C28 /* Move2.mp3 */; };
 		34B9D87F280074FA00D73C28 /* Move3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 34B9D87E280074FA00D73C28 /* Move3.mp3 */; };
@@ -41,9 +40,8 @@
 		34417ADC2805530B00F82CB0 /* Pause.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Pause.mp3; sourceTree = "<group>"; };
 		3470308C27A8B013009CDF94 /* UIColorHex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIColorHex.swift; path = GameClock/Utility/UIColorHex.swift; sourceTree = SOURCE_ROOT; };
 		34AC39E627F202AF0099F51C /* Move.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Move.mp3; sourceTree = "<group>"; };
-		34AC9D0627D3A80800873B01 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		34B4F23127EDFA7700939CF1 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
-		34B4F23327EE0D1700939CF1 /* P1PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P1PickerViewController.swift; sourceTree = "<group>"; };
+		34B4F23327EE0D1700939CF1 /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
 		34B9D87A280039F300D73C28 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		34B9D87C280074ED00D73C28 /* Move2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Move2.mp3; sourceTree = "<group>"; };
 		34B9D87E280074FA00D73C28 /* Move3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Move3.mp3; sourceTree = "<group>"; };
@@ -97,7 +95,6 @@
 				34B9D88028007BC200D73C28 /* Assets */,
 				3420883327A76AAE00DEB7E8 /* LaunchScreen.storyboard */,
 				3420883627A76AAE00DEB7E8 /* Info.plist */,
-				34AC9D0627D3A80800873B01 /* SettingsTableViewController.swift */,
 			);
 			path = GameClock;
 			sourceTree = "<group>";
@@ -113,7 +110,7 @@
 		3420883D27A77ED400DEB7E8 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				34B4F23327EE0D1700939CF1 /* P1PickerViewController.swift */,
+				34B4F23327EE0D1700939CF1 /* PickerViewController.swift */,
 				34B9D87A280039F300D73C28 /* SettingsViewController.swift */,
 				34B4F23127EDFA7700939CF1 /* Setting.swift */,
 			);
@@ -215,10 +212,9 @@
 			files = (
 				3420882D27A76AAC00DEB7E8 /* MainViewController.swift in Sources */,
 				3420882927A76AAC00DEB7E8 /* AppDelegate.swift in Sources */,
-				34AC9D0727D3A80800873B01 /* SettingsTableViewController.swift in Sources */,
 				3470308D27A8B013009CDF94 /* UIColorHex.swift in Sources */,
 				3420882B27A76AAC00DEB7E8 /* SceneDelegate.swift in Sources */,
-				34B4F23427EE0D1700939CF1 /* P1PickerViewController.swift in Sources */,
+				34B4F23427EE0D1700939CF1 /* PickerViewController.swift in Sources */,
 				34B4F23227EDFA7700939CF1 /* Setting.swift in Sources */,
 				34B9D87B280039F300D73C28 /* SettingsViewController.swift in Sources */,
 			);

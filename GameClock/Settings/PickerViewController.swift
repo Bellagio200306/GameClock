@@ -7,23 +7,25 @@
 
 import UIKit
 
-class P1PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
-    @IBOutlet weak var p1PickerView: UIPickerView!
+    @IBOutlet weak var PickerView: UIPickerView!
     
     let dataList = [[Int](0...10), [Int](0...60), [Int](0...60)]
-    let settings = UserDefaults.standard
+    let userDefaults = UserDefaults.standard
     let p1TimeKey = "p1TimeKey"
+    let p2TimeKey = "p2TimeKey"
     
     var hour = 0
     var min = 0
     var sec = 0
     var totalSec = 0
+    var indexNum = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        p1PickerView.delegate = self
-        p1PickerView.dataSource = self
+        PickerView.delegate = self
+        PickerView.dataSource = self
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -37,7 +39,7 @@ class P1PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return String(dataList[component][row])
     }
-
+    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         switch component {
@@ -52,7 +54,18 @@ class P1PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         }
         
         totalSec = hour * 60 * 60 + min * 60 + sec
-        settings.setValue(totalSec, forKey: p1TimeKey)
-        settings.synchronize()
+        
+        switch indexNum {
+        case 0:
+            userDefaults.setValue(totalSec, forKey: p1TimeKey)
+            print(userDefaults.integer(forKey: p1TimeKey))
+            print(userDefaults.integer(forKey: p2TimeKey))
+        case 1:
+            userDefaults.setValue(totalSec, forKey: p2TimeKey)
+            print(userDefaults.integer(forKey: p1TimeKey))
+            print(userDefaults.integer(forKey: p2TimeKey))
+        default:
+            print("pickerでエラー")
+        }
     }
 }

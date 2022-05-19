@@ -32,9 +32,11 @@ class MainViewController: UIViewController {
     var gameStatus: GameStatus = .Paused
     var totalSec = 0
     var stringRemainCount = "0"
-    var observer: NSKeyValueObservation?
+    var observedP1: NSKeyValueObservation?
+    var observedP2: NSKeyValueObservation?
     
-    let settings = UserDefaults.standard
+    //settingsがSettingsVCの配列名とかぶってたので改名しました。
+    let userDefaults = UserDefaults.standard
     let p1TimeKey = "p1TimeKey"
     let p2TimeKey = "p2TimeKey"
     
@@ -42,12 +44,21 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         
         p2ButtonLabel.transform = flipUpsideDown()
-        settings.register(defaults: [p1TimeKey : 0])
-        observer = UserDefaults.standard.observe(\.p1TimeKey, options: [.initial, .new], changeHandler: { [weak self] (defaults, change) in
-            self!.gameStatus = .Paused
-            self!.count = 0
+        
+        userDefaults.register(defaults: [p1TimeKey : 0])
+        observedP1 = userDefaults.observe(\.p1TimeKey, options: [.initial, .new], changeHandler: { [weak self] (defaults, change) in
             self!.totalSec = change.newValue!
-            self!.displayUpdate()
+            //P1とP2の識別をするのにnowTurnを使用しましたが適切かどうか疑問です。
+            self!.nowTurn = .P1
+            //Player毎に行う同じものをshowTime()でまとめました。
+            self!.showTime()
+        })
+        
+        userDefaults.register(defaults: [p2TimeKey : 0])
+        observedP2 = userDefaults.observe(\.p2TimeKey, options: [.initial, .new], changeHandler: { [weak self] (defaults, change) in
+            self!.totalSec = change.newValue!
+            self!.nowTurn = .P2
+            self!.showTime()
         })
     }
     
@@ -74,13 +85,13 @@ class MainViewController: UIViewController {
     
     @IBAction func p1ButtonPressed(_ sender: UIButton) {
         nowTurn = .P2
-        totalSec = settings.integer(forKey: p1TimeKey)
+        totalSec = userDefaults.integer(forKey: p2TimeKey)
         playerButtonPressed(nowTurn: p2ButtonLabel, restTurn: p1ButtonLabel)
     }
     
     @IBAction func p2ButtonPressed(_ sender: UIButton) {
         nowTurn = .P1
-        totalSec = settings.integer(forKey: p1TimeKey)
+        totalSec = userDefaults.integer(forKey: p1TimeKey)
         playerButtonPressed(nowTurn: p1ButtonLabel, restTurn: p2ButtonLabel)
     }
     
@@ -113,8 +124,13 @@ class MainViewController: UIViewController {
         
         switch gameStatus {
         case .Paused:
-            p1ButtonLabel.setTitle(stringRemainCount, for: .normal)
-            p2ButtonLabel.setTitle(stringRemainCount, for: .normal)
+            //nowTurnでstringRemainCountをどちらに代入するか振り分けています。
+            switch nowTurn {
+            case .P1:
+                p1ButtonLabel.setTitle(stringRemainCount, for: .normal)
+            case .P2:
+                p2ButtonLabel.setTitle(stringRemainCount, for: .normal)
+            }
         case .Playing:
             switch nowTurn {
             case .P1:
@@ -156,10 +172,19 @@ class MainViewController: UIViewController {
             stringRemainCount = "\(stringHour):\(stringMin):\(stringSec)"
         }
     }
+    
+    func showTime() {
+        gameStatus = .Paused
+        count = 0
+        displayUpdate()
+    }
 }
 
 extension UserDefaults {
     @objc dynamic var p1TimeKey: Int {
         return integer(forKey: "p1TimeKey")
+    }
+    @objc dynamic var p2TimeKey: Int {
+        return integer(forKey: "p2TimeKey")
     }
 }

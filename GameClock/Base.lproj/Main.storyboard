@@ -147,7 +147,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="FyR-Oj-1p1" kind="show" id="MLh-Sm-rJS"/>
+                                    <segue destination="FyR-Oj-1p1" kind="show" identifier="toPicker" id="MLh-Sm-rJS"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -165,7 +165,7 @@
         <!--Picker View Controller-->
         <scene sceneID="oih-Ed-0IA">
             <objects>
-                <viewController id="FyR-Oj-1p1" customClass="P1PickerViewController" customModule="GameClock" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="FyR-Oj-1p1" customClass="PickerViewController" customModule="GameClock" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qDV-UR-d0P">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -183,7 +183,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="RnQ-r2-A7n"/>
                     <connections>
-                        <outlet property="p1PickerView" destination="tZn-6V-Pbd" id="QKU-0I-Ioz"/>
+                        <outlet property="PickerView" destination="tZn-6V-Pbd" id="QKU-0I-Ioz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bqb-Rj-7KR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
