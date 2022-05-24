@@ -41,7 +41,7 @@ class SettingsViewController: UITableViewController {
         return cell
     }
     
-    //設定したいPlayerを識別するためindexPathの番号をPickerVCのvar indexNumに渡します。
+    //    indexPathのrowを元にplayerを識別します。
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toPicker" {
             if let indexNum = tableView.indexPathForSelectedRow?.row {
@@ -49,8 +49,13 @@ class SettingsViewController: UITableViewController {
                 else {
                     fatalError("Failed to prepare DetailViewController.")
                 }
-                destinationVC.indexNum = indexNum
+                switch indexNum {
+                case 0: destinationVC.player = .P1
+                case 1: destinationVC.player = .P2
+                default: print("toPickerSegueでエラー")
+                }
             }
         }
     }
 }
+

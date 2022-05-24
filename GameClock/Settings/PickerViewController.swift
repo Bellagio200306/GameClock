@@ -9,7 +9,7 @@ import UIKit
 
 class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
-    @IBOutlet weak var PickerView: UIPickerView!
+    @IBOutlet weak var pickerView: UIPickerView!
     
     let dataList = [[Int](0...10), [Int](0...60), [Int](0...60)]
     let userDefaults = UserDefaults.standard
@@ -20,12 +20,12 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     var min = 0
     var sec = 0
     var totalSec = 0
-    var indexNum = 0
+    var player: Player = .P1
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        PickerView.delegate = self
-        PickerView.dataSource = self
+        pickerView.delegate = self
+        pickerView.dataSource = self
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -43,29 +43,17 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         switch component {
-        case 0:
-            hour = row
-        case 1:
-            min = row
-        case 2:
-            sec = row
-        default:
-            print("pickerでエラー")
+        case 0: hour = row
+        case 1: min = row
+        case 2: sec = row
+        default: print("pickerでエラー")
         }
         
         totalSec = hour * 60 * 60 + min * 60 + sec
         
-        switch indexNum {
-        case 0:
-            userDefaults.setValue(totalSec, forKey: p1TimeKey)
-            print(userDefaults.integer(forKey: p1TimeKey))
-            print(userDefaults.integer(forKey: p2TimeKey))
-        case 1:
-            userDefaults.setValue(totalSec, forKey: p2TimeKey)
-            print(userDefaults.integer(forKey: p1TimeKey))
-            print(userDefaults.integer(forKey: p2TimeKey))
-        default:
-            print("pickerでエラー")
+        switch player {
+        case .P1: userDefaults.set(totalSec, forKey: p1TimeKey)
+        case .P2: userDefaults.set(totalSec, forKey: p2TimeKey)
         }
     }
 }

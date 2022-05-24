@@ -183,7 +183,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="RnQ-r2-A7n"/>
                     <connections>
-                        <outlet property="PickerView" destination="tZn-6V-Pbd" id="QKU-0I-Ioz"/>
+                        <outlet property="pickerView" destination="tZn-6V-Pbd" id="QKU-0I-Ioz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bqb-Rj-7KR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

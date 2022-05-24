@@ -35,7 +35,6 @@ class MainViewController: UIViewController {
     var observedP1: NSKeyValueObservation?
     var observedP2: NSKeyValueObservation?
     
-    //settingsがSettingsVCの配列名とかぶってたので改名しました。
     let userDefaults = UserDefaults.standard
     let p1TimeKey = "p1TimeKey"
     let p2TimeKey = "p2TimeKey"
@@ -110,11 +109,12 @@ class MainViewController: UIViewController {
     }
     
     @objc func timerInterrupt(_ timer: Timer) {
-        count += 1
-        displayUpdate()
-        if totalSec - count <= 0 {
+        if totalSec - count < 1 {
             count = 0
             timer.invalidate()
+        } else {
+            count += 1
+            displayUpdate()
         }
     }
     
