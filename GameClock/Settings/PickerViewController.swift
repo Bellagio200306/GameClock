@@ -7,23 +7,25 @@
 
 import UIKit
 
-class P1PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
-    @IBOutlet weak var p1PickerView: UIPickerView!
+    @IBOutlet weak var pickerView: UIPickerView!
     
     let dataList = [[Int](0...10), [Int](0...60), [Int](0...60)]
-    let settings = UserDefaults.standard
+    let userDefaults = UserDefaults.standard
     let p1TimeKey = "p1TimeKey"
+    let p2TimeKey = "p2TimeKey"
     
     var hour = 0
     var min = 0
     var sec = 0
     var totalSec = 0
+    var player: Player = .P1
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        p1PickerView.delegate = self
-        p1PickerView.dataSource = self
+        pickerView.delegate = self
+        pickerView.dataSource = self
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -37,22 +39,21 @@ class P1PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return String(dataList[component][row])
     }
-
+    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         switch component {
-        case 0:
-            hour = row
-        case 1:
-            min = row
-        case 2:
-            sec = row
-        default:
-            print("pickerでエラー")
+        case 0: hour = row
+        case 1: min = row
+        case 2: sec = row
+        default: print("pickerでエラー")
         }
         
         totalSec = hour * 60 * 60 + min * 60 + sec
-        settings.setValue(totalSec, forKey: p1TimeKey)
-        settings.synchronize()
+        
+        switch player {
+        case .P1: userDefaults.set(totalSec, forKey: p1TimeKey)
+        case .P2: userDefaults.set(totalSec, forKey: p2TimeKey)
+        }
     }
 }

@@ -31,7 +31,6 @@ class SettingsViewController: UITableViewController {
         settings.append(Setting(item: "Player 2", rightDetail: "2:00"))
     }
     
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "settingsTableViewCell", for: indexPath)
         var content = cell.defaultContentConfiguration()
@@ -41,4 +40,22 @@ class SettingsViewController: UITableViewController {
         
         return cell
     }
+    
+    //    indexPathのrowを元にplayerを識別します。
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toPicker" {
+            if let indexNum = tableView.indexPathForSelectedRow?.row {
+                guard let destinationVC = segue.destination as? PickerViewController
+                else {
+                    fatalError("Failed to prepare DetailViewController.")
+                }
+                switch indexNum {
+                case 0: destinationVC.player = .P1
+                case 1: destinationVC.player = .P2
+                default: print("toPickerSegueでエラー")
+                }
+            }
+        }
+    }
 }
+
