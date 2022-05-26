@@ -11,6 +11,11 @@ class SettingsViewController: UITableViewController {
     
     var settings: [Setting] = []
     
+    let userDefaults = UserDefaults.standard
+    let p1TimeKey = "p1TimeKey"
+    let p2TimeKey = "p2TimeKey"
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,8 +32,28 @@ class SettingsViewController: UITableViewController {
     }
     
     func loadData() {
-        settings.append(Setting(item: "Player 1", rightDetail: "1:00"))
-        settings.append(Setting(item: "Player 2", rightDetail: "2:00"))
+        let p1Time = userDefaults.integer(forKey: p1TimeKey)
+        let p2Time = userDefaults.integer(forKey: p2TimeKey)
+        settings.append(Setting(item: "Player 1", rightDetail: convertHMS(p1Time)))
+        settings.append(Setting(item: "Player 2", rightDetail: convertHMS(p2Time)))
+    }
+    
+    func convertHMS(_ time: Int) -> String {
+        var stringTime = "00:00:00"
+        let hour = time / 3600
+        let min = time % 3600 / 60
+        let sec = time % 3600 % 60
+        
+        let stringHour = String(hour)
+        let stringMin = String(format: "%02d", min)
+        let stringSec = String(format: "%02d", sec)
+        
+        switch time {
+        case (0..<60): stringTime = "\(stringSec)"
+        case (60..<3600): stringTime = "\(stringMin):\(stringSec)"
+        default : stringTime = "\(stringHour):\(stringMin):\(stringSec)"
+        }
+        return stringTime
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -41,7 +66,6 @@ class SettingsViewController: UITableViewController {
         return cell
     }
     
-    //    indexPathのrowを元にplayerを識別します。
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toPicker" {
             if let indexNum = tableView.indexPathForSelectedRow?.row {

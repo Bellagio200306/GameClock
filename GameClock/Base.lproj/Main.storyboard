@@ -52,7 +52,7 @@
                                     <constraint firstAttribute="height" constant="70" id="dBZ-et-zJf"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="一時停止ボタン.png"/>
+                                <state key="normal" image="PauseButton.png"/>
                                 <connections>
                                     <action selector="pauseButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ELi-4o-T3q"/>
                                 </connections>
@@ -192,7 +192,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="一時停止ボタン.png" width="256" height="256"/>
+        <image name="PauseButton.png" width="256" height="256"/>
         <image name="設定" width="256" height="256"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

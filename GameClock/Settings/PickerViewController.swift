@@ -26,6 +26,7 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         super.viewDidLoad()
         pickerView.delegate = self
         pickerView.dataSource = self
+        adjastPicker(player)
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -54,6 +55,33 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         switch player {
         case .P1: userDefaults.set(totalSec, forKey: p1TimeKey)
         case .P2: userDefaults.set(totalSec, forKey: p2TimeKey)
+        }
+    }
+    
+//    UserDefaultsの時間をピッカーで表示
+    func adjastPicker(_ player: Player) {
+        
+        switch player {
+        case .P1: totalSec = userDefaults.integer(forKey: p1TimeKey)
+        case .P2: totalSec = userDefaults.integer(forKey: p2TimeKey)
+        }
+        
+        let h = totalSec / 3600
+        let m = totalSec % 3600 / 60
+        let s = totalSec % 3600 % 60
+        
+// ピッカーにセットされた初期値を保持（これをしないと「00:00:01」を「00:01:01」に変更した時「00:01:00」と表示されてしまう）
+        hour = h
+        min = m
+        sec = s
+        
+        for component in 0..<dataList.count {
+            switch component {
+            case 0: pickerView.selectRow(h, inComponent: 0, animated: true)
+            case 1: pickerView.selectRow(m, inComponent: 1, animated: true)
+            case 2: pickerView.selectRow(s, inComponent: 2, animated: true)
+            default: print("adjastPickerエラー")
+            }
         }
     }
 }
