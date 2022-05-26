@@ -5,6 +5,8 @@
 //  Created by 安部一歩 on 2022/01/31.
 //
 
+//テスト
+
 import UIKit
 import AVFoundation
 
@@ -18,7 +20,7 @@ enum GameStatus {
     case Playing
 }
 
-class MainViewController: UIViewController{
+class MainViewController: UIViewController {
     
     @IBOutlet weak var p1ButtonLabel: UIButton!
     @IBOutlet weak var p2ButtonLabel: UIButton!
@@ -119,7 +121,6 @@ class MainViewController: UIViewController{
     
     func displayUpdate() {
         let remainCount = totalSec - count
-        //SettingsVCにあるconvertHMSを使いたいときはこの使い方であっているのでしょうか？Delegateとの違いがいまいちわかっていないです。
         let stringRemainCount = settingsViewController.convertHMS(remainCount)
         
         switch gameStatus {
