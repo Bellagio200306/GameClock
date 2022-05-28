@@ -10,17 +10,20 @@ import UIKit
 class SettingsViewController: UITableViewController {
     
     var settings: [Setting] = []
+    var item = Items()
     
     let userDefaults = UserDefaults.standard
-    let p1TimeKey = "p1TimeKey"
-    let p2TimeKey = "p2TimeKey"
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationController?.navigationBar.tintColor = .gray
         loadData()
+    }
+
+//Doneを押してでモーダルを閉じる
+    @IBAction func doneButtonPressed(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -32,28 +35,10 @@ class SettingsViewController: UITableViewController {
     }
     
     func loadData() {
-        let p1Time = userDefaults.integer(forKey: p1TimeKey)
-        let p2Time = userDefaults.integer(forKey: p2TimeKey)
-        settings.append(Setting(item: "Player 1", rightDetail: convertHMS(p1Time)))
-        settings.append(Setting(item: "Player 2", rightDetail: convertHMS(p2Time)))
-    }
-    
-    func convertHMS(_ time: Int) -> String {
-        var stringTime = "00:00:00"
-        let hour = time / 3600
-        let min = time % 3600 / 60
-        let sec = time % 3600 % 60
-        
-        let stringHour = String(hour)
-        let stringMin = String(format: "%02d", min)
-        let stringSec = String(format: "%02d", sec)
-        
-        switch time {
-        case (0..<60): stringTime = "\(stringSec)"
-        case (60..<3600): stringTime = "\(stringMin):\(stringSec)"
-        default : stringTime = "\(stringHour):\(stringMin):\(stringSec)"
-        }
-        return stringTime
+        let p1Time = userDefaults.integer(forKey: item.p1TimeKey)
+        let p2Time = userDefaults.integer(forKey: item.p2TimeKey)
+        settings.append(Setting(item: "Player 1", rightDetail: item.convertHMS(p1Time)))
+        settings.append(Setting(item: "Player 2", rightDetail: item.convertHMS(p2Time)))
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

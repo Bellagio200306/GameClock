@@ -5,8 +5,6 @@
 //  Created by 安部一歩 on 2022/01/31.
 //
 
-//テスト
-
 import UIKit
 import AVFoundation
 
@@ -35,29 +33,25 @@ class MainViewController: UIViewController {
     var totalSec = 0
     var observedP1: NSKeyValueObservation?
     var observedP2: NSKeyValueObservation?
-    var settingsViewController = SettingsViewController()
+    var item = Items()
     
     let userDefaults = UserDefaults.standard
-    let p1TimeKey = "p1TimeKey"
-    let p2TimeKey = "p2TimeKey"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         p2ButtonLabel.transform = flipUpsideDown()
         
-        userDefaults.register(defaults: [p1TimeKey : 60])
+        userDefaults.register(defaults: [item.p1TimeKey : 60])
         observedP1 = userDefaults.observe(\.p1TimeKey, options: [.initial, .new], changeHandler: { [weak self] (defaults, change) in
             self!.totalSec = change.newValue!
-            self!.nowTurn = .P1
-            self!.showTime()
+            self!.p1ButtonLabel.setTitle(self!.updateUserDefaults(), for: .normal)
         })
         
-        userDefaults.register(defaults: [p2TimeKey : 60])
+        userDefaults.register(defaults: [item.p2TimeKey : 60])
         observedP2 = userDefaults.observe(\.p2TimeKey, options: [.initial, .new], changeHandler: { [weak self] (defaults, change) in
             self!.totalSec = change.newValue!
-            self!.nowTurn = .P2
-            self!.showTime()
+            self!.p2ButtonLabel.setTitle(self!.updateUserDefaults(), for: .normal)
         })
     }
     
@@ -77,36 +71,40 @@ class MainViewController: UIViewController {
     
     @IBAction func p1ButtonPressed(_ sender: UIButton) {
         nowTurn = .P2
-        totalSec = userDefaults.integer(forKey: p2TimeKey)
+        totalSec = userDefaults.integer(forKey: item.p2TimeKey)
         playerButtonPressed(nowTurn: p2ButtonLabel, restTurn: p1ButtonLabel)
     }
     
     @IBAction func p2ButtonPressed(_ sender: UIButton) {
         nowTurn = .P1
-        totalSec = userDefaults.integer(forKey: p1TimeKey)
+        totalSec = userDefaults.integer(forKey: item.p1TimeKey)
         playerButtonPressed(nowTurn: p1ButtonLabel, restTurn: p2ButtonLabel)
     }
     
     @IBAction func pauseButtonPressed(_ sender: UIButton) {
         
-        //一時停止と再生機能を追加
         switch gameStatus {
         case .Playing:
-            gameStatus = .Paused
             timer.invalidate()
             p1ButtonLabel.isEnabled = false
             p2ButtonLabel.isEnabled = false
             soundEffect(resouce: "Pause", ext: "mp3")
-            changePauseImage(imageName: "PlayButton.png")
+            changePauseImage(gameStatus: .Playing)
+            gameStatus = .Paused
             
         case .Paused:
-            gameStatus = .Playing
             startTimer()
             p1ButtonLabel.isEnabled = true
             p2ButtonLabel.isEnabled = true
             soundEffect(resouce: "Move2", ext: "mp3")
-            changePauseImage(imageName: "PauseButton.png")
+            changePauseImage(gameStatus: .Paused)
+            gameStatus = .Playing
         }
+    }
+    
+    @IBAction func settingButtonPressed(_ sender: UIButton) {
+        timer.invalidate()
+        gameStatus = .Paused
     }
     
     @objc func timerInterrupt(_ timer: Timer) {
@@ -121,19 +119,11 @@ class MainViewController: UIViewController {
     
     func displayUpdate() {
         let remainCount = totalSec - count
-        let stringRemainCount = settingsViewController.convertHMS(remainCount)
+        let stringRemainCount = item.convertHMS(remainCount)
         
-        switch gameStatus {
-        case .Paused:
-            switch nowTurn {
-            case .P1: p1ButtonLabel.setTitle(stringRemainCount, for: .normal)
-            case .P2: p2ButtonLabel.setTitle(stringRemainCount, for: .normal)
-            }
-        case .Playing:
-            switch nowTurn {
-            case .P1: p1ButtonLabel.setTitle(stringRemainCount, for: .normal)
-            case .P2: p2ButtonLabel.setTitle(stringRemainCount, for: .normal)
-            }
+        switch nowTurn {
+        case .P1: p1ButtonLabel.setTitle(stringRemainCount, for: .normal)
+        case .P2: p2ButtonLabel.setTitle(stringRemainCount, for: .normal)
         }
     }
     
@@ -160,16 +150,25 @@ class MainViewController: UIViewController {
         }
     }
     
-    func changePauseImage(imageName: String) {
+    func changePauseImage(gameStatus: GameStatus) {
+        
+        var imageName: String
+        
+        switch gameStatus {
+        case .Paused: imageName = "PauseButton.png"
+        case .Playing: imageName = "PlayButton.png"
+        }
+        
         let state = UIControl.State.normal
         let image = UIImage(named: imageName)
         pauseButton.setImage(image, for: state)
     }
     
-    func showTime() {
-        gameStatus = .Paused
+    func updateUserDefaults() -> String {
         count = 0
-        displayUpdate()
+        let remainCount = totalSec - count
+        let stringRemainCount = item.convertHMS(remainCount)
+        return stringRemainCount
     }
 }
 
