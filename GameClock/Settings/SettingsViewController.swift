@@ -17,6 +17,10 @@ class SettingsViewController: UITableViewController {
         self.navigationController?.navigationBar.tintColor = .gray
         loadData()
     }
+
+    @IBAction func doneButtonPressed(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -27,8 +31,10 @@ class SettingsViewController: UITableViewController {
     }
     
     func loadData() {
-        settings.append(Setting(item: "Player 1", rightDetail: "1:00"))
-        settings.append(Setting(item: "Player 2", rightDetail: "2:00"))
+        let p1Time = userDefaults.integer(forKey: p1TimeKey)
+        let p2Time = userDefaults.integer(forKey: p2TimeKey)
+        settings.append(Setting(item: "Player 1", rightDetail: convertHMS(p1Time)))
+        settings.append(Setting(item: "Player 2", rightDetail: convertHMS(p2Time)))
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -41,7 +47,6 @@ class SettingsViewController: UITableViewController {
         return cell
     }
     
-    //    indexPathのrowを元にplayerを識別します。
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toPicker" {
             if let indexNum = tableView.indexPathForSelectedRow?.row {

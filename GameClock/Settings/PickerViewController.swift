@@ -12,9 +12,6 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     @IBOutlet weak var pickerView: UIPickerView!
     
     let dataList = [[Int](0...10), [Int](0...60), [Int](0...60)]
-    let userDefaults = UserDefaults.standard
-    let p1TimeKey = "p1TimeKey"
-    let p2TimeKey = "p2TimeKey"
     
     var hour = 0
     var min = 0
@@ -26,6 +23,7 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         super.viewDidLoad()
         pickerView.delegate = self
         pickerView.dataSource = self
+        adjastPicker(player)
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -54,6 +52,31 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         switch player {
         case .P1: userDefaults.set(totalSec, forKey: p1TimeKey)
         case .P2: userDefaults.set(totalSec, forKey: p2TimeKey)
+        }
+    }
+    
+    func adjastPicker(_ player: Player) {
+        
+        switch player {
+        case .P1: totalSec = userDefaults.integer(forKey: p1TimeKey)
+        case .P2: totalSec = userDefaults.integer(forKey: p2TimeKey)
+        }
+        
+        let h = totalSec / 3600
+        let m = totalSec % 3600 / 60
+        let s = totalSec % 3600 % 60
+        
+        hour = h
+        min = m
+        sec = s
+        
+        for component in 0..<dataList.count {
+            switch component {
+            case 0: pickerView.selectRow(h, inComponent: 0, animated: true)
+            case 1: pickerView.selectRow(m, inComponent: 1, animated: true)
+            case 2: pickerView.selectRow(s, inComponent: 2, animated: true)
+            default: print("adjastPickerエラー")
+            }
         }
     }
 }
