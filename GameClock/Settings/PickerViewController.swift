@@ -12,9 +12,6 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     @IBOutlet weak var pickerView: UIPickerView!
     
     let dataList = [[Int](0...10), [Int](0...60), [Int](0...60)]
-    let userDefaults = UserDefaults.standard
-    let p1TimeKey = "p1TimeKey"
-    let p2TimeKey = "p2TimeKey"
     
     var hour = 0
     var min = 0
@@ -58,7 +55,6 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         }
     }
     
-//    UserDefaultsの時間をピッカーで表示
     func adjastPicker(_ player: Player) {
         
         switch player {
@@ -70,7 +66,6 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         let m = totalSec % 3600 / 60
         let s = totalSec % 3600 % 60
         
-// ピッカーにセットされた初期値を保持（これをしないと「00:00:01」を「00:01:01」に変更した時「00:01:00」と表示されてしまう）
         hour = h
         min = m
         sec = s

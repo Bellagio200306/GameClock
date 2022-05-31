@@ -10,9 +10,6 @@ import UIKit
 class SettingsViewController: UITableViewController {
     
     var settings: [Setting] = []
-    var item = Items()
-    
-    let userDefaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +18,6 @@ class SettingsViewController: UITableViewController {
         loadData()
     }
 
-//Doneを押してでモーダルを閉じる
     @IBAction func doneButtonPressed(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -35,10 +31,10 @@ class SettingsViewController: UITableViewController {
     }
     
     func loadData() {
-        let p1Time = userDefaults.integer(forKey: item.p1TimeKey)
-        let p2Time = userDefaults.integer(forKey: item.p2TimeKey)
-        settings.append(Setting(item: "Player 1", rightDetail: item.convertHMS(p1Time)))
-        settings.append(Setting(item: "Player 2", rightDetail: item.convertHMS(p2Time)))
+        let p1Time = userDefaults.integer(forKey: p1TimeKey)
+        let p2Time = userDefaults.integer(forKey: p2TimeKey)
+        settings.append(Setting(item: "Player 1", rightDetail: convertHMS(p1Time)))
+        settings.append(Setting(item: "Player 2", rightDetail: convertHMS(p2Time)))
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

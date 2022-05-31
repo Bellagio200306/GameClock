@@ -33,22 +33,19 @@ class MainViewController: UIViewController {
     var totalSec = 0
     var observedP1: NSKeyValueObservation?
     var observedP2: NSKeyValueObservation?
-    var item = Items()
-    
-    let userDefaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         p2ButtonLabel.transform = flipUpsideDown()
         
-        userDefaults.register(defaults: [item.p1TimeKey : 60])
+        userDefaults.register(defaults: [p1TimeKey : 60])
         observedP1 = userDefaults.observe(\.p1TimeKey, options: [.initial, .new], changeHandler: { [weak self] (defaults, change) in
             self!.totalSec = change.newValue!
             self!.p1ButtonLabel.setTitle(self!.updateUserDefaults(), for: .normal)
         })
         
-        userDefaults.register(defaults: [item.p2TimeKey : 60])
+        userDefaults.register(defaults: [p2TimeKey : 60])
         observedP2 = userDefaults.observe(\.p2TimeKey, options: [.initial, .new], changeHandler: { [weak self] (defaults, change) in
             self!.totalSec = change.newValue!
             self!.p2ButtonLabel.setTitle(self!.updateUserDefaults(), for: .normal)
@@ -71,13 +68,13 @@ class MainViewController: UIViewController {
     
     @IBAction func p1ButtonPressed(_ sender: UIButton) {
         nowTurn = .P2
-        totalSec = userDefaults.integer(forKey: item.p2TimeKey)
+        totalSec = userDefaults.integer(forKey: p2TimeKey)
         playerButtonPressed(nowTurn: p2ButtonLabel, restTurn: p1ButtonLabel)
     }
     
     @IBAction func p2ButtonPressed(_ sender: UIButton) {
         nowTurn = .P1
-        totalSec = userDefaults.integer(forKey: item.p1TimeKey)
+        totalSec = userDefaults.integer(forKey: p1TimeKey)
         playerButtonPressed(nowTurn: p1ButtonLabel, restTurn: p2ButtonLabel)
     }
     
@@ -119,7 +116,7 @@ class MainViewController: UIViewController {
     
     func displayUpdate() {
         let remainCount = totalSec - count
-        let stringRemainCount = item.convertHMS(remainCount)
+        let stringRemainCount = convertHMS(remainCount)
         
         switch nowTurn {
         case .P1: p1ButtonLabel.setTitle(stringRemainCount, for: .normal)
@@ -167,7 +164,7 @@ class MainViewController: UIViewController {
     func updateUserDefaults() -> String {
         count = 0
         let remainCount = totalSec - count
-        let stringRemainCount = item.convertHMS(remainCount)
+        let stringRemainCount = convertHMS(remainCount)
         return stringRemainCount
     }
 }
