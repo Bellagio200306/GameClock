@@ -22,13 +22,13 @@ class SettingsViewController: UITableViewController {
         observedP1 = userDefaults.observe(\.p1TimeKey, options: [.initial, .new], changeHandler: { [weak self] (defaults, change) in
             let newValue = change.newValue!
             self!.settings[0] = Setting(item: "Player 1", rightDetail: convertHMS(newValue))
-            print(self!.settings[0].self.rightDetail)
+            self!.tableView.reloadData()
         })
         
         observedP2 = userDefaults.observe(\.p2TimeKey, options: [.initial, .new], changeHandler: { [weak self] (defaults, change) in
             let newValue = change.newValue!
             self!.settings[1] = Setting(item: "Player 2", rightDetail: convertHMS(newValue))
-            print(self!.settings[1].self.rightDetail)
+            self!.tableView.reloadData()
         })
     }
 
