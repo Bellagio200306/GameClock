@@ -10,12 +10,26 @@ import UIKit
 class SettingsViewController: UITableViewController {
     
     var settings: [Setting] = []
+    var observedP1: NSKeyValueObservation?
+    var observedP2: NSKeyValueObservation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationController?.navigationBar.tintColor = .gray
         loadData()
+        
+        observedP1 = userDefaults.observe(\.p1TimeKey, options: [.initial, .new], changeHandler: { [weak self] (defaults, change) in
+            let newValue = change.newValue!
+            self!.settings[0] = Setting(item: "Player 1", rightDetail: convertHMS(newValue))
+            print(self!.settings[0].self.rightDetail)
+        })
+        
+        observedP2 = userDefaults.observe(\.p2TimeKey, options: [.initial, .new], changeHandler: { [weak self] (defaults, change) in
+            let newValue = change.newValue!
+            self!.settings[1] = Setting(item: "Player 2", rightDetail: convertHMS(newValue))
+            print(self!.settings[1].self.rightDetail)
+        })
     }
 
     @IBAction func doneButtonPressed(_ sender: UIButton) {
@@ -29,7 +43,7 @@ class SettingsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return settings.count
     }
-    
+
     func loadData() {
         let p1Time = userDefaults.integer(forKey: p1TimeKey)
         let p2Time = userDefaults.integer(forKey: p2TimeKey)
