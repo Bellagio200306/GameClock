@@ -52,7 +52,7 @@
                                     <constraint firstAttribute="height" constant="70" id="dBZ-et-zJf"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="一時停止ボタン.png"/>
+                                <state key="normal" image="PauseButton.png"/>
                                 <connections>
                                     <action selector="pauseButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ELi-4o-T3q"/>
                                 </connections>
@@ -68,6 +68,7 @@
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="設定"/>
                                 <connections>
+                                    <action selector="settingButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="S2i-is-4Wf"/>
                                     <segue destination="yHH-bK-b0m" kind="show" identifier="goToSettings" id="LC3-GG-DiZ"/>
                                 </connections>
                             </button>
@@ -147,7 +148,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="FyR-Oj-1p1" kind="show" id="MLh-Sm-rJS"/>
+                                    <segue destination="FyR-Oj-1p1" kind="show" identifier="toPicker" id="MLh-Sm-rJS"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -156,7 +157,19 @@
                             <outlet property="delegate" destination="2vR-aY-Gxy" id="zce-q1-QDQ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="oHU-4k-enN"/>
+                    <navigationItem key="navigationItem" id="oHU-4k-enN">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="1fn-yi-gcZ">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="iBy-0k-WRv">
+                                <rect key="frame" x="302" y="12.5" width="92" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Done"/>
+                                <connections>
+                                    <action selector="doneButtonPressed:" destination="2vR-aY-Gxy" eventType="touchUpInside" id="v7F-ro-Mcw"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cUa-vL-ybo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -165,7 +178,7 @@
         <!--Picker View Controller-->
         <scene sceneID="oih-Ed-0IA">
             <objects>
-                <viewController id="FyR-Oj-1p1" customClass="P1PickerViewController" customModule="GameClock" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="FyR-Oj-1p1" customClass="PickerViewController" customModule="GameClock" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qDV-UR-d0P">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -183,7 +196,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="RnQ-r2-A7n"/>
                     <connections>
-                        <outlet property="p1PickerView" destination="tZn-6V-Pbd" id="QKU-0I-Ioz"/>
+                        <outlet property="pickerView" destination="tZn-6V-Pbd" id="QKU-0I-Ioz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bqb-Rj-7KR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -192,7 +205,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="一時停止ボタン.png" width="256" height="256"/>
+        <image name="PauseButton.png" width="256" height="256"/>
         <image name="設定" width="256" height="256"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
