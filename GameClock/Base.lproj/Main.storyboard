@@ -46,24 +46,35 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kNO-YD-98U">
-                                <rect key="frame" x="72" y="413" width="70" height="70"/>
+                                <rect key="frame" x="52" y="413" width="70" height="70"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="70" id="WJ7-PS-JVv"/>
                                     <constraint firstAttribute="height" constant="70" id="dBZ-et-zJf"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="PauseButton.png"/>
+                                <state key="normal" image="PlayButton.png"/>
                                 <connections>
                                     <action selector="pauseButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ELi-4o-T3q"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JNU-Cs-oKI">
+                                <rect key="frame" x="172" y="413" width="70" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="Nke-P8-bS5"/>
+                                    <constraint firstAttribute="width" constant="70" id="jmw-BU-S7p"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="ResetButton.png"/>
+                                <connections>
+                                    <action selector="resetButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5jf-0v-QSi"/>
+                                    <action selector="settingButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CkP-3P-cI1"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xyz-tZ-eKk">
-                                <rect key="frame" x="272" y="413" width="70" height="70"/>
+                                <rect key="frame" x="292" y="413" width="70" height="70"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="70" id="5Nj-0Y-YKi"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" id="6Fc-Na-mdL"/>
                                     <constraint firstAttribute="height" constant="70" id="IFE-O6-96V"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="RbN-aV-aca"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="設定"/>
@@ -76,12 +87,14 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="JNU-Cs-oKI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="8GX-9N-N3Y"/>
                             <constraint firstItem="kNO-YD-98U" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Cgl-iY-tga"/>
                             <constraint firstItem="G41-QO-bu5" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="REB-2P-d1f"/>
-                            <constraint firstItem="xyz-tZ-eKk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="100" id="e44-en-Cad"/>
+                            <constraint firstItem="xyz-tZ-eKk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="120" id="e44-en-Cad"/>
                             <constraint firstAttribute="trailing" secondItem="G41-QO-bu5" secondAttribute="trailing" id="fuR-4T-Egg"/>
                             <constraint firstItem="G41-QO-bu5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="gpw-o6-hCh"/>
-                            <constraint firstItem="kNO-YD-98U" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-100" id="lNU-Pa-iaA"/>
+                            <constraint firstItem="JNU-Cs-oKI" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="h0O-qE-oOB"/>
+                            <constraint firstItem="kNO-YD-98U" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-120" id="lNU-Pa-iaA"/>
                             <constraint firstItem="xyz-tZ-eKk" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="tV1-7e-iz8"/>
                             <constraint firstAttribute="bottom" secondItem="G41-QO-bu5" secondAttribute="bottom" id="wdn-Jx-Zkp"/>
                         </constraints>
@@ -160,7 +173,7 @@
                     <navigationItem key="navigationItem" id="oHU-4k-enN">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="1fn-yi-gcZ">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="iBy-0k-WRv">
-                                <rect key="frame" x="302" y="12.5" width="92" height="31"/>
+                                <rect key="frame" x="302" y="11" width="92" height="34.5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Done"/>
@@ -205,7 +218,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="PauseButton.png" width="256" height="256"/>
+        <image name="PlayButton.png" width="256" height="256"/>
+        <image name="ResetButton.png" width="256" height="256"/>
         <image name="設定" width="256" height="256"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

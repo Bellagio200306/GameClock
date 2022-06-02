@@ -56,6 +56,7 @@ class MainViewController: UIViewController {
         
         soundEffect(resouce: "Move2", ext: "mp3")
         gameStatus = .Playing
+        changePauseImage(with: gameStatus)
         count = 0
         startTimer()
         nowTurn.backgroundColor = UIColor(hex: "B54434")
@@ -82,21 +83,58 @@ class MainViewController: UIViewController {
         
         switch gameStatus {
         case .Playing:
+            gameStatus = .Paused
             timer.invalidate()
             p1ButtonLabel.isEnabled = false
             p2ButtonLabel.isEnabled = false
             soundEffect(resouce: "Pause", ext: "mp3")
-            changePauseImage(gameStatus: .Playing)
-            gameStatus = .Paused
+            changePauseImage(with: gameStatus)
             
         case .Paused:
+            gameStatus = .Playing
             startTimer()
             p1ButtonLabel.isEnabled = true
             p2ButtonLabel.isEnabled = true
             soundEffect(resouce: "Move2", ext: "mp3")
-            changePauseImage(gameStatus: .Paused)
-            gameStatus = .Playing
+            changePauseImage(with: gameStatus)
         }
+    }
+    
+    @IBAction func resetButtonPressed(_ sender: UIButton) {
+        let alert = UIAlertController(title: "タイマーをリセットしますか？", message: nil, preferredStyle: .actionSheet)
+        let reset = UIAlertAction(title: "リセット", style: .destructive) { (action) in
+            self.returnInitialSetting()
+        }
+        let cancel = UIAlertAction(title: "キャンセル", style: .cancel) { (action) in
+            self.dismiss(animated: true, completion: nil)
+            self.startTimer()
+        }
+        
+        alert.addAction(reset)
+        alert.addAction(cancel)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func returnInitialSetting() {
+        let p1Time = userDefaults.integer(forKey: p1TimeKey)
+        let p2Time = userDefaults.integer(forKey: p2TimeKey)
+
+        gameStatus = .Paused
+        nowTurn = .P1
+        changePauseImage(with: gameStatus)
+        count = 0
+        totalSec = p1Time
+        timer.invalidate()
+        
+        p1ButtonLabel.setTitle(convertHMS(p1Time), for: .normal)
+        p1ButtonLabel.backgroundColor = UIColor(hex: "B54434")
+        p1ButtonLabel.setTitleColor(UIColor.white, for: .normal)
+        p1ButtonLabel.isEnabled = true
+        
+        p2ButtonLabel.setTitle(convertHMS(p2Time), for: .normal)
+        p2ButtonLabel.backgroundColor = UIColor(hex: "818181")
+        p2ButtonLabel.setTitleColor(UIColor.darkGray, for: .normal)
+        p2ButtonLabel.isEnabled = true
     }
     
     @IBAction func settingButtonPressed(_ sender: UIButton) {
@@ -147,13 +185,13 @@ class MainViewController: UIViewController {
         }
     }
     
-    func changePauseImage(gameStatus: GameStatus) {
+    func changePauseImage(with gameStatus: GameStatus) {
         
         var imageName: String
         
         switch gameStatus {
-        case .Paused: imageName = "PauseButton.png"
-        case .Playing: imageName = "PlayButton.png"
+        case .Paused: imageName = "PlayButton.png"
+        case .Playing: imageName = "PauseButton.png"
         }
         
         let state = UIControl.State.normal
