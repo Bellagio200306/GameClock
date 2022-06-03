@@ -66,7 +66,7 @@ class SettingsViewController: UITableViewController {
             if let indexNum = tableView.indexPathForSelectedRow?.row {
                 guard let destinationVC = segue.destination as? PickerViewController
                 else {
-                    fatalError("Failed to prepare DetailViewController.")
+                    fatalError("toPickerSegueでエラー")
                 }
                 switch indexNum {
                 case 0: destinationVC.player = .P1

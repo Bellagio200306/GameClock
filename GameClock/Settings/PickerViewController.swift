@@ -11,13 +11,13 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     @IBOutlet weak var pickerView: UIPickerView!
     
-    let dataList = [[Int](0...10), [Int](0...60), [Int](0...60)]
-    
+    var player: Player = .P1
     var hour = 0
     var min = 0
     var sec = 0
     var totalSec = 0
-    var player: Player = .P1
+    
+    let dataList = [[Int](0...9), [Int](0...60), [Int](0...60)]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +39,6 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
         switch component {
         case 0: hour = row
         case 1: min = row
@@ -56,7 +55,6 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     }
     
     func adjastPicker(_ player: Player) {
-        
         switch player {
         case .P1: totalSec = userDefaults.integer(forKey: p1TimeKey)
         case .P2: totalSec = userDefaults.integer(forKey: p2TimeKey)

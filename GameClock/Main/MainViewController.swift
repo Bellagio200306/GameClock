@@ -20,40 +20,46 @@ enum GameStatus {
 
 class MainViewController: UIViewController {
     
-    @IBOutlet weak var p1ButtonLabel: UIButton!
-    @IBOutlet weak var p2ButtonLabel: UIButton!
+    @IBOutlet weak var p1Button: UIButton!
+    @IBOutlet weak var p2Button: UIButton!
     @IBOutlet weak var pauseButton: UIButton!
     @IBOutlet weak var settingButton: UIButton!
     
-    var player: AVAudioPlayer?
-    var timer = Timer()
-    var count = 0
     var nowTurn: Player = .P1
     var gameStatus: GameStatus = .Paused
+    var count = 0
     var totalSec = 0
+    var player: AVAudioPlayer?
+    var timer = Timer()
     var observedP1: NSKeyValueObservation?
     var observedP2: NSKeyValueObservation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        p2ButtonLabel.transform = flipUpsideDown()
+        p2Button.transform = flipUpsideDown()
         
         userDefaults.register(defaults: [p1TimeKey : 60])
         observedP1 = userDefaults.observe(\.p1TimeKey, options: [.initial, .new], changeHandler: { [weak self] (defaults, change) in
             self!.totalSec = change.newValue!
-            self!.p1ButtonLabel.setTitle(self!.updateUserDefaults(), for: .normal)
+            self!.p1Button.setTitle(self!.updateUserDefaults(), for: .normal)
         })
         
         userDefaults.register(defaults: [p2TimeKey : 60])
         observedP2 = userDefaults.observe(\.p2TimeKey, options: [.initial, .new], changeHandler: { [weak self] (defaults, change) in
             self!.totalSec = change.newValue!
-            self!.p2ButtonLabel.setTitle(self!.updateUserDefaults(), for: .normal)
+            self!.p2Button.setTitle(self!.updateUserDefaults(), for: .normal)
         })
     }
     
+    func updateUserDefaults() -> String {
+        count = 0
+        let remainCount = totalSec - count
+        let stringRemainCount = convertHMS(remainCount)
+        return stringRemainCount
+    }
+    
     func playerButtonPressed(nowTurn: UIButton, restTurn: UIButton) {
-        
         soundEffect(resouce: "Move2", ext: "mp3")
         gameStatus = .Playing
         changePauseImage(with: gameStatus)
@@ -70,32 +76,31 @@ class MainViewController: UIViewController {
     @IBAction func p1ButtonPressed(_ sender: UIButton) {
         nowTurn = .P2
         totalSec = userDefaults.integer(forKey: p2TimeKey)
-        playerButtonPressed(nowTurn: p2ButtonLabel, restTurn: p1ButtonLabel)
+        playerButtonPressed(nowTurn: p2Button, restTurn: p1Button)
     }
     
     @IBAction func p2ButtonPressed(_ sender: UIButton) {
         nowTurn = .P1
         totalSec = userDefaults.integer(forKey: p1TimeKey)
-        playerButtonPressed(nowTurn: p1ButtonLabel, restTurn: p2ButtonLabel)
+        playerButtonPressed(nowTurn: p1Button, restTurn: p2Button)
     }
     
     @IBAction func pauseButtonPressed(_ sender: UIButton) {
-        
         switch gameStatus {
-        case .Playing:
-            gameStatus = .Paused
-            timer.invalidate()
-            p1ButtonLabel.isEnabled = false
-            p2ButtonLabel.isEnabled = false
-            soundEffect(resouce: "Pause", ext: "mp3")
-            changePauseImage(with: gameStatus)
-            
         case .Paused:
             gameStatus = .Playing
             startTimer()
-            p1ButtonLabel.isEnabled = true
-            p2ButtonLabel.isEnabled = true
+            p1Button.isEnabled = true
+            p2Button.isEnabled = true
             soundEffect(resouce: "Move2", ext: "mp3")
+            changePauseImage(with: gameStatus)
+            
+        case .Playing:
+            gameStatus = .Paused
+            timer.invalidate()
+            p1Button.isEnabled = false
+            p2Button.isEnabled = false
+            soundEffect(resouce: "Pause", ext: "mp3")
             changePauseImage(with: gameStatus)
         }
     }
@@ -118,7 +123,7 @@ class MainViewController: UIViewController {
     func returnInitialSetting() {
         let p1Time = userDefaults.integer(forKey: p1TimeKey)
         let p2Time = userDefaults.integer(forKey: p2TimeKey)
-
+        
         gameStatus = .Paused
         nowTurn = .P1
         changePauseImage(with: gameStatus)
@@ -126,15 +131,15 @@ class MainViewController: UIViewController {
         totalSec = p1Time
         timer.invalidate()
         
-        p1ButtonLabel.setTitle(convertHMS(p1Time), for: .normal)
-        p1ButtonLabel.backgroundColor = UIColor(hex: "B54434")
-        p1ButtonLabel.setTitleColor(UIColor.white, for: .normal)
-        p1ButtonLabel.isEnabled = true
+        p1Button.setTitle(convertHMS(p1Time), for: .normal)
+        p1Button.backgroundColor = UIColor(hex: "B54434")
+        p1Button.setTitleColor(UIColor.white, for: .normal)
+        p1Button.isEnabled = true
         
-        p2ButtonLabel.setTitle(convertHMS(p2Time), for: .normal)
-        p2ButtonLabel.backgroundColor = UIColor(hex: "818181")
-        p2ButtonLabel.setTitleColor(UIColor.darkGray, for: .normal)
-        p2ButtonLabel.isEnabled = true
+        p2Button.setTitle(convertHMS(p2Time), for: .normal)
+        p2Button.backgroundColor = UIColor(hex: "818181")
+        p2Button.setTitleColor(UIColor.darkGray, for: .normal)
+        p2Button.isEnabled = true
     }
     
     @IBAction func settingButtonPressed(_ sender: UIButton) {
@@ -157,8 +162,8 @@ class MainViewController: UIViewController {
         let stringRemainCount = convertHMS(remainCount)
         
         switch nowTurn {
-        case .P1: p1ButtonLabel.setTitle(stringRemainCount, for: .normal)
-        case .P2: p2ButtonLabel.setTitle(stringRemainCount, for: .normal)
+        case .P1: p1Button.setTitle(stringRemainCount, for: .normal)
+        case .P2: p2Button.setTitle(stringRemainCount, for: .normal)
         }
     }
     
@@ -186,7 +191,6 @@ class MainViewController: UIViewController {
     }
     
     func changePauseImage(with gameStatus: GameStatus) {
-        
         var imageName: String
         
         switch gameStatus {
@@ -198,19 +202,13 @@ class MainViewController: UIViewController {
         let image = UIImage(named: imageName)
         pauseButton.setImage(image, for: state)
     }
-    
-    func updateUserDefaults() -> String {
-        count = 0
-        let remainCount = totalSec - count
-        let stringRemainCount = convertHMS(remainCount)
-        return stringRemainCount
-    }
 }
 
 extension UserDefaults {
     @objc dynamic var p1TimeKey: Int {
         return integer(forKey: "p1TimeKey")
     }
+    
     @objc dynamic var p2TimeKey: Int {
         return integer(forKey: "p2TimeKey")
     }
