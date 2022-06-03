@@ -105,6 +105,19 @@ class MainViewController: UIViewController {
         }
     }
     
+    func changePauseImage(with gameStatus: GameStatus) {
+        var imageName: String
+        
+        switch gameStatus {
+        case .Paused: imageName = "PlayButton.png"
+        case .Playing: imageName = "PauseButton.png"
+        }
+        
+        let state = UIControl.State.normal
+        let image = UIImage(named: imageName)
+        pauseButton.setImage(image, for: state)
+    }
+    
     @IBAction func resetButtonPressed(_ sender: UIButton) {
         let alert = UIAlertController(title: "タイマーをリセットしますか？", message: nil, preferredStyle: .actionSheet)
         let reset = UIAlertAction(title: "リセット", style: .destructive) { (action) in
@@ -188,19 +201,6 @@ class MainViewController: UIViewController {
                 print("soundEffectでエラー")
             }
         }
-    }
-    
-    func changePauseImage(with gameStatus: GameStatus) {
-        var imageName: String
-        
-        switch gameStatus {
-        case .Paused: imageName = "PlayButton.png"
-        case .Playing: imageName = "PauseButton.png"
-        }
-        
-        let state = UIControl.State.normal
-        let image = UIImage(named: imageName)
-        pauseButton.setImage(image, for: state)
     }
 }
 
