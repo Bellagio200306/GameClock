@@ -32,10 +32,10 @@ class SettingsViewController: UITableViewController {
         })
     }
 
-    @IBAction func doneButtonPressed(_ sender: UIButton) {
+    @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
-    
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -66,7 +66,7 @@ class SettingsViewController: UITableViewController {
             if let indexNum = tableView.indexPathForSelectedRow?.row {
                 guard let destinationVC = segue.destination as? PickerViewController
                 else {
-                    fatalError("Failed to prepare DetailViewController.")
+                    fatalError("toPickerSegueでエラー")
                 }
                 switch indexNum {
                 case 0: destinationVC.player = .P1

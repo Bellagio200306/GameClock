@@ -9,7 +9,6 @@ import Foundation
 
 let p1TimeKey = "p1TimeKey"
 let p2TimeKey = "p2TimeKey"
-
 let userDefaults = UserDefaults.standard
 
 func convertHMS(_ time: Int) -> String {
