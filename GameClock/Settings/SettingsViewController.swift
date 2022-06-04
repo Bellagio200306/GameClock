@@ -32,10 +32,10 @@ class SettingsViewController: UITableViewController {
         })
     }
 
-    @IBAction func doneButtonPressed(_ sender: UIButton) {
+    @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
-    
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }

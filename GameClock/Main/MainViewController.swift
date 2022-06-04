@@ -143,6 +143,7 @@ class MainViewController: UIViewController {
         count = 0
         totalSec = p1Time
         timer.invalidate()
+        pauseButton.isEnabled = true
         
         p1Button.setTitle(convertHMS(p1Time), for: .normal)
         p1Button.backgroundColor = UIColor(hex: "B54434")

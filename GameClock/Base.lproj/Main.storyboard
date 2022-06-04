@@ -171,16 +171,10 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="oHU-4k-enN">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="1fn-yi-gcZ">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="iBy-0k-WRv">
-                                <rect key="frame" x="302" y="10.666666666666668" width="92" height="34.666666666666657"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Done"/>
-                                <connections>
-                                    <action selector="doneButtonPressed:" destination="2vR-aY-Gxy" eventType="touchUpInside" id="v7F-ro-Mcw"/>
-                                </connections>
-                            </button>
+                        <barButtonItem key="rightBarButtonItem" title="Done" style="done" id="1fn-yi-gcZ">
+                            <connections>
+                                <action selector="doneButtonPressed:" destination="2vR-aY-Gxy" id="S6E-MP-0ng"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
@@ -207,7 +201,9 @@
                             <constraint firstItem="tZn-6V-Pbd" firstAttribute="centerY" secondItem="qDV-UR-d0P" secondAttribute="centerY" id="Yho-bb-jgx"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="RnQ-r2-A7n"/>
+                    <navigationItem key="navigationItem" id="RnQ-r2-A7n">
+                        <barButtonItem key="backBarButtonItem" id="xCn-8F-MaU"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="pickerView" destination="tZn-6V-Pbd" id="QKU-0I-Ioz"/>
                     </connections>
