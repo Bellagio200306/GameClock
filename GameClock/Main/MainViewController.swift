@@ -29,7 +29,7 @@ class MainViewController: UIViewController {
     var gameStatus: GameStatus = .Paused
     var count = 0
     var totalSec = 0
-    var player: AVAudioPlayer?
+    var audioPlayer: AVAudioPlayer?
     var timer = Timer()
     var observedP1: NSKeyValueObservation?
     var observedP2: NSKeyValueObservation?
@@ -119,7 +119,7 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func resetButtonPressed(_ sender: UIButton) {
-        let alert = UIAlertController(title: "タイマーをリセットしますか？", message: nil, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let reset = UIAlertAction(title: "リセット", style: .destructive) { (action) in
             self.returnInitialSetting()
         }
@@ -161,13 +161,41 @@ class MainViewController: UIViewController {
     }
     
     @objc func timerInterrupt(_ timer: Timer) {
-        if totalSec - count < 1 {
-            count = 0
+        let nowTime = totalSec - count
+        
+        switch  nowTime {
+        case 11,21,31:/*１０秒前、２０秒前、３０秒前*/
+            soundEffect(resouce: "poon", ext: "mp3")
+            countDown()
+        case (5...10):/*９秒前〜４秒前*/
+            soundEffect(resouce: "pi", ext: "mp3")
+            countDown()
+        case 4:/*３秒前*/
+            soundEffect(resouce: "pooon", ext: "mp3")
+            countDown()
+        case 1:/*時間切れ*/
             timer.invalidate()
-        } else {
-            count += 1
-            displayUpdate()
+            audioPlayer?.stop()
+            switch nowTurn {
+            case .P1:
+                timeOut(at: p1Button)
+            case .P2:
+                timeOut(at: p2Button)
+            }
+        default:
+            countDown()
         }
+    }
+    
+    func timeOut(at player: UIButton) {
+        player.isEnabled = false
+        pauseButton.isEnabled = false
+        player.setTitle("Lose.", for: .normal)
+    }
+    
+    func countDown() {
+        count += 1
+        displayUpdate()
     }
     
     func displayUpdate() {
@@ -195,8 +223,8 @@ class MainViewController: UIViewController {
     func soundEffect(resouce: String, ext: String) {
         if let soundURL = Bundle.main.url(forResource: resouce, withExtension: ext) {
             do {
-                player = try AVAudioPlayer(contentsOf: soundURL)
-                player?.play()
+                audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
+                audioPlayer?.play()
             } catch {
                 print("soundEffectでエラー")
             }
