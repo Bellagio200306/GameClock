@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>logFormatVersion</key>
+	<integer>10</integer>
+	<key>logs</key>
+	<dict>
+		<key>541DA2FF-7325-4C77-9CD1-E5CF7A230D65</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>541DA2FF-7325-4C77-9CD1-E5CF7A230D65.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>GameClock project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>GameClock</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build GameClock</string>
+			<key>timeStartedRecording</key>
+			<real>678081075.28159595</real>
+			<key>timeStoppedRecording</key>
+			<real>678081085.32869804</real>
+			<key>title</key>
+			<string>Build GameClock</string>
+			<key>uniqueIdentifier</key>
+			<string>541DA2FF-7325-4C77-9CD1-E5CF7A230D65</string>
+		</dict>
+		<key>F565E297-9CFC-4F31-BEFA-A8AC752BCD3E</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>F565E297-9CFC-4F31-BEFA-A8AC752BCD3E.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>GameClock project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>GameClock</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build GameClock</string>
+			<key>timeStartedRecording</key>
+			<real>678162597.99143302</real>
+			<key>timeStoppedRecording</key>
+			<real>678162604.20172203</real>
+			<key>title</key>
+			<string>Build GameClock</string>
+			<key>uniqueIdentifier</key>
+			<string>F565E297-9CFC-4F31-BEFA-A8AC752BCD3E</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

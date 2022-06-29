@@ -2,7 +2,7 @@
 //  Const.swift
 //  GameClock
 //
-//  Created by Ipo Abe on 2022/05/31.
+//  Created by IpoAbe on 2022/05/31.
 //
 
 import Foundation

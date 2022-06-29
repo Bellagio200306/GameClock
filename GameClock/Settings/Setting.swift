@@ -2,7 +2,7 @@
 //  SettingsListSource.swift
 //  GameClock
 //
-//  Created by 安部一歩 on 2022/03/25.
+//  Created by IpoAbe on 2022/03/25.
 //
 
 import Foundation
