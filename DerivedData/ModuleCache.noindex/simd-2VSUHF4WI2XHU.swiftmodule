@@ -1,0 +1,28 @@
+---
+path:            '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/prebuilt-modules/15.5/simd.swiftmodule/x86_64-apple-ios-simulator.swiftmodule'
+dependencies:
+  - mtime:           1650480756000000000
+    path:            '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/prebuilt-modules/15.5/simd.swiftmodule/x86_64-apple-ios-simulator.swiftmodule'
+    size:            649764
+  - mtime:           1650420444000000000
+    path:            'usr/lib/swift/Swift.swiftmodule/x86_64-apple-ios-simulator.swiftinterface'
+    size:            1951033
+    sdk_relative:    true
+  - mtime:           1628345182000000000
+    path:            'usr/include/Darwin.apinotes'
+    size:            1133
+    sdk_relative:    true
+  - mtime:           1650428831000000000
+    path:            'usr/lib/swift/Darwin.swiftmodule/x86_64-apple-ios-simulator.swiftinterface'
+    size:            30153
+    sdk_relative:    true
+  - mtime:           1650420466000000000
+    path:            'usr/lib/swift/_Concurrency.swiftmodule/x86_64-apple-ios-simulator.swiftinterface'
+    size:            97440
+    sdk_relative:    true
+  - mtime:           1650429438000000000
+    path:            'usr/lib/swift/simd.swiftmodule/x86_64-apple-ios-simulator.swiftinterface'
+    size:            188181
+    sdk_relative:    true
+version:         1
+...

@@ -2,11 +2,10 @@
 //  SettingsViewController.swift
 //  GameClock
 //
-//  Created by 安部一歩 on 2022/04/08.
+//  Created by IpoAbe on 2022/04/08.
 //
 import Foundation
 import UIKit
-
 class SettingsViewController: UITableViewController {
     
     var settings: [Setting] = []

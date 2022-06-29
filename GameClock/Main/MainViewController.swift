@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  GameClock
 //
-//  Created by 安部一歩 on 2022/01/31.
+//  Created by IpoAbe on 2022/01/31.
 //
 
 import UIKit
@@ -60,7 +60,7 @@ class MainViewController: UIViewController {
     }
     
     func playerButtonPressed(nowTurn: UIButton, restTurn: UIButton) {
-        soundEffect(resouce: "Move2", ext: "mp3")
+        soundEffect(resource: "Move2", ext: "mp3")
         gameStatus = .Playing
         changePauseImage(with: gameStatus)
         count = 0
@@ -92,7 +92,7 @@ class MainViewController: UIViewController {
             startTimer()
             p1Button.isEnabled = true
             p2Button.isEnabled = true
-            soundEffect(resouce: "Move2", ext: "mp3")
+            soundEffect(resource: "Move2", ext: "mp3")
             changePauseImage(with: gameStatus)
             
         case .Playing:
@@ -100,7 +100,7 @@ class MainViewController: UIViewController {
             timer.invalidate()
             p1Button.isEnabled = false
             p2Button.isEnabled = false
-            soundEffect(resouce: "Pause", ext: "mp3")
+            soundEffect(resource: "Pause", ext: "mp3")
             changePauseImage(with: gameStatus)
         }
     }
@@ -119,7 +119,7 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func resetButtonPressed(_ sender: UIButton) {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: "リセットしますか？", message: nil, preferredStyle: .alert)
         let reset = UIAlertAction(title: "リセット", style: .destructive) { (action) in
             self.returnInitialSetting()
         }
@@ -166,13 +166,13 @@ class MainViewController: UIViewController {
         
         switch  nowTime {
         case 11,21,31:/*１０秒前、２０秒前、３０秒前*/
-            soundEffect(resouce: "poon", ext: "mp3")
+            soundEffect(resource: "poon", ext: "mp3")
             countDown()
         case (5...10):/*９秒前〜４秒前*/
-            soundEffect(resouce: "pi", ext: "mp3")
+            soundEffect(resource: "pi", ext: "mp3")
             countDown()
         case 4:/*３秒前*/
-            soundEffect(resouce: "pooon", ext: "mp3")
+            soundEffect(resource: "pooon", ext: "mp3")
             countDown()
         case 1:/*時間切れ*/
             timer.invalidate()
@@ -221,8 +221,8 @@ class MainViewController: UIViewController {
         return flipUpsideDown
     }
     
-    func soundEffect(resouce: String, ext: String) {
-        if let soundURL = Bundle.main.url(forResource: resouce, withExtension: ext) {
+    func soundEffect(resource: String, ext: String) {
+        if let soundURL = Bundle.main.url(forResource: resource, withExtension: ext) {
             do {
                 audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
                 audioPlayer?.play()

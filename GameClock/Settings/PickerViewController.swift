@@ -2,7 +2,7 @@
 //  P1SettingViewController.swift
 //  GameClock
 //
-//  Created by 安部一歩 on 2022/03/25.
+//  Created by IpoAbe on 2022/03/25.
 //
 
 import UIKit
@@ -23,7 +23,7 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         super.viewDidLoad()
         pickerView.delegate = self
         pickerView.dataSource = self
-        adjastPicker(player)
+        adjustPicker(player)
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -54,7 +54,7 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         }
     }
     
-    func adjastPicker(_ player: Player) {
+    func adjustPicker(_ player: Player) {
         switch player {
         case .P1: totalSec = userDefaults.integer(forKey: p1TimeKey)
         case .P2: totalSec = userDefaults.integer(forKey: p2TimeKey)
@@ -73,7 +73,7 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             case 0: pickerView.selectRow(h, inComponent: 0, animated: true)
             case 1: pickerView.selectRow(m, inComponent: 1, animated: true)
             case 2: pickerView.selectRow(s, inComponent: 2, animated: true)
-            default: print("adjastPickerエラー")
+            default: print("adjustPickerエラー")
             }
         }
     }

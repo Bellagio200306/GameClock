@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>logFormatVersion</key>
+	<integer>10</integer>
+	<key>logs</key>
+	<dict>
+		<key>E2206A71-E58C-47BA-859B-D17890E27B40</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>E2206A71-E58C-47BA-859B-D17890E27B40.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>GameClock project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>GameClock</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run GameClock</string>
+			<key>timeStartedRecording</key>
+			<real>678162604.20840001</real>
+			<key>timeStoppedRecording</key>
+			<real>678162627.99700999</real>
+			<key>title</key>
+			<string>Run GameClock</string>
+			<key>uniqueIdentifier</key>
+			<string>E2206A71-E58C-47BA-859B-D17890E27B40</string>
+		</dict>
+	</dict>
+</dict>
+</plist>
