@@ -113,18 +113,17 @@ class MainViewController: UIViewController {
         case .Playing: imageName = "PauseButton.png"
         }
         
-        let state = UIControl.State.normal
         let image = UIImage(named: imageName)
-        pauseButton.setImage(image, for: state)
+        pauseButton.setImage(image, for: .normal)
     }
     
     @IBAction func resetButtonPressed(_ sender: UIButton) {
         let alert = UIAlertController(title: "リセットしますか？", message: nil, preferredStyle: .alert)
-        let reset = UIAlertAction(title: "リセット", style: .destructive) { (action) in
+        let reset = UIAlertAction(title: "リセット", style: .destructive) {_ in
             self.returnInitialSetting()
         }
         let cancel = UIAlertAction(title: "キャンセル", style: .cancel) { (action) in
-            self.dismiss(animated: true, completion: nil)
+            self.dismiss(animated: true)
             self.startTimer()
         }
         
@@ -147,12 +146,12 @@ class MainViewController: UIViewController {
         
         p1Button.setTitle(convertHMS(p1Time), for: .normal)
         p1Button.backgroundColor = UIColor(hex: "B54434")
-        p1Button.setTitleColor(UIColor.white, for: .normal)
+        p1Button.setTitleColor(.white, for: .normal)
         p1Button.isEnabled = true
         
         p2Button.setTitle(convertHMS(p2Time), for: .normal)
         p2Button.backgroundColor = UIColor(hex: "818181")
-        p2Button.setTitleColor(UIColor.darkGray, for: .normal)
+        p2Button.setTitleColor(.darkGray, for: .normal)
         p2Button.isEnabled = true
     }
     

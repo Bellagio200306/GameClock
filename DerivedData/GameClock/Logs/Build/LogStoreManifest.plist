@@ -6,7 +6,7 @@
 	<integer>10</integer>
 	<key>logs</key>
 	<dict>
-		<key>541DA2FF-7325-4C77-9CD1-E5CF7A230D65</key>
+		<key>0B5DE40D-59BF-45CF-9274-7F5EE124917E</key>
 		<dict>
 			<key>className</key>
 			<string>IDEActivityLogSection</string>
@@ -15,13 +15,13 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>541DA2FF-7325-4C77-9CD1-E5CF7A230D65.xcactivitylog</string>
+			<string>0B5DE40D-59BF-45CF-9274-7F5EE124917E.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
 			<dict>
 				<key>highLevelStatus</key>
-				<string>S</string>
+				<string>W</string>
 			</dict>
 			<key>schemeIdentifier-containerName</key>
 			<string>GameClock project</string>
@@ -32,15 +32,15 @@
 			<key>signature</key>
 			<string>Build GameClock</string>
 			<key>timeStartedRecording</key>
-			<real>678081075.28159595</real>
+			<real>678191548.65757203</real>
 			<key>timeStoppedRecording</key>
-			<real>678081085.32869804</real>
+			<real>678191549.03566206</real>
 			<key>title</key>
 			<string>Build GameClock</string>
 			<key>uniqueIdentifier</key>
-			<string>541DA2FF-7325-4C77-9CD1-E5CF7A230D65</string>
+			<string>0B5DE40D-59BF-45CF-9274-7F5EE124917E</string>
 		</dict>
-		<key>F565E297-9CFC-4F31-BEFA-A8AC752BCD3E</key>
+		<key>0DE666C7-75F7-4775-AE7C-5D62C0BC2774</key>
 		<dict>
 			<key>className</key>
 			<string>IDEActivityLogSection</string>
@@ -49,7 +49,7 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>F565E297-9CFC-4F31-BEFA-A8AC752BCD3E.xcactivitylog</string>
+			<string>0DE666C7-75F7-4775-AE7C-5D62C0BC2774.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
@@ -66,13 +66,251 @@
 			<key>signature</key>
 			<string>Build GameClock</string>
 			<key>timeStartedRecording</key>
-			<real>678162597.99143302</real>
+			<real>678165103.90682399</real>
 			<key>timeStoppedRecording</key>
-			<real>678162604.20172203</real>
+			<real>678165103.996768</real>
 			<key>title</key>
 			<string>Build GameClock</string>
 			<key>uniqueIdentifier</key>
-			<string>F565E297-9CFC-4F31-BEFA-A8AC752BCD3E</string>
+			<string>0DE666C7-75F7-4775-AE7C-5D62C0BC2774</string>
+		</dict>
+		<key>471D3EC5-A583-4C61-91CE-FABE86D63BB2</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>471D3EC5-A583-4C61-91CE-FABE86D63BB2.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>E</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>GameClock project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>GameClock</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build GameClock</string>
+			<key>timeStartedRecording</key>
+			<real>678190796.13115096</real>
+			<key>timeStoppedRecording</key>
+			<real>678190797.26840496</real>
+			<key>title</key>
+			<string>Build GameClock</string>
+			<key>uniqueIdentifier</key>
+			<string>471D3EC5-A583-4C61-91CE-FABE86D63BB2</string>
+		</dict>
+		<key>7EB992E9-8809-46C3-9568-845B646C1050</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>7EB992E9-8809-46C3-9568-845B646C1050.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>GameClock project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>GameClock</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build GameClock</string>
+			<key>timeStartedRecording</key>
+			<real>678190819.13991404</real>
+			<key>timeStoppedRecording</key>
+			<real>678190821.89356899</real>
+			<key>title</key>
+			<string>Build GameClock</string>
+			<key>uniqueIdentifier</key>
+			<string>7EB992E9-8809-46C3-9568-845B646C1050</string>
+		</dict>
+		<key>8B94A792-434A-43C6-83F6-2CF52884DF0F</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>8B94A792-434A-43C6-83F6-2CF52884DF0F.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>E</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>GameClock project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>GameClock</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build GameClock</string>
+			<key>timeStartedRecording</key>
+			<real>678191330.41697705</real>
+			<key>timeStoppedRecording</key>
+			<real>678191331.06122696</real>
+			<key>title</key>
+			<string>Build GameClock</string>
+			<key>uniqueIdentifier</key>
+			<string>8B94A792-434A-43C6-83F6-2CF52884DF0F</string>
+		</dict>
+		<key>A2C36B70-97C1-47B3-B397-6F13B1F46420</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>A2C36B70-97C1-47B3-B397-6F13B1F46420.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>GameClock project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>GameClock</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build GameClock</string>
+			<key>timeStartedRecording</key>
+			<real>678190881.990677</real>
+			<key>timeStoppedRecording</key>
+			<real>678190882.39294302</real>
+			<key>title</key>
+			<string>Build GameClock</string>
+			<key>uniqueIdentifier</key>
+			<string>A2C36B70-97C1-47B3-B397-6F13B1F46420</string>
+		</dict>
+		<key>AADE49A4-2505-4186-98A2-023D385D6D2E</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>AADE49A4-2505-4186-98A2-023D385D6D2E.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>GameClock project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>GameClock</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build GameClock</string>
+			<key>timeStartedRecording</key>
+			<real>678189268.25285196</real>
+			<key>timeStoppedRecording</key>
+			<real>678189270.36690998</real>
+			<key>title</key>
+			<string>Build GameClock</string>
+			<key>uniqueIdentifier</key>
+			<string>AADE49A4-2505-4186-98A2-023D385D6D2E</string>
+		</dict>
+		<key>D10BC0FD-60E9-4740-A996-B27D4550090D</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>D10BC0FD-60E9-4740-A996-B27D4550090D.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>GameClock project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>GameClock</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build GameClock</string>
+			<key>timeStartedRecording</key>
+			<real>678191498.06681705</real>
+			<key>timeStoppedRecording</key>
+			<real>678191503.39671302</real>
+			<key>title</key>
+			<string>Build GameClock</string>
+			<key>uniqueIdentifier</key>
+			<string>D10BC0FD-60E9-4740-A996-B27D4550090D</string>
+		</dict>
+		<key>FC23BE19-F8FB-4007-8381-3110D7941990</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>FC23BE19-F8FB-4007-8381-3110D7941990.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>GameClock project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>GameClock</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build GameClock</string>
+			<key>timeStartedRecording</key>
+			<real>678190860.49512303</real>
+			<key>timeStoppedRecording</key>
+			<real>678190861.25318801</real>
+			<key>title</key>
+			<string>Build GameClock</string>
+			<key>uniqueIdentifier</key>
+			<string>FC23BE19-F8FB-4007-8381-3110D7941990</string>
 		</dict>
 	</dict>
 </dict>

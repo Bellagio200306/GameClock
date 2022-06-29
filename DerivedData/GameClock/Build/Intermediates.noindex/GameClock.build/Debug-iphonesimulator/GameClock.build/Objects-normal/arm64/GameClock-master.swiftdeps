@@ -1,13 +1,13 @@
 version: "Apple Swift version 5.6.1 (swiftlang-5.6.0.323.66 clang-1316.0.20.12)"
 options: "7c210285ad91bfaec743ad1cdc75c0a36a39d4994ee93a2203d801d0d6081829"
-build_start_time: [1656469798, 142682075]
-build_end_time: [1656469802, 364524841]
+build_start_time: [1656498699, 86575984]
+build_end_time: [1656498701, 813281059]
 inputs:
   "/Users/IpoAbe/Documents/Xcode/GameClock/GameClock/AppDelegate.swift": [1656469797, 960558414]
-  "/Users/IpoAbe/Documents/Xcode/GameClock/GameClock/Main/MainViewController.swift": [1656469797, 938090562]
+  "/Users/IpoAbe/Documents/Xcode/GameClock/GameClock/Main/MainViewController.swift": [1656498652, 113194227]
   "/Users/IpoAbe/Documents/Xcode/GameClock/GameClock/SceneDelegate.swift": [1656469797, 952499866]
-  "/Users/IpoAbe/Documents/Xcode/GameClock/GameClock/Settings/PickerViewController.swift": [1656469797, 929131507]
+  "/Users/IpoAbe/Documents/Xcode/GameClock/GameClock/Settings/PickerViewController.swift": [1656498530, 407042503]
   "/Users/IpoAbe/Documents/Xcode/GameClock/GameClock/Settings/Setting.swift": [1656469797, 972351312]
-  "/Users/IpoAbe/Documents/Xcode/GameClock/GameClock/Settings/SettingsViewController.swift": [1656469797, 980098962]
+  "/Users/IpoAbe/Documents/Xcode/GameClock/GameClock/Settings/SettingsViewController.swift": [1656498545, 468770027]
   "/Users/IpoAbe/Documents/Xcode/GameClock/GameClock/Utility/SharedFile.swift": [1656469797, 907750129]
   "/Users/IpoAbe/Documents/Xcode/GameClock/GameClock/Utility/UIColorHex.swift": [1656469797, 919063568]

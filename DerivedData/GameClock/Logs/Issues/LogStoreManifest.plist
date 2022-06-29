@@ -6,7 +6,7 @@
 	<integer>10</integer>
 	<key>logs</key>
 	<dict>
-		<key>D1E59FC9-C26C-42B4-8C6A-955E180C3571</key>
+		<key>F00C2054-1452-477D-AA98-6489FA4AA60D</key>
 		<dict>
 			<key>className</key>
 			<string>IDEActivityLogMajorGroupSection</string>
@@ -15,24 +15,24 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.target.product-type.application</string>
 			<key>fileName</key>
-			<string>D1E59FC9-C26C-42B4-8C6A-955E180C3571.xcactivitylog</string>
+			<string>F00C2054-1452-477D-AA98-6489FA4AA60D.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
 			<dict>
 				<key>highLevelStatus</key>
-				<string>S</string>
+				<string>W</string>
 			</dict>
 			<key>signature</key>
 			<string>GameClock-haprkzfuhojfdlbhpnwlzzmyaiyh</string>
 			<key>timeStartedRecording</key>
-			<real>678162598.09555304</real>
+			<real>678191548.78120196</real>
 			<key>timeStoppedRecording</key>
-			<real>678162604.15032601</real>
+			<real>678191548.99173999</real>
 			<key>title</key>
 			<string>Build target GameClock</string>
 			<key>uniqueIdentifier</key>
-			<string>D1E59FC9-C26C-42B4-8C6A-955E180C3571</string>
+			<string>F00C2054-1452-477D-AA98-6489FA4AA60D</string>
 		</dict>
 	</dict>
 	<key>preserveOldLogs</key>

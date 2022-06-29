@@ -3722,163 +3722,6 @@
         },
         {
           "kind": "Function",
-          "name": "numberOfComponents",
-          "printedName": "numberOfComponents(in:)",
-          "children": [
-            {
-              "kind": "TypeNominal",
-              "name": "Int",
-              "printedName": "Swift.Int",
-              "usr": "s:Si"
-            },
-            {
-              "kind": "TypeNominal",
-              "name": "UIPickerView",
-              "printedName": "UIKit.UIPickerView",
-              "usr": "c:objc(cs)UIPickerView"
-            }
-          ],
-          "declKind": "Func",
-          "usr": "c:@M@GameClock@objc(cs)PickerViewController(im)numberOfComponentsInPickerView:",
-          "mangledName": "$s9GameClock20PickerViewControllerC18numberOfComponents2inSiSo08UIPickerD0C_tF",
-          "moduleName": "GameClock",
-          "isOpen": true,
-          "objc_name": "numberOfComponentsInPickerView:",
-          "declAttributes": [
-            "ObjC",
-            "Custom"
-          ],
-          "funcSelfKind": "NonMutating"
-        },
-        {
-          "kind": "Function",
-          "name": "pickerView",
-          "printedName": "pickerView(_:numberOfRowsInComponent:)",
-          "children": [
-            {
-              "kind": "TypeNominal",
-              "name": "Int",
-              "printedName": "Swift.Int",
-              "usr": "s:Si"
-            },
-            {
-              "kind": "TypeNominal",
-              "name": "UIPickerView",
-              "printedName": "UIKit.UIPickerView",
-              "usr": "c:objc(cs)UIPickerView"
-            },
-            {
-              "kind": "TypeNominal",
-              "name": "Int",
-              "printedName": "Swift.Int",
-              "usr": "s:Si"
-            }
-          ],
-          "declKind": "Func",
-          "usr": "c:@M@GameClock@objc(cs)PickerViewController(im)pickerView:numberOfRowsInComponent:",
-          "mangledName": "$s9GameClock20PickerViewControllerC06pickerD0_23numberOfRowsInComponentSiSo08UIPickerD0C_SitF",
-          "moduleName": "GameClock",
-          "isOpen": true,
-          "objc_name": "pickerView:numberOfRowsInComponent:",
-          "declAttributes": [
-            "ObjC",
-            "Custom"
-          ],
-          "funcSelfKind": "NonMutating"
-        },
-        {
-          "kind": "Function",
-          "name": "pickerView",
-          "printedName": "pickerView(_:titleForRow:forComponent:)",
-          "children": [
-            {
-              "kind": "TypeNominal",
-              "name": "Optional",
-              "printedName": "Swift.String?",
-              "children": [
-                {
-                  "kind": "TypeNominal",
-                  "name": "String",
-                  "printedName": "Swift.String",
-                  "usr": "s:SS"
-                }
-              ],
-              "usr": "s:Sq"
-            },
-            {
-              "kind": "TypeNominal",
-              "name": "UIPickerView",
-              "printedName": "UIKit.UIPickerView",
-              "usr": "c:objc(cs)UIPickerView"
-            },
-            {
-              "kind": "TypeNominal",
-              "name": "Int",
-              "printedName": "Swift.Int",
-              "usr": "s:Si"
-            },
-            {
-              "kind": "TypeNominal",
-              "name": "Int",
-              "printedName": "Swift.Int",
-              "usr": "s:Si"
-            }
-          ],
-          "declKind": "Func",
-          "usr": "c:@M@GameClock@objc(cs)PickerViewController(im)pickerView:titleForRow:forComponent:",
-          "mangledName": "$s9GameClock20PickerViewControllerC06pickerD0_11titleForRow12forComponentSSSgSo08UIPickerD0C_S2itF",
-          "moduleName": "GameClock",
-          "isOpen": true,
-          "objc_name": "pickerView:titleForRow:forComponent:",
-          "declAttributes": [
-            "ObjC",
-            "Custom"
-          ],
-          "funcSelfKind": "NonMutating"
-        },
-        {
-          "kind": "Function",
-          "name": "pickerView",
-          "printedName": "pickerView(_:didSelectRow:inComponent:)",
-          "children": [
-            {
-              "kind": "TypeNominal",
-              "name": "Void",
-              "printedName": "()"
-            },
-            {
-              "kind": "TypeNominal",
-              "name": "UIPickerView",
-              "printedName": "UIKit.UIPickerView",
-              "usr": "c:objc(cs)UIPickerView"
-            },
-            {
-              "kind": "TypeNominal",
-              "name": "Int",
-              "printedName": "Swift.Int",
-              "usr": "s:Si"
-            },
-            {
-              "kind": "TypeNominal",
-              "name": "Int",
-              "printedName": "Swift.Int",
-              "usr": "s:Si"
-            }
-          ],
-          "declKind": "Func",
-          "usr": "c:@M@GameClock@objc(cs)PickerViewController(im)pickerView:didSelectRow:inComponent:",
-          "mangledName": "$s9GameClock20PickerViewControllerC06pickerD0_12didSelectRow11inComponentySo08UIPickerD0C_S2itF",
-          "moduleName": "GameClock",
-          "isOpen": true,
-          "objc_name": "pickerView:didSelectRow:inComponent:",
-          "declAttributes": [
-            "ObjC",
-            "Custom"
-          ],
-          "funcSelfKind": "NonMutating"
-        },
-        {
-          "kind": "Function",
           "name": "adjustPicker",
           "printedName": "adjustPicker(_:)",
           "children": [
@@ -3999,6 +3842,167 @@
             "Required"
           ],
           "init_kind": "Designated"
+        },
+        {
+          "kind": "Function",
+          "name": "numberOfComponents",
+          "printedName": "numberOfComponents(in:)",
+          "children": [
+            {
+              "kind": "TypeNominal",
+              "name": "Int",
+              "printedName": "Swift.Int",
+              "usr": "s:Si"
+            },
+            {
+              "kind": "TypeNominal",
+              "name": "UIPickerView",
+              "printedName": "UIKit.UIPickerView",
+              "usr": "c:objc(cs)UIPickerView"
+            }
+          ],
+          "declKind": "Func",
+          "usr": "c:@CM@GameClock@objc(cs)PickerViewController(im)numberOfComponentsInPickerView:",
+          "mangledName": "$s9GameClock20PickerViewControllerC18numberOfComponents2inSiSo08UIPickerD0C_tF",
+          "moduleName": "GameClock",
+          "isOpen": true,
+          "objc_name": "numberOfComponentsInPickerView:",
+          "declAttributes": [
+            "Dynamic",
+            "ObjC",
+            "Custom"
+          ],
+          "funcSelfKind": "NonMutating"
+        },
+        {
+          "kind": "Function",
+          "name": "pickerView",
+          "printedName": "pickerView(_:numberOfRowsInComponent:)",
+          "children": [
+            {
+              "kind": "TypeNominal",
+              "name": "Int",
+              "printedName": "Swift.Int",
+              "usr": "s:Si"
+            },
+            {
+              "kind": "TypeNominal",
+              "name": "UIPickerView",
+              "printedName": "UIKit.UIPickerView",
+              "usr": "c:objc(cs)UIPickerView"
+            },
+            {
+              "kind": "TypeNominal",
+              "name": "Int",
+              "printedName": "Swift.Int",
+              "usr": "s:Si"
+            }
+          ],
+          "declKind": "Func",
+          "usr": "c:@CM@GameClock@objc(cs)PickerViewController(im)pickerView:numberOfRowsInComponent:",
+          "mangledName": "$s9GameClock20PickerViewControllerC06pickerD0_23numberOfRowsInComponentSiSo08UIPickerD0C_SitF",
+          "moduleName": "GameClock",
+          "isOpen": true,
+          "objc_name": "pickerView:numberOfRowsInComponent:",
+          "declAttributes": [
+            "Dynamic",
+            "ObjC",
+            "Custom"
+          ],
+          "funcSelfKind": "NonMutating"
+        },
+        {
+          "kind": "Function",
+          "name": "pickerView",
+          "printedName": "pickerView(_:titleForRow:forComponent:)",
+          "children": [
+            {
+              "kind": "TypeNominal",
+              "name": "Optional",
+              "printedName": "Swift.String?",
+              "children": [
+                {
+                  "kind": "TypeNominal",
+                  "name": "String",
+                  "printedName": "Swift.String",
+                  "usr": "s:SS"
+                }
+              ],
+              "usr": "s:Sq"
+            },
+            {
+              "kind": "TypeNominal",
+              "name": "UIPickerView",
+              "printedName": "UIKit.UIPickerView",
+              "usr": "c:objc(cs)UIPickerView"
+            },
+            {
+              "kind": "TypeNominal",
+              "name": "Int",
+              "printedName": "Swift.Int",
+              "usr": "s:Si"
+            },
+            {
+              "kind": "TypeNominal",
+              "name": "Int",
+              "printedName": "Swift.Int",
+              "usr": "s:Si"
+            }
+          ],
+          "declKind": "Func",
+          "usr": "c:@CM@GameClock@objc(cs)PickerViewController(im)pickerView:titleForRow:forComponent:",
+          "mangledName": "$s9GameClock20PickerViewControllerC06pickerD0_11titleForRow12forComponentSSSgSo08UIPickerD0C_S2itF",
+          "moduleName": "GameClock",
+          "isOpen": true,
+          "objc_name": "pickerView:titleForRow:forComponent:",
+          "declAttributes": [
+            "Dynamic",
+            "ObjC",
+            "Custom"
+          ],
+          "funcSelfKind": "NonMutating"
+        },
+        {
+          "kind": "Function",
+          "name": "pickerView",
+          "printedName": "pickerView(_:didSelectRow:inComponent:)",
+          "children": [
+            {
+              "kind": "TypeNominal",
+              "name": "Void",
+              "printedName": "()"
+            },
+            {
+              "kind": "TypeNominal",
+              "name": "UIPickerView",
+              "printedName": "UIKit.UIPickerView",
+              "usr": "c:objc(cs)UIPickerView"
+            },
+            {
+              "kind": "TypeNominal",
+              "name": "Int",
+              "printedName": "Swift.Int",
+              "usr": "s:Si"
+            },
+            {
+              "kind": "TypeNominal",
+              "name": "Int",
+              "printedName": "Swift.Int",
+              "usr": "s:Si"
+            }
+          ],
+          "declKind": "Func",
+          "usr": "c:@CM@GameClock@objc(cs)PickerViewController(im)pickerView:didSelectRow:inComponent:",
+          "mangledName": "$s9GameClock20PickerViewControllerC06pickerD0_12didSelectRow11inComponentySo08UIPickerD0C_S2itF",
+          "moduleName": "GameClock",
+          "isOpen": true,
+          "objc_name": "pickerView:didSelectRow:inComponent:",
+          "declAttributes": [
+            "Dynamic",
+            "ObjC",
+            "Custom"
+          ],
+          "funcSelfKind": "NonMutating"
         }
       ],
       "declKind": "Class",
