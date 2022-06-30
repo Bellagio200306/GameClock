@@ -38,6 +38,7 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         
         p2Button.transform = flipUpsideDown()
+        setInitialState()
         
         userDefaults.register(defaults: [p1TimeKey : 60])
         observedP1 = userDefaults.observe(\.p1TimeKey, options: [.initial, .new], changeHandler: { [weak self] (defaults, change) in
@@ -59,30 +60,30 @@ class MainViewController: UIViewController {
         return stringRemainCount
     }
     
-    func playerButtonPressed(nowTurn: UIButton, restTurn: UIButton) {
+    func playerButtonPressed(nowTurn: UIButton, breakTurn: UIButton) {
         soundEffect(resource: "Move2", ext: "mp3")
         gameStatus = .Playing
         changePauseImage(with: gameStatus)
         count = 0
         startTimer()
-        nowTurn.backgroundColor = UIColor(hex: "B54434")
+        nowTurn.backgroundColor = UIColor(named: "PlayingTurnColor")
         nowTurn.setTitleColor(UIColor.white, for: .normal)
         nowTurn.isEnabled = true
-        restTurn.backgroundColor = UIColor(hex: "818181")
-        restTurn.setTitleColor(UIColor.darkGray, for: .normal)
-        restTurn.isEnabled = false
+        breakTurn.backgroundColor = UIColor(named: "BreakTurnColor")
+        breakTurn.setTitleColor(UIColor.darkGray, for: .normal)
+        breakTurn.isEnabled = false
     }
     
     @IBAction func p1ButtonPressed(_ sender: UIButton) {
         nowTurn = .P2
         totalSec = userDefaults.integer(forKey: p2TimeKey)
-        playerButtonPressed(nowTurn: p2Button, restTurn: p1Button)
+        playerButtonPressed(nowTurn: p2Button, breakTurn: p1Button)
     }
     
     @IBAction func p2ButtonPressed(_ sender: UIButton) {
         nowTurn = .P1
         totalSec = userDefaults.integer(forKey: p1TimeKey)
-        playerButtonPressed(nowTurn: p1Button, restTurn: p2Button)
+        playerButtonPressed(nowTurn: p1Button, breakTurn: p2Button)
     }
     
     @IBAction func pauseButtonPressed(_ sender: UIButton) {
@@ -120,7 +121,7 @@ class MainViewController: UIViewController {
     @IBAction func resetButtonPressed(_ sender: UIButton) {
         let alert = UIAlertController(title: "リセットしますか？", message: nil, preferredStyle: .alert)
         let reset = UIAlertAction(title: "リセット", style: .destructive) {_ in
-            self.returnInitialSetting()
+            self.setInitialState()
         }
         let cancel = UIAlertAction(title: "キャンセル", style: .cancel) { (action) in
             self.dismiss(animated: true)
@@ -132,7 +133,7 @@ class MainViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    func returnInitialSetting() {
+    func setInitialState() {
         let p1Time = userDefaults.integer(forKey: p1TimeKey)
         let p2Time = userDefaults.integer(forKey: p2TimeKey)
         
@@ -145,12 +146,12 @@ class MainViewController: UIViewController {
         pauseButton.isEnabled = true
         
         p1Button.setTitle(convertHMS(p1Time), for: .normal)
-        p1Button.backgroundColor = UIColor(hex: "B54434")
+        p1Button.backgroundColor = UIColor(named: "PlayingTurnColor")
         p1Button.setTitleColor(.white, for: .normal)
         p1Button.isEnabled = true
         
         p2Button.setTitle(convertHMS(p2Time), for: .normal)
-        p2Button.backgroundColor = UIColor(hex: "818181")
+        p2Button.backgroundColor = UIColor(named: "BreakTurnColor")
         p2Button.setTitleColor(.darkGray, for: .normal)
         p2Button.isEnabled = true
     }
