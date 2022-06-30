@@ -19,13 +19,13 @@
 		3457370D28459399006AB99F /* SharedFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3457370C28459399006AB99F /* SharedFile.swift */; };
 		3457370F28487E07006AB99F /* ResetButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 3457370E28487E07006AB99F /* ResetButton.png */; };
 		3457371A284AD53B006AB99F /* pi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 34573717284AD53B006AB99F /* pi.mp3 */; };
-		3457371B284AD53B006AB99F /* pooon.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 34573718284AD53B006AB99F /* pooon.mp3 */; };
-		3470308D27A8B013009CDF94 /* UIColorHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3470308C27A8B013009CDF94 /* UIColorHex.swift */; };
+		3457371B284AD53B006AB99F /* beep.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 34573718284AD53B006AB99F /* beep.mp3 */; };
 		347B8E7F284B194D00772415 /* poon.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 347B8E7E284B194C00772415 /* poon.mp3 */; };
 		34B4F23227EDFA7700939CF1 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B4F23127EDFA7700939CF1 /* Setting.swift */; };
 		34B4F23427EE0D1700939CF1 /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B4F23327EE0D1700939CF1 /* PickerViewController.swift */; };
 		34B9D87B280039F300D73C28 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B9D87A280039F300D73C28 /* SettingsViewController.swift */; };
 		34B9D87D280074ED00D73C28 /* Move2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 34B9D87C280074ED00D73C28 /* Move2.mp3 */; };
+		C97A6712286D4B0700D627C0 /* SettingButton.png in Resources */ = {isa = PBXBuildFile; fileRef = C97A6711286D4B0700D627C0 /* SettingButton.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,13 +43,13 @@
 		3457370C28459399006AB99F /* SharedFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedFile.swift; sourceTree = "<group>"; };
 		3457370E28487E07006AB99F /* ResetButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ResetButton.png; sourceTree = "<group>"; };
 		34573717284AD53B006AB99F /* pi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pi.mp3; sourceTree = "<group>"; };
-		34573718284AD53B006AB99F /* pooon.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pooon.mp3; sourceTree = "<group>"; };
-		3470308C27A8B013009CDF94 /* UIColorHex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIColorHex.swift; path = GameClock/Utility/UIColorHex.swift; sourceTree = SOURCE_ROOT; };
+		34573718284AD53B006AB99F /* beep.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beep.mp3; sourceTree = "<group>"; };
 		347B8E7E284B194C00772415 /* poon.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = poon.mp3; sourceTree = "<group>"; };
 		34B4F23127EDFA7700939CF1 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		34B4F23327EE0D1700939CF1 /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
 		34B9D87A280039F300D73C28 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		34B9D87C280074ED00D73C28 /* Move2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Move2.mp3; sourceTree = "<group>"; };
+		C97A6711286D4B0700D627C0 /* SettingButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SettingButton.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,7 +66,6 @@
 		341CCA7D28002CDE00BFFF90 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				3470308C27A8B013009CDF94 /* UIColorHex.swift */,
 				3457370C28459399006AB99F /* SharedFile.swift */,
 			);
 			path = Utility;
@@ -126,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				3420883127A76AAE00DEB7E8 /* Assets.xcassets */,
+				C97A6711286D4B0700D627C0 /* SettingButton.png */,
 				34573705283F5976006AB99F /* PauseButton.png */,
 				34573704283F5976006AB99F /* PlayButton.png */,
 				3457370E28487E07006AB99F /* ResetButton.png */,
@@ -133,7 +133,7 @@
 				34417ADC2805530B00F82CB0 /* Pause.mp3 */,
 				34573717284AD53B006AB99F /* pi.mp3 */,
 				347B8E7E284B194C00772415 /* poon.mp3 */,
-				34573718284AD53B006AB99F /* pooon.mp3 */,
+				34573718284AD53B006AB99F /* beep.mp3 */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -197,11 +197,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				34573707283F5976006AB99F /* PauseButton.png in Resources */,
-				3457371B284AD53B006AB99F /* pooon.mp3 in Resources */,
+				3457371B284AD53B006AB99F /* beep.mp3 in Resources */,
 				34B9D87D280074ED00D73C28 /* Move2.mp3 in Resources */,
 				3420883527A76AAE00DEB7E8 /* LaunchScreen.storyboard in Resources */,
 				347B8E7F284B194D00772415 /* poon.mp3 in Resources */,
 				3457370F28487E07006AB99F /* ResetButton.png in Resources */,
+				C97A6712286D4B0700D627C0 /* SettingButton.png in Resources */,
 				3457371A284AD53B006AB99F /* pi.mp3 in Resources */,
 				3420883227A76AAE00DEB7E8 /* Assets.xcassets in Resources */,
 				3420883027A76AAC00DEB7E8 /* Main.storyboard in Resources */,
@@ -219,7 +220,6 @@
 			files = (
 				3420882D27A76AAC00DEB7E8 /* MainViewController.swift in Sources */,
 				3420882927A76AAC00DEB7E8 /* AppDelegate.swift in Sources */,
-				3470308D27A8B013009CDF94 /* UIColorHex.swift in Sources */,
 				3420882B27A76AAC00DEB7E8 /* SceneDelegate.swift in Sources */,
 				34B4F23427EE0D1700939CF1 /* PickerViewController.swift in Sources */,
 				34B4F23227EDFA7700939CF1 /* Setting.swift in Sources */,

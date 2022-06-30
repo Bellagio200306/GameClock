@@ -168,11 +168,11 @@ class MainViewController: UIViewController {
         case 11,21,31:/*１０秒前、２０秒前、３０秒前*/
             soundEffect(resource: "poon", ext: "mp3")
             countDown()
-        case (5...10):/*９秒前〜４秒前*/
+        case 5...10:/*９秒前〜４秒前*/
             soundEffect(resource: "pi", ext: "mp3")
             countDown()
         case 4:/*３秒前*/
-            soundEffect(resource: "pooon", ext: "mp3")
+            soundEffect(resource: "beep", ext: "mp3")
             countDown()
         case 1:/*時間切れ*/
             timer.invalidate()

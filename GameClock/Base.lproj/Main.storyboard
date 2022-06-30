@@ -24,7 +24,7 @@
                                         <color key="backgroundColor" red="0.47240302844622695" green="0.47240302844622695" blue="0.47240302844622695" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="80"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="START">
+                                        <state key="normal" title="P2Time">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -36,7 +36,7 @@
                                         <color key="backgroundColor" red="0.70980392156862748" green="0.26666666666666666" blue="0.20392156862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="80"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="START">
+                                        <state key="normal" title="P1Time">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -45,57 +45,58 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kNO-YD-98U">
-                                <rect key="frame" x="5" y="249" width="70" height="70"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="70" id="WJ7-PS-JVv"/>
-                                    <constraint firstAttribute="height" constant="70" id="dBZ-et-zJf"/>
-                                </constraints>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="PlayButton.png"/>
-                                <connections>
-                                    <action selector="pauseButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ELi-4o-T3q"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JNU-Cs-oKI">
-                                <rect key="frame" x="125" y="249" width="70" height="70"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="Nke-P8-bS5"/>
-                                    <constraint firstAttribute="width" constant="70" id="jmw-BU-S7p"/>
-                                </constraints>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="ResetButton.png"/>
-                                <connections>
-                                    <action selector="resetButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5jf-0v-QSi"/>
-                                    <action selector="settingButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CkP-3P-cI1"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xyz-tZ-eKk">
-                                <rect key="frame" x="245" y="249" width="70" height="70"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="70" id="5Nj-0Y-YKi"/>
-                                    <constraint firstAttribute="height" constant="70" id="IFE-O6-96V"/>
-                                </constraints>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="設定"/>
-                                <connections>
-                                    <action selector="settingButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="S2i-is-4Wf"/>
-                                    <segue destination="yHH-bK-b0m" kind="show" identifier="goToSettings" id="LC3-GG-DiZ"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="ZQz-A4-7rT" userLabel="Func button Stack View">
+                                <rect key="frame" x="15" y="249" width="290" height="70"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kNO-YD-98U">
+                                        <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="70" id="WJ7-PS-JVv"/>
+                                            <constraint firstAttribute="height" constant="70" id="dBZ-et-zJf"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="PlayButton.png"/>
+                                        <connections>
+                                            <action selector="pauseButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ELi-4o-T3q"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JNU-Cs-oKI">
+                                        <rect key="frame" x="110" y="0.0" width="70" height="70"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="70" id="Nke-P8-bS5"/>
+                                            <constraint firstAttribute="width" constant="70" id="jmw-BU-S7p"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Reset Button" image="ResetButton.png"/>
+                                        <connections>
+                                            <action selector="resetButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5jf-0v-QSi"/>
+                                            <action selector="settingButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CkP-3P-cI1"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xyz-tZ-eKk">
+                                        <rect key="frame" x="220" y="0.0" width="70" height="70"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="70" id="5Nj-0Y-YKi"/>
+                                            <constraint firstAttribute="height" constant="70" id="IFE-O6-96V"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="SettingButton.png"/>
+                                        <connections>
+                                            <action selector="settingButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="S2i-is-4Wf"/>
+                                            <segue destination="yHH-bK-b0m" kind="show" identifier="goToSettings" id="LC3-GG-DiZ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="JNU-Cs-oKI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="8GX-9N-N3Y"/>
-                            <constraint firstItem="kNO-YD-98U" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Cgl-iY-tga"/>
                             <constraint firstItem="G41-QO-bu5" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="REB-2P-d1f"/>
-                            <constraint firstItem="xyz-tZ-eKk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="120" id="e44-en-Cad"/>
+                            <constraint firstItem="ZQz-A4-7rT" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="VZ3-HF-tJK"/>
+                            <constraint firstItem="ZQz-A4-7rT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fev-p0-nxs"/>
                             <constraint firstAttribute="trailing" secondItem="G41-QO-bu5" secondAttribute="trailing" id="fuR-4T-Egg"/>
                             <constraint firstItem="G41-QO-bu5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="gpw-o6-hCh"/>
-                            <constraint firstItem="JNU-Cs-oKI" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="h0O-qE-oOB"/>
-                            <constraint firstItem="kNO-YD-98U" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-120" id="lNU-Pa-iaA"/>
-                            <constraint firstItem="xyz-tZ-eKk" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="tV1-7e-iz8"/>
                             <constraint firstAttribute="bottom" secondItem="G41-QO-bu5" secondAttribute="bottom" id="wdn-Jx-Zkp"/>
                         </constraints>
                     </view>
@@ -216,7 +217,7 @@
     <resources>
         <image name="PlayButton.png" width="256" height="256"/>
         <image name="ResetButton.png" width="256" height="256"/>
-        <image name="設定" width="256" height="256"/>
+        <image name="SettingButton.png" width="256" height="256"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
