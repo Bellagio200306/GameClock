@@ -6,11 +6,12 @@
 //
 import Foundation
 import UIKit
+
 class SettingsViewController: UITableViewController {
     
-    var settings: [Setting] = []
-    var observedP1: NSKeyValueObservation?
-    var observedP2: NSKeyValueObservation?
+    private var settings: [Setting] = []
+    private var observedP1: NSKeyValueObservation?
+    private var observedP2: NSKeyValueObservation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,8 +47,8 @@ class SettingsViewController: UITableViewController {
     func loadData() {
         let p1Time = userDefaults.integer(forKey: p1TimeKey)
         let p2Time = userDefaults.integer(forKey: p2TimeKey)
-        settings.append(Setting(item: "Player 1", rightDetail: convertHMS(p1Time)))
-        settings.append(Setting(item: "Player 2", rightDetail: convertHMS(p2Time)))
+        settings += [Setting(item: "Player 1", rightDetail: convertHMS(p1Time))]
+        settings += [Setting(item: "Player 2", rightDetail: convertHMS(p2Time))]
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

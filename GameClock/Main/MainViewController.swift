@@ -8,16 +8,6 @@
 import UIKit
 import AVFoundation
 
-enum Player {
-    case P1
-    case P2
-}
-
-enum GameStatus {
-    case Paused
-    case Playing
-}
-
 class MainViewController: UIViewController {
     
     @IBOutlet weak var p1Button: UIButton!
@@ -25,14 +15,14 @@ class MainViewController: UIViewController {
     @IBOutlet weak var pauseButton: UIButton!
     @IBOutlet weak var settingButton: UIButton!
     
-    var nowTurn: Player = .P1
-    var gameStatus: GameStatus = .Paused
-    var count = 0
-    var totalSec = 0
-    var audioPlayer: AVAudioPlayer?
-    var timer = Timer()
-    var observedP1: NSKeyValueObservation?
-    var observedP2: NSKeyValueObservation?
+    private var player: Player = .P1
+    private var gameStatus: GameStatus = .Paused
+    private var count = 0
+    private var totalSec = 0
+    private var audioPlayer: AVAudioPlayer?
+    private var timer = Timer()
+    private var observedP1: NSKeyValueObservation?
+    private var observedP2: NSKeyValueObservation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,30 +50,53 @@ class MainViewController: UIViewController {
         return stringRemainCount
     }
     
-    func playerButtonPressed(nowTurn: UIButton, breakTurn: UIButton) {
+    func setInitialState() {
+        let p1Time = userDefaults.integer(forKey: p1TimeKey)
+        let p2Time = userDefaults.integer(forKey: p2TimeKey)
+        
+        gameStatus = .Paused
+        player = .P1
+        changePauseImage(with: gameStatus)
+        count = 0
+        totalSec = p1Time
+        timer.invalidate()
+        pauseButton.isEnabled = true
+        
+        p1Button.setTitle(convertHMS(p1Time), for: .normal)
+        p1Button.backgroundColor = UIColor(named: "PlayingTurnColor")
+        p1Button.setTitleColor(.white, for: .normal)
+        p1Button.isEnabled = true
+        
+        p2Button.setTitle(convertHMS(p2Time), for: .normal)
+        p2Button.backgroundColor = UIColor(named: "BreakTurnColor")
+        p2Button.setTitleColor(.darkGray, for: .normal)
+        p2Button.isEnabled = true
+    }
+    
+    func playerButtonPressed(playingTurn: UIButton, breakTurn: UIButton) {
         soundEffect(resource: "Move2", ext: "mp3")
         gameStatus = .Playing
         changePauseImage(with: gameStatus)
         count = 0
         startTimer()
-        nowTurn.backgroundColor = UIColor(named: "PlayingTurnColor")
-        nowTurn.setTitleColor(UIColor.white, for: .normal)
-        nowTurn.isEnabled = true
+        playingTurn.backgroundColor = UIColor(named: "PlayingTurnColor")
+        playingTurn.setTitleColor(UIColor.white, for: .normal)
+        playingTurn.isEnabled = true
         breakTurn.backgroundColor = UIColor(named: "BreakTurnColor")
         breakTurn.setTitleColor(UIColor.darkGray, for: .normal)
         breakTurn.isEnabled = false
     }
     
     @IBAction func p1ButtonPressed(_ sender: UIButton) {
-        nowTurn = .P2
+        player = .P2
         totalSec = userDefaults.integer(forKey: p2TimeKey)
-        playerButtonPressed(nowTurn: p2Button, breakTurn: p1Button)
+        playerButtonPressed(playingTurn: p2Button, breakTurn: p1Button)
     }
     
     @IBAction func p2ButtonPressed(_ sender: UIButton) {
-        nowTurn = .P1
+        player = .P1
         totalSec = userDefaults.integer(forKey: p1TimeKey)
-        playerButtonPressed(nowTurn: p1Button, breakTurn: p2Button)
+        playerButtonPressed(playingTurn: p1Button, breakTurn: p2Button)
     }
     
     @IBAction func pauseButtonPressed(_ sender: UIButton) {
@@ -96,6 +109,11 @@ class MainViewController: UIViewController {
             soundEffect(resource: "Move2", ext: "mp3")
             changePauseImage(with: gameStatus)
             
+            switch player {
+            case .P1: p1Button.backgroundColor = UIColor(named: "PlayingTurnColor")
+            case .P2: p2Button.backgroundColor = UIColor(named: "PlayingTurnColor")
+            }
+            
         case .Playing:
             gameStatus = .Paused
             timer.invalidate()
@@ -103,6 +121,11 @@ class MainViewController: UIViewController {
             p2Button.isEnabled = false
             soundEffect(resource: "Pause", ext: "mp3")
             changePauseImage(with: gameStatus)
+            
+            switch player {
+            case .P1: p1Button.backgroundColor = UIColor(named: "BreakTurnColor")
+            case .P2: p2Button.backgroundColor = UIColor(named: "BreakTurnColor")
+            }
         }
     }
     
@@ -133,29 +156,6 @@ class MainViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    func setInitialState() {
-        let p1Time = userDefaults.integer(forKey: p1TimeKey)
-        let p2Time = userDefaults.integer(forKey: p2TimeKey)
-        
-        gameStatus = .Paused
-        nowTurn = .P1
-        changePauseImage(with: gameStatus)
-        count = 0
-        totalSec = p1Time
-        timer.invalidate()
-        pauseButton.isEnabled = true
-        
-        p1Button.setTitle(convertHMS(p1Time), for: .normal)
-        p1Button.backgroundColor = UIColor(named: "PlayingTurnColor")
-        p1Button.setTitleColor(.white, for: .normal)
-        p1Button.isEnabled = true
-        
-        p2Button.setTitle(convertHMS(p2Time), for: .normal)
-        p2Button.backgroundColor = UIColor(named: "BreakTurnColor")
-        p2Button.setTitleColor(.darkGray, for: .normal)
-        p2Button.isEnabled = true
-    }
-    
     @IBAction func settingButtonPressed(_ sender: UIButton) {
         timer.invalidate()
         gameStatus = .Paused
@@ -177,7 +177,7 @@ class MainViewController: UIViewController {
         case 1:/*時間切れ*/
             timer.invalidate()
             audioPlayer?.stop()
-            switch nowTurn {
+            switch player {
             case .P1:
                 timeOut(at: p1Button)
             case .P2:
@@ -203,7 +203,7 @@ class MainViewController: UIViewController {
         let remainCount = totalSec - count
         let stringRemainCount = convertHMS(remainCount)
         
-        switch nowTurn {
+        switch player {
         case .P1: p1Button.setTitle(stringRemainCount, for: .normal)
         case .P2: p2Button.setTitle(stringRemainCount, for: .normal)
         }

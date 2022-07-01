@@ -11,6 +11,16 @@ let p1TimeKey = "p1TimeKey"
 let p2TimeKey = "p2TimeKey"
 let userDefaults = UserDefaults.standard
 
+enum Player {
+    case P1
+    case P2
+}
+
+enum GameStatus {
+    case Paused
+    case Playing
+}
+
 func convertHMS(_ time: Int) -> String {
     var stringTime = "00:00:00"
     let hour = time / 3600

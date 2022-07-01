@@ -12,10 +12,10 @@ class PickerViewController: UIViewController {
     @IBOutlet weak var pickerView: UIPickerView!
     
     var player: Player = .P1
-    var hour = 0
-    var min = 0
-    var sec = 0
-    var totalSec = 0
+    private var hour = 0
+    private var min = 0
+    private var sec = 0
+    private var totalSec = 0
     
     let dataList = [[Int](0...9), [Int](0...60), [Int](0...60)]
     
@@ -42,9 +42,9 @@ class PickerViewController: UIViewController {
         
         for component in 0..<dataList.count {
             switch component {
-            case 0: pickerView.selectRow(h, inComponent: 0, animated: true)
-            case 1: pickerView.selectRow(m, inComponent: 1, animated: true)
-            case 2: pickerView.selectRow(s, inComponent: 2, animated: true)
+            case 0: pickerView.selectRow(h, inComponent: component, animated: true)
+            case 1: pickerView.selectRow(m, inComponent: component, animated: true)
+            case 2: pickerView.selectRow(s, inComponent: component, animated: true)
             default: print("adjustPickerエラー")
             }
         }

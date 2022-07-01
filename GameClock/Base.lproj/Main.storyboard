@@ -45,11 +45,24 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="ZQz-A4-7rT" userLabel="Func button Stack View">
-                                <rect key="frame" x="15" y="249" width="290" height="70"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="ZQz-A4-7rT" userLabel="Func button Stack View">
+                                <rect key="frame" x="20" y="249" width="280" height="70"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kNO-YD-98U">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JNU-Cs-oKI" userLabel="Reset Button">
                                         <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="70" id="Nke-P8-bS5"/>
+                                            <constraint firstAttribute="width" constant="70" id="jmw-BU-S7p"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="ResetButton.png"/>
+                                        <connections>
+                                            <action selector="resetButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5jf-0v-QSi"/>
+                                            <action selector="settingButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CkP-3P-cI1"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kNO-YD-98U">
+                                        <rect key="frame" x="105" y="0.0" width="70" height="70"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="70" id="WJ7-PS-JVv"/>
                                             <constraint firstAttribute="height" constant="70" id="dBZ-et-zJf"/>
@@ -60,21 +73,8 @@
                                             <action selector="pauseButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ELi-4o-T3q"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JNU-Cs-oKI">
-                                        <rect key="frame" x="110" y="0.0" width="70" height="70"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="70" id="Nke-P8-bS5"/>
-                                            <constraint firstAttribute="width" constant="70" id="jmw-BU-S7p"/>
-                                        </constraints>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Reset Button" image="ResetButton.png"/>
-                                        <connections>
-                                            <action selector="resetButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5jf-0v-QSi"/>
-                                            <action selector="settingButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CkP-3P-cI1"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xyz-tZ-eKk">
-                                        <rect key="frame" x="220" y="0.0" width="70" height="70"/>
+                                        <rect key="frame" x="210" y="0.0" width="70" height="70"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="70" id="5Nj-0Y-YKi"/>
                                             <constraint firstAttribute="height" constant="70" id="IFE-O6-96V"/>
