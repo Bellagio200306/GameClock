@@ -10,10 +10,10 @@ import AVFoundation
 
 class MainViewController: UIViewController {
     
-    @IBOutlet weak var p1Button: UIButton!
-    @IBOutlet weak var p2Button: UIButton!
-    @IBOutlet weak var pauseButton: UIButton!
-    @IBOutlet weak var settingButton: UIButton!
+    @IBOutlet private weak var p1Button: UIButton!
+    @IBOutlet private weak var p2Button: UIButton!
+    @IBOutlet private weak var pauseButton: UIButton!
+    @IBOutlet private weak var settingButton: UIButton!
     
     private var player: Player = .P1
     private var gameStatus: GameStatus = .Paused

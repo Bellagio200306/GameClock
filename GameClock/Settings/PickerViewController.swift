@@ -9,7 +9,7 @@ import UIKit
 
 class PickerViewController: UIViewController {
     
-    @IBOutlet weak var pickerView: UIPickerView!
+    @IBOutlet private weak var pickerView: UIPickerView!
     
     var player: Player = .P1
     private var hour = 0

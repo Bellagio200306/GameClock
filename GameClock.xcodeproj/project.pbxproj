@@ -26,6 +26,8 @@
 		34B9D87B280039F300D73C28 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B9D87A280039F300D73C28 /* SettingsViewController.swift */; };
 		34B9D87D280074ED00D73C28 /* Move2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 34B9D87C280074ED00D73C28 /* Move2.mp3 */; };
 		C97A6712286D4B0700D627C0 /* SettingButton.png in Resources */ = {isa = PBXBuildFile; fileRef = C97A6711286D4B0700D627C0 /* SettingButton.png */; };
+		C97A6715286F29EB00D627C0 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C97A6714286F29EB00D627C0 /* Settings.storyboard */; };
+		C97A6717286F2B1000D627C0 /* Picker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C97A6716286F2B1000D627C0 /* Picker.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +52,8 @@
 		34B9D87A280039F300D73C28 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		34B9D87C280074ED00D73C28 /* Move2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Move2.mp3; sourceTree = "<group>"; };
 		C97A6711286D4B0700D627C0 /* SettingButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SettingButton.png; sourceTree = "<group>"; };
+		C97A6714286F29EB00D627C0 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		C97A6716286F2B1000D627C0 /* Picker.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Picker.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,7 +96,7 @@
 			children = (
 				3420882827A76AAC00DEB7E8 /* AppDelegate.swift */,
 				3420882A27A76AAC00DEB7E8 /* SceneDelegate.swift */,
-				3420882E27A76AAC00DEB7E8 /* Main.storyboard */,
+				C97A6713286F298400D627C0 /* StoryBoard */,
 				3420883C27A77EA800DEB7E8 /* Main */,
 				3420883D27A77ED400DEB7E8 /* Settings */,
 				341CCA7D28002CDE00BFFF90 /* Utility */,
@@ -136,6 +140,16 @@
 				34573718284AD53B006AB99F /* beep.mp3 */,
 			);
 			path = Assets;
+			sourceTree = "<group>";
+		};
+		C97A6713286F298400D627C0 /* StoryBoard */ = {
+			isa = PBXGroup;
+			children = (
+				3420882E27A76AAC00DEB7E8 /* Main.storyboard */,
+				C97A6714286F29EB00D627C0 /* Settings.storyboard */,
+				C97A6716286F2B1000D627C0 /* Picker.storyboard */,
+			);
+			path = StoryBoard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,11 +216,13 @@
 				3420883527A76AAE00DEB7E8 /* LaunchScreen.storyboard in Resources */,
 				347B8E7F284B194D00772415 /* poon.mp3 in Resources */,
 				3457370F28487E07006AB99F /* ResetButton.png in Resources */,
+				C97A6717286F2B1000D627C0 /* Picker.storyboard in Resources */,
 				C97A6712286D4B0700D627C0 /* SettingButton.png in Resources */,
 				3457371A284AD53B006AB99F /* pi.mp3 in Resources */,
 				3420883227A76AAE00DEB7E8 /* Assets.xcassets in Resources */,
 				3420883027A76AAC00DEB7E8 /* Main.storyboard in Resources */,
 				34417AE02805530B00F82CB0 /* Pause.mp3 in Resources */,
+				C97A6715286F29EB00D627C0 /* Settings.storyboard in Resources */,
 				34573706283F5976006AB99F /* PlayButton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
