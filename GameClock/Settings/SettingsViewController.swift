@@ -19,16 +19,18 @@ class SettingsViewController: UITableViewController {
         self.navigationController?.navigationBar.tintColor = .gray
         loadData()
         
-        observedP1 = userDefaults.observe(\.p1TimeKey, options: [.initial, .new], changeHandler: { [weak self] (defaults, change) in
-            let newValue = change.newValue!
-            self!.settings[0] = Setting(item: "Player 1", rightDetail: convertHMS(newValue))
-            self!.tableView.reloadData()
+        observedP1 = userDefaults.observe(\.p1TimeKey, options: [.initial, .new], changeHandler: {(_, change) in
+            if let change = change.newValue {
+                self.settings[0] = Setting(item: "Player 1", rightDetail: convertHMS(change))
+                self.tableView.reloadData()
+            }
         })
         
-        observedP2 = userDefaults.observe(\.p2TimeKey, options: [.initial, .new], changeHandler: { [weak self] (defaults, change) in
-            let newValue = change.newValue!
-            self!.settings[1] = Setting(item: "Player 2", rightDetail: convertHMS(newValue))
-            self!.tableView.reloadData()
+        observedP2 = userDefaults.observe(\.p2TimeKey, options: [.initial, .new], changeHandler: { (_, change) in
+            if let change = change.newValue {
+                self.settings[1] = Setting(item: "Player 2", rightDetail: convertHMS(change))
+                self.tableView.reloadData()
+            }
         })
     }
 

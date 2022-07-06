@@ -1,5 +1,5 @@
 //
-//  P1SettingViewController.swift
+//  PickerViewController.swift
 //  GameClock
 //
 //  Created by IpoAbe on 2022/03/25.
@@ -24,6 +24,7 @@ class PickerViewController: UIViewController {
         pickerView.delegate = self
         pickerView.dataSource = self
         adjustPicker(player)
+        print(player)
     }
     
     func adjustPicker(_ player: Player) {
@@ -81,3 +82,4 @@ extension PickerViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         }
     }
 }
+
