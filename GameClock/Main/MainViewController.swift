@@ -38,15 +38,19 @@ class MainViewController: UIViewController {
         setInitialState()
         
         userDefaults.register(defaults: [p1TimeKey : 60])
-        observedP1 = userDefaults.observe(\.p1TimeKey, options: [.initial, .new], changeHandler: { [weak self] (defaults, change) in
-            self!.mainModel.totalSec = change.newValue!
-            self!.p1Button.setTitle(self!.mainModel.updateUserDefaults(), for: .normal)
+        observedP1 = userDefaults.observe(\.p1TimeKey, options: [.initial, .new], changeHandler: { (_, change) in
+            if let changeValue = change.newValue {
+                self.mainModel.totalSec = changeValue
+            }
+            self.p1Button.setTitle(self.mainModel.updateUserDefaults(), for: .normal)
         })
         
         userDefaults.register(defaults: [p2TimeKey : 60])
-        observedP2 = userDefaults.observe(\.p2TimeKey, options: [.initial, .new], changeHandler: { [weak self] (defaults, change) in
-            self!.mainModel.totalSec = change.newValue!
-            self!.p2Button.setTitle(self!.mainModel.updateUserDefaults(), for: .normal)
+        observedP2 = userDefaults.observe(\.p2TimeKey, options: [.initial, .new], changeHandler: { (_, change) in
+            if let changeValue = change.newValue {
+                self.mainModel.totalSec = changeValue
+            }
+            self.p1Button.setTitle(self.mainModel.updateUserDefaults(), for: .normal)
         })
     }
     
