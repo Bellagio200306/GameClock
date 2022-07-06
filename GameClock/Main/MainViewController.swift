@@ -6,48 +6,48 @@
 //
 
 import UIKit
-import AVFoundation
+
+extension UserDefaults {
+    @objc dynamic var p1TimeKey: Int {
+        return integer(forKey: "p1TimeKey")
+    }
+    
+    @objc dynamic var p2TimeKey: Int {
+        return integer(forKey: "p2TimeKey")
+    }
+}
 
 class MainViewController: UIViewController {
     
     @IBOutlet private weak var p1Button: UIButton!
     @IBOutlet private weak var p2Button: UIButton!
+    @IBOutlet private weak var resetButton: UIButton!
     @IBOutlet private weak var pauseButton: UIButton!
     @IBOutlet private weak var settingButton: UIButton!
     
+    private var mainModel = MainModel()
     private var player: Player = .P1
     private var gameStatus: GameStatus = .Paused
-    private var count = 0
-    private var totalSec = 0
-    private var audioPlayer: AVAudioPlayer?
-    private var timer = Timer()
     private var observedP1: NSKeyValueObservation?
     private var observedP2: NSKeyValueObservation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        p2Button.transform = flipUpsideDown()
+        p2Button.transform = mainModel.flipUpsideDown()
         setInitialState()
         
         userDefaults.register(defaults: [p1TimeKey : 60])
         observedP1 = userDefaults.observe(\.p1TimeKey, options: [.initial, .new], changeHandler: { [weak self] (defaults, change) in
-            self!.totalSec = change.newValue!
-            self!.p1Button.setTitle(self!.updateUserDefaults(), for: .normal)
+            self!.mainModel.totalSec = change.newValue!
+            self!.p1Button.setTitle(self!.mainModel.updateUserDefaults(), for: .normal)
         })
         
         userDefaults.register(defaults: [p2TimeKey : 60])
         observedP2 = userDefaults.observe(\.p2TimeKey, options: [.initial, .new], changeHandler: { [weak self] (defaults, change) in
-            self!.totalSec = change.newValue!
-            self!.p2Button.setTitle(self!.updateUserDefaults(), for: .normal)
+            self!.mainModel.totalSec = change.newValue!
+            self!.p2Button.setTitle(self!.mainModel.updateUserDefaults(), for: .normal)
         })
-    }
-    
-    func updateUserDefaults() -> String {
-        count = 0
-        let remainCount = totalSec - count
-        let stringRemainCount = convertHMS(remainCount)
-        return stringRemainCount
     }
     
     func setInitialState() {
@@ -56,10 +56,9 @@ class MainViewController: UIViewController {
         
         gameStatus = .Paused
         player = .P1
+        
         changePauseImage(with: gameStatus)
-        count = 0
-        totalSec = p1Time
-        timer.invalidate()
+        mainModel.setInitialTimer(setTotalSec: p1Time)
         pauseButton.isEnabled = true
         
         p1Button.setTitle(convertHMS(p1Time), for: .normal)
@@ -73,12 +72,25 @@ class MainViewController: UIViewController {
         p2Button.isEnabled = true
     }
     
+    @IBAction func p1ButtonPressed(_ sender: UIButton) {
+        player = .P2
+        playerButtonPressed(playingTurn: p2Button, breakTurn: p1Button)
+    }
+    
+    @IBAction func p2ButtonPressed(_ sender: UIButton) {
+        player = .P1
+        playerButtonPressed(playingTurn: p1Button, breakTurn: p2Button)
+    }
+    
     func playerButtonPressed(playingTurn: UIButton, breakTurn: UIButton) {
-        soundEffect(resource: "Move2", ext: "mp3")
         gameStatus = .Playing
+        
         changePauseImage(with: gameStatus)
-        count = 0
-        startTimer()
+        mainModel.playSound(resource: "Move2", ext: "mp3")
+        mainModel.resetCount()
+        mainModel.setTotalSec(player)
+        mainModel.startTimer(playingTurn)
+        
         playingTurn.backgroundColor = UIColor(named: "PlayingTurnColor")
         playingTurn.setTitleColor(UIColor.white, for: .normal)
         playingTurn.isEnabled = true
@@ -87,39 +99,30 @@ class MainViewController: UIViewController {
         breakTurn.isEnabled = false
     }
     
-    @IBAction func p1ButtonPressed(_ sender: UIButton) {
-        player = .P2
-        totalSec = userDefaults.integer(forKey: p2TimeKey)
-        playerButtonPressed(playingTurn: p2Button, breakTurn: p1Button)
-    }
-    
-    @IBAction func p2ButtonPressed(_ sender: UIButton) {
-        player = .P1
-        totalSec = userDefaults.integer(forKey: p1TimeKey)
-        playerButtonPressed(playingTurn: p1Button, breakTurn: p2Button)
-    }
-    
     @IBAction func pauseButtonPressed(_ sender: UIButton) {
         switch gameStatus {
         case .Paused:
             gameStatus = .Playing
-            startTimer()
             p1Button.isEnabled = true
             p2Button.isEnabled = true
-            soundEffect(resource: "Move2", ext: "mp3")
+            mainModel.playSound(resource: "Move2", ext: "mp3")
             changePauseImage(with: gameStatus)
             
             switch player {
-            case .P1: p1Button.backgroundColor = UIColor(named: "PlayingTurnColor")
-            case .P2: p2Button.backgroundColor = UIColor(named: "PlayingTurnColor")
+            case .P1:
+                p1Button.backgroundColor = UIColor(named: "PlayingTurnColor")
+                mainModel.startTimer(p1Button)
+            case .P2:
+                p2Button.backgroundColor = UIColor(named: "PlayingTurnColor")
+                mainModel.startTimer(p2Button)
             }
             
         case .Playing:
             gameStatus = .Paused
-            timer.invalidate()
+            mainModel.stopTimer()
             p1Button.isEnabled = false
             p2Button.isEnabled = false
-            soundEffect(resource: "Pause", ext: "mp3")
+            mainModel.playSound(resource: "Pause", ext: "mp3")
             changePauseImage(with: gameStatus)
             
             switch player {
@@ -142,13 +145,14 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func resetButtonPressed(_ sender: UIButton) {
+        gameStatus = .Playing
+        pauseButtonPressed(resetButton)
         let alert = UIAlertController(title: "リセットしますか？", message: nil, preferredStyle: .alert)
         let reset = UIAlertAction(title: "リセット", style: .destructive) {_ in
             self.setInitialState()
         }
         let cancel = UIAlertAction(title: "キャンセル", style: .cancel) { (action) in
             self.dismiss(animated: true)
-            self.startTimer()
         }
         
         alert.addAction(reset)
@@ -157,88 +161,7 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func settingButtonPressed(_ sender: UIButton) {
-        timer.invalidate()
         gameStatus = .Paused
-    }
-    
-    @objc func timerInterrupt(_ timer: Timer) {
-        let nowTime = totalSec - count
-        
-        switch  nowTime {
-        case 11,21,31:/*１０秒前、２０秒前、３０秒前*/
-            soundEffect(resource: "poon", ext: "mp3")
-            countDown()
-        case 5...10:/*９秒前〜４秒前*/
-            soundEffect(resource: "pi", ext: "mp3")
-            countDown()
-        case 4:/*３秒前*/
-            soundEffect(resource: "beep", ext: "mp3")
-            countDown()
-        case 1:/*時間切れ*/
-            timer.invalidate()
-            audioPlayer?.stop()
-            switch player {
-            case .P1:
-                timeOut(at: p1Button)
-            case .P2:
-                timeOut(at: p2Button)
-            }
-        default:
-            countDown()
-        }
-    }
-    
-    func timeOut(at player: UIButton) {
-        player.isEnabled = false
-        pauseButton.isEnabled = false
-        player.setTitle("Lose.", for: .normal)
-    }
-    
-    func countDown() {
-        count += 1
-        displayUpdate()
-    }
-    
-    func displayUpdate() {
-        let remainCount = totalSec - count
-        let stringRemainCount = convertHMS(remainCount)
-        
-        switch player {
-        case .P1: p1Button.setTitle(stringRemainCount, for: .normal)
-        case .P2: p2Button.setTitle(stringRemainCount, for: .normal)
-        }
-    }
-    
-    func startTimer() {
-        timer.invalidate()
-        displayUpdate()
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerInterrupt(_:)), userInfo: nil, repeats: true)
-    }
-    
-    func flipUpsideDown() -> CGAffineTransform {
-        let angle = 180 * CGFloat.pi / 180
-        let flipUpsideDown = CGAffineTransform(rotationAngle: CGFloat(angle));
-        return flipUpsideDown
-    }
-    
-    func soundEffect(resource: String, ext: String) {
-        if let soundURL = Bundle.main.url(forResource: resource, withExtension: ext) {
-            do {
-                audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
-                audioPlayer?.play()
-            } catch {
-                print("soundEffectでエラー")
-            }
-        }
-    }
-}
-
-extension UserDefaults {
-    @objc dynamic var p1TimeKey: Int {
-        return integer(forKey: "p1TimeKey")
-    }
-    
-    @objc dynamic var p2TimeKey: Int {
-        return integer(forKey: "p2TimeKey")
+        mainModel.stopTimer()
     }
 }

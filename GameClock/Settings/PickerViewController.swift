@@ -24,6 +24,7 @@ class PickerViewController: UIViewController {
         pickerView.delegate = self
         pickerView.dataSource = self
         adjustPicker(player)
+        print(player)
     }
     
     func adjustPicker(_ player: Player) {

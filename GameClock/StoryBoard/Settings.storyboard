@@ -40,7 +40,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="MP1-1H-wTs" kind="show" id="74o-pK-HLm"/>
+                                    <segue destination="MP1-1H-wTs" kind="show" identifier="toPicker" id="74o-pK-HLm"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
