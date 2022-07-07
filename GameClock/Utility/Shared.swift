@@ -1,5 +1,5 @@
 //
-//  Const.swift
+//  Shared.swift
 //  GameClock
 //
 //  Created by IpoAbe on 2022/05/31.
@@ -38,3 +38,4 @@ func convertHMS(_ time: Int) -> String {
     }
     return stringTime
 }
+

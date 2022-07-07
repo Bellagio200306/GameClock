@@ -83,7 +83,7 @@
                                         <state key="normal" image="SettingButton.png"/>
                                         <connections>
                                             <action selector="settingButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="S2i-is-4Wf"/>
-                                            <segue destination="va9-7q-VHi" kind="presentation" id="R94-ZA-lGY"/>
+                                            <segue destination="va9-7q-VHi" kind="presentation" identifier="" id="R94-ZA-lGY"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -105,6 +105,7 @@
                         <outlet property="p1Button" destination="nXf-k1-BNc" id="7nR-GE-Co2"/>
                         <outlet property="p2Button" destination="r8e-Eh-Oy2" id="KWm-aA-LM1"/>
                         <outlet property="pauseButton" destination="kNO-YD-98U" id="crT-r3-goY"/>
+                        <outlet property="resetButton" destination="JNU-Cs-oKI" id="mbz-g9-jPa"/>
                         <outlet property="settingButton" destination="xyz-tZ-eKk" id="Hy8-lP-ya8"/>
                     </connections>
                 </viewController>
