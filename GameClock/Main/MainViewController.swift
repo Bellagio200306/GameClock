@@ -28,29 +28,30 @@ class MainViewController: UIViewController {
     private var mainModel = MainModel()
     private var player: Player = .P1
     private var gameStatus: GameStatus = .Paused
+    private var timer = Timer()
     private var observedP1: NSKeyValueObservation?
     private var observedP2: NSKeyValueObservation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         p2Button.transform = mainModel.flipUpsideDown()
         setInitialState()
         
         userDefaults.register(defaults: [p1TimeKey : 60])
-        observedP1 = userDefaults.observe(\.p1TimeKey, options: [.initial, .new], changeHandler: { (_, change) in
+        userDefaults.register(defaults: [p2TimeKey : 60])
+        
+        observedP1 = userDefaults.observe(\.p1TimeKey, options: [.initial, .new], changeHandler: { (defaults, change) in
             if let changeValue = change.newValue {
                 self.mainModel.totalSec = changeValue
             }
-            self.p1Button.setTitle(self.mainModel.updateUserDefaults(), for: .normal)
+            self.p1Button.setTitle(self.mainModel.updateUD(), for: .normal)
         })
         
-        userDefaults.register(defaults: [p2TimeKey : 60])
-        observedP2 = userDefaults.observe(\.p2TimeKey, options: [.initial, .new], changeHandler: { (_, change) in
+        observedP2 = userDefaults.observe(\.p2TimeKey, options: [.initial, .new], changeHandler: { (defaults, change) in
             if let changeValue = change.newValue {
                 self.mainModel.totalSec = changeValue
             }
-            self.p1Button.setTitle(self.mainModel.updateUserDefaults(), for: .normal)
+            self.p2Button.setTitle(self.mainModel.updateUD(), for: .normal)
         })
     }
     
@@ -61,17 +62,18 @@ class MainViewController: UIViewController {
         gameStatus = .Paused
         player = .P1
         
+        timer.invalidate()
         changePauseImage(with: gameStatus)
-        mainModel.setInitialTimer(setTotalSec: p1Time)
+        mainModel.resetTime(player)
         pauseButton.isEnabled = true
         
         p1Button.setTitle(convertHMS(p1Time), for: .normal)
-        p1Button.backgroundColor = UIColor(named: "PlayingTurnColor")
+        p1Button.backgroundColor = UIColor(named: playingTurnColor)
         p1Button.setTitleColor(.white, for: .normal)
         p1Button.isEnabled = true
         
         p2Button.setTitle(convertHMS(p2Time), for: .normal)
-        p2Button.backgroundColor = UIColor(named: "BreakTurnColor")
+        p2Button.backgroundColor = UIColor(named: breakTurnColor)
         p2Button.setTitleColor(.darkGray, for: .normal)
         p2Button.isEnabled = true
     }
@@ -90,15 +92,14 @@ class MainViewController: UIViewController {
         gameStatus = .Playing
         
         changePauseImage(with: gameStatus)
-        mainModel.playSound(resource: "Move2", ext: "mp3")
-        mainModel.resetCount()
-        mainModel.setTotalSec(player)
-        mainModel.startTimer(playingTurn)
+        mainModel.playSound(resource: seMove, ext: mp3)
+        mainModel.resetTime(player)
+        startTimer()
         
-        playingTurn.backgroundColor = UIColor(named: "PlayingTurnColor")
+        playingTurn.backgroundColor = UIColor(named: playingTurnColor)
         playingTurn.setTitleColor(UIColor.white, for: .normal)
         playingTurn.isEnabled = true
-        breakTurn.backgroundColor = UIColor(named: "BreakTurnColor")
+        breakTurn.backgroundColor = UIColor(named: breakTurnColor)
         breakTurn.setTitleColor(UIColor.darkGray, for: .normal)
         breakTurn.isEnabled = false
     }
@@ -107,31 +108,28 @@ class MainViewController: UIViewController {
         switch gameStatus {
         case .Paused:
             gameStatus = .Playing
+            startTimer()
             p1Button.isEnabled = true
             p2Button.isEnabled = true
-            mainModel.playSound(resource: "Move2", ext: "mp3")
+            mainModel.playSound(resource: seMove, ext: mp3)
             changePauseImage(with: gameStatus)
             
             switch player {
-            case .P1:
-                p1Button.backgroundColor = UIColor(named: "PlayingTurnColor")
-                mainModel.startTimer(p1Button)
-            case .P2:
-                p2Button.backgroundColor = UIColor(named: "PlayingTurnColor")
-                mainModel.startTimer(p2Button)
+            case .P1: p1Button.backgroundColor = UIColor(named: playingTurnColor)
+            case .P2: p2Button.backgroundColor = UIColor(named: playingTurnColor)
             }
             
         case .Playing:
             gameStatus = .Paused
-            mainModel.stopTimer()
+            timer.invalidate()
             p1Button.isEnabled = false
             p2Button.isEnabled = false
-            mainModel.playSound(resource: "Pause", ext: "mp3")
+            mainModel.playSound(resource: sePause, ext: mp3)
             changePauseImage(with: gameStatus)
             
             switch player {
-            case .P1: p1Button.backgroundColor = UIColor(named: "BreakTurnColor")
-            case .P2: p2Button.backgroundColor = UIColor(named: "BreakTurnColor")
+            case .P1: p1Button.backgroundColor = UIColor(named: breakTurnColor)
+            case .P2: p2Button.backgroundColor = UIColor(named: breakTurnColor)
             }
         }
     }
@@ -166,7 +164,58 @@ class MainViewController: UIViewController {
     
     @IBAction func settingButtonPressed(_ sender: UIButton) {
         gameStatus = .Paused
-        mainModel.stopTimer()
+        timer.invalidate()
+    }
+    
+    func startTimer() {
+        timer.invalidate()
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerInterrupt(_:)), userInfo: nil, repeats: true)
+    }
+    
+    @objc func timerInterrupt(_ timer: Timer) {
+        
+        switch  mainModel.remainCount() {
+        case 11,21,31:/*１０秒前、２０秒前、３０秒前*/
+            mainModel.playSound(resource: sePoon, ext: mp3)
+            countDown()
+        case 5...10:/*９秒前〜４秒前*/
+            mainModel.playSound(resource: sePi, ext: mp3)
+            countDown()
+        case 4:/*３秒前*/
+            mainModel.playSound(resource: seBeep, ext: mp3)
+            countDown()
+        case 1:/*時間切れ*/
+            timer.invalidate()
+            mainModel.audioPlayer?.stop()
+            switch player {
+            case .P1:
+                timeOut(p1Button)
+            case .P2:
+                timeOut(p2Button)
+            }
+        default:
+            countDown()
+        }
+    }
+    
+    func timeOut(_ player: UIButton) {
+        player.isEnabled = false
+        pauseButton.isEnabled = false
+        player.setTitle("Lose.", for: .normal)
+    }
+    
+    func countDown() {
+        mainModel.count += 1
+        updateUI()
+    }
+    
+    func updateUI() {
+        let stringRemainCount = convertHMS(mainModel.remainCount())
+        
+        switch player {
+        case .P1: p1Button.setTitle(stringRemainCount, for: .normal)
+        case .P2: p2Button.setTitle(stringRemainCount, for: .normal)
+        }
     }
 }
 

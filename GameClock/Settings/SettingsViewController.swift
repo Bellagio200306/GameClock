@@ -19,7 +19,7 @@ class SettingsViewController: UITableViewController {
         self.navigationController?.navigationBar.tintColor = .gray
         loadData()
         
-       observedP1 = userDefaults.observe(\.p1TimeKey, options: [.initial, .new], changeHandler: {(_, change) in
+        observedP1 = userDefaults.observe(\.p1TimeKey, options: [.initial, .new], changeHandler: {(_, change) in
             if let change = change.newValue {
                 self.settings[0] = Setting(item: "Player 1", rightDetail: convertHMS(change))
                 self.tableView.reloadData()
@@ -33,11 +33,11 @@ class SettingsViewController: UITableViewController {
             }
         })
     }
-
+    
     @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -45,7 +45,7 @@ class SettingsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return settings.count
     }
-
+    
     func loadData() {
         let p1Time = userDefaults.integer(forKey: p1TimeKey)
         let p2Time = userDefaults.integer(forKey: p2TimeKey)
