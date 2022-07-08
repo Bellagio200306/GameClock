@@ -7,10 +7,23 @@
 
 import Foundation
 
-let p1TimeKey = "p1TimeKey"
-let p2TimeKey = "p2TimeKey"
+//MARK: - Const
 let userDefaults = UserDefaults.standard
 
+let p1TimeKey = "p1TimeKey"
+let p2TimeKey = "p2TimeKey"
+
+let mp3 = "mp3"
+let seMove = "Move2"
+let sePause = "Pause"
+let sePi = "pi"
+let sePoon = "poon"
+let seBeep = "beep"
+
+let playingTurnColor = "PlayingTurnColor"
+let breakTurnColor = "BreakTurnColor"
+
+//MARK: - Enum
 enum Player {
     case P1
     case P2
@@ -21,6 +34,7 @@ enum GameStatus {
     case Playing
 }
 
+//MARK: - Func
 func convertHMS(_ time: Int) -> String {
     var stringTime = "00:00:00"
     let hour = time / 3600

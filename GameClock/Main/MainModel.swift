@@ -11,80 +11,22 @@ import AVFoundation
 class MainModel {
     
     private var player: Player = .P1
-    private var timer = Timer()
-    private var audioPlayer: AVAudioPlayer?
-    private var count = 0
+    var audioPlayer: AVAudioPlayer?
+    var count = 0
     var totalSec = 0
     
-    func startTimer(_ player: UIButton) {
-        timer.invalidate()
-        //        displayUpdate()
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerInterrupt(_:)), userInfo: nil, repeats: true)
-    }
-    
-    @objc func timerInterrupt(_ timer: Timer) {
-        let nowTime = totalSec - count
-        
-        switch  nowTime {
-        case 11,21,31:/*１０秒前、２０秒前、３０秒前*/
-            playSound(resource: "poon", ext: "mp3")
-            countDown()
-        case 5...10:/*９秒前〜４秒前*/
-            playSound(resource: "pi", ext: "mp3")
-            countDown()
-        case 4:/*３秒前*/
-            playSound(resource: "beep", ext: "mp3")
-            countDown()
-        case 1:/*時間切れ*/
-            timer.invalidate()
-            audioPlayer?.stop()
-            switch player {
-            case .P1:
-                timeOut(at: p1Button)
-            case .P2:
-                timeOut(at: p2Button)
-            }
-        default:
-            countDown()
-        }
-    }
-    
-    func timeOut(at player: UIButton) {
-        player.isEnabled = false
-        pauseButton.isEnabled = false
-        player.setTitle("Lose.", for: .normal)
-    }
-    
-    func countDown() {
-        count += 1
-        displayUpdate()
-    }
-    
-    func displayUpdate() {
-        let remainCount = totalSec - count
-        let stringRemainCount = convertHMS(remainCount)
-        
-        switch player {
-        case .P1: p1Button.setTitle(stringRemainCount, for: .normal)
-        case .P2: p2Button.setTitle(stringRemainCount, for: .normal)
-        }
-    }
-    
-    func stopTimer() {
-        timer.invalidate()
-    }
+    let audioSession = AVAudioSession.sharedInstance()
     
     func resetCount() {
         count = 0
     }
     
-    func setInitialTimer(setTotalSec: Int) {
-        resetCount()
-        stopTimer()
-        totalSec = setTotalSec
+    func remainCount() -> Int {
+        return totalSec - count
     }
     
-    func setTotalSec(_ player: Player) {
+    func resetTime(_ player: Player) {
+        count = 0
         switch player {
         case .P1:
             totalSec = userDefaults.integer(forKey: p1TimeKey)
@@ -97,6 +39,7 @@ class MainModel {
         if let soundURL = Bundle.main.url(forResource: resource, withExtension: ext) {
             do {
                 audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
+                try audioSession.setCategory(.playback)
                 audioPlayer?.play()
             } catch {
                 print("playSoundでエラー")
@@ -104,10 +47,9 @@ class MainModel {
         }
     }
     
-    func updateUserDefaults() -> String {
-        resetCount()
-        let remainCount = totalSec - count
-        let stringRemainCount = convertHMS(remainCount)
+    func updateUD() -> String {
+        count = 0
+        let stringRemainCount = convertHMS(remainCount())
         return stringRemainCount
     }
     
