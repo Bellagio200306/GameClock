@@ -14,10 +14,7 @@
 		3420883227A76AAE00DEB7E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3420883127A76AAE00DEB7E8 /* Assets.xcassets */; };
 		3420883527A76AAE00DEB7E8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3420883327A76AAE00DEB7E8 /* LaunchScreen.storyboard */; };
 		34417AE02805530B00F82CB0 /* Pause.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 34417ADC2805530B00F82CB0 /* Pause.mp3 */; };
-		34573706283F5976006AB99F /* PlayButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 34573704283F5976006AB99F /* PlayButton.png */; };
-		34573707283F5976006AB99F /* PauseButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 34573705283F5976006AB99F /* PauseButton.png */; };
 		3457370D28459399006AB99F /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3457370C28459399006AB99F /* Shared.swift */; };
-		3457370F28487E07006AB99F /* ResetButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 3457370E28487E07006AB99F /* ResetButton.png */; };
 		3457371A284AD53B006AB99F /* pi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 34573717284AD53B006AB99F /* pi.mp3 */; };
 		3457371B284AD53B006AB99F /* beep.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 34573718284AD53B006AB99F /* beep.mp3 */; };
 		347B8E7F284B194D00772415 /* poon.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 347B8E7E284B194C00772415 /* poon.mp3 */; };
@@ -25,10 +22,10 @@
 		34B4F23427EE0D1700939CF1 /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B4F23327EE0D1700939CF1 /* PickerViewController.swift */; };
 		34B9D87B280039F300D73C28 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B9D87A280039F300D73C28 /* SettingsViewController.swift */; };
 		34B9D87D280074ED00D73C28 /* Move2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 34B9D87C280074ED00D73C28 /* Move2.mp3 */; };
-		C97A6712286D4B0700D627C0 /* SettingButton.png in Resources */ = {isa = PBXBuildFile; fileRef = C97A6711286D4B0700D627C0 /* SettingButton.png */; };
 		C97A6715286F29EB00D627C0 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C97A6714286F29EB00D627C0 /* Settings.storyboard */; };
 		C97A6717286F2B1000D627C0 /* Picker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C97A6716286F2B1000D627C0 /* Picker.storyboard */; };
 		C9A3DA1E2876B2A800C87D4F /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A3DA1D2876B2A800C87D4F /* MainModel.swift */; };
+		C9B37570287BA9D20020E615 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B3756F287BA9D20020E615 /* Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,10 +38,7 @@
 		3420883427A76AAE00DEB7E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3420883627A76AAE00DEB7E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		34417ADC2805530B00F82CB0 /* Pause.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Pause.mp3; sourceTree = "<group>"; };
-		34573704283F5976006AB99F /* PlayButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayButton.png; sourceTree = "<group>"; };
-		34573705283F5976006AB99F /* PauseButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PauseButton.png; sourceTree = "<group>"; };
 		3457370C28459399006AB99F /* Shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shared.swift; sourceTree = "<group>"; };
-		3457370E28487E07006AB99F /* ResetButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ResetButton.png; sourceTree = "<group>"; };
 		34573717284AD53B006AB99F /* pi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pi.mp3; sourceTree = "<group>"; };
 		34573718284AD53B006AB99F /* beep.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beep.mp3; sourceTree = "<group>"; };
 		347B8E7E284B194C00772415 /* poon.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = poon.mp3; sourceTree = "<group>"; };
@@ -52,10 +46,10 @@
 		34B4F23327EE0D1700939CF1 /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
 		34B9D87A280039F300D73C28 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		34B9D87C280074ED00D73C28 /* Move2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Move2.mp3; sourceTree = "<group>"; };
-		C97A6711286D4B0700D627C0 /* SettingButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SettingButton.png; sourceTree = "<group>"; };
 		C97A6714286F29EB00D627C0 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		C97A6716286F2B1000D627C0 /* Picker.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Picker.storyboard; sourceTree = "<group>"; };
 		C9A3DA1D2876B2A800C87D4F /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
+		C9B3756F287BA9D20020E615 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				3457370C28459399006AB99F /* Shared.swift */,
+				C9B3756F287BA9D20020E615 /* Extension.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -132,10 +127,6 @@
 			isa = PBXGroup;
 			children = (
 				3420883127A76AAE00DEB7E8 /* Assets.xcassets */,
-				C97A6711286D4B0700D627C0 /* SettingButton.png */,
-				34573705283F5976006AB99F /* PauseButton.png */,
-				34573704283F5976006AB99F /* PlayButton.png */,
-				3457370E28487E07006AB99F /* ResetButton.png */,
 				34B9D87C280074ED00D73C28 /* Move2.mp3 */,
 				34417ADC2805530B00F82CB0 /* Pause.mp3 */,
 				34573717284AD53B006AB99F /* pi.mp3 */,
@@ -213,20 +204,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34573707283F5976006AB99F /* PauseButton.png in Resources */,
 				3457371B284AD53B006AB99F /* beep.mp3 in Resources */,
 				34B9D87D280074ED00D73C28 /* Move2.mp3 in Resources */,
 				3420883527A76AAE00DEB7E8 /* LaunchScreen.storyboard in Resources */,
 				347B8E7F284B194D00772415 /* poon.mp3 in Resources */,
-				3457370F28487E07006AB99F /* ResetButton.png in Resources */,
 				C97A6717286F2B1000D627C0 /* Picker.storyboard in Resources */,
-				C97A6712286D4B0700D627C0 /* SettingButton.png in Resources */,
 				3457371A284AD53B006AB99F /* pi.mp3 in Resources */,
 				3420883227A76AAE00DEB7E8 /* Assets.xcassets in Resources */,
 				3420883027A76AAC00DEB7E8 /* Main.storyboard in Resources */,
 				34417AE02805530B00F82CB0 /* Pause.mp3 in Resources */,
 				C97A6715286F29EB00D627C0 /* Settings.storyboard in Resources */,
-				34573706283F5976006AB99F /* PlayButton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,6 +224,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9B37570287BA9D20020E615 /* Extension.swift in Sources */,
 				C9A3DA1E2876B2A800C87D4F /* MainModel.swift in Sources */,
 				3420882D27A76AAC00DEB7E8 /* MainViewController.swift in Sources */,
 				3420882927A76AAC00DEB7E8 /* AppDelegate.swift in Sources */,

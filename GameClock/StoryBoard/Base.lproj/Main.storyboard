@@ -55,7 +55,7 @@
                                             <constraint firstAttribute="width" constant="70" id="jmw-BU-S7p"/>
                                         </constraints>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" image="ResetButton.png"/>
+                                        <state key="normal" image="ResetButton"/>
                                         <connections>
                                             <action selector="resetButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5jf-0v-QSi"/>
                                             <action selector="settingButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CkP-3P-cI1"/>
@@ -68,7 +68,7 @@
                                             <constraint firstAttribute="height" constant="70" id="dBZ-et-zJf"/>
                                         </constraints>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" image="PlayButton.png"/>
+                                        <state key="normal" image="Playing"/>
                                         <connections>
                                             <action selector="pauseButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ELi-4o-T3q"/>
                                         </connections>
@@ -80,7 +80,7 @@
                                             <constraint firstAttribute="height" constant="70" id="IFE-O6-96V"/>
                                         </constraints>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" image="SettingButton.png"/>
+                                        <state key="normal" image="SettingButton"/>
                                         <connections>
                                             <action selector="settingButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="S2i-is-4Wf"/>
                                             <segue destination="va9-7q-VHi" kind="presentation" identifier="" id="R94-ZA-lGY"/>
@@ -123,9 +123,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="PlayButton.png" width="256" height="256"/>
-        <image name="ResetButton.png" width="256" height="256"/>
-        <image name="SettingButton.png" width="256" height="256"/>
+        <image name="Playing" width="256" height="256"/>
+        <image name="ResetButton" width="256" height="256"/>
+        <image name="SettingButton" width="256" height="256"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
