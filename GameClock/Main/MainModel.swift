@@ -9,7 +9,6 @@ import UIKit
 import AVFoundation
 
 class MainModel {
-    
     private var player: Player = .P1
     var audioPlayer: AVAudioPlayer?
     var count = 0

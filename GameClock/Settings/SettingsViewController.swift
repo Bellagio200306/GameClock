@@ -8,28 +8,30 @@ import Foundation
 import UIKit
 
 class SettingsViewController: UITableViewController {
-    
     private var settings: [Setting] = []
     private var observedP1: NSKeyValueObservation?
     private var observedP2: NSKeyValueObservation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupView()
+    }
+    
+    private func setupView() {
         self.navigationController?.navigationBar.tintColor = .gray
         loadData()
         
-        observedP1 = userDefaults.observe(\.p1TimeKey, options: [.initial, .new], changeHandler: {(_, change) in
+        observedP1 = userDefaults.observe(\.p1TimeKey, options: [.initial, .new], changeHandler: { [weak self] _, change in
             if let change = change.newValue {
-                self.settings[0] = Setting(item: "Player 1", rightDetail: convertHMS(change))
-                self.tableView.reloadData()
+                self?.settings[0] = Setting(item: "Player 1", rightDetail: convertHMS(change))
+                self?.tableView.reloadData()
             }
         })
         
-        observedP2 = userDefaults.observe(\.p2TimeKey, options: [.initial, .new], changeHandler: { (_, change) in
+        observedP2 = userDefaults.observe(\.p2TimeKey, options: [.initial, .new], changeHandler: { [weak self] _, change in
             if let change = change.newValue {
-                self.settings[1] = Setting(item: "Player 2", rightDetail: convertHMS(change))
-                self.tableView.reloadData()
+                self?.settings[1] = Setting(item: "Player 2", rightDetail: convertHMS(change))
+                self?.tableView.reloadData()
             }
         })
     }
@@ -46,7 +48,7 @@ class SettingsViewController: UITableViewController {
         return settings.count
     }
     
-    func loadData() {
+    private func loadData() {
         let p1Time = userDefaults.integer(forKey: p1TimeKey)
         let p2Time = userDefaults.integer(forKey: p2TimeKey)
         settings += [Setting(item: "Player 1", rightDetail: convertHMS(p1Time))]

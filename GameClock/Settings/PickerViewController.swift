@@ -8,7 +8,6 @@
 import UIKit
 
 class PickerViewController: UIViewController {
-    
     @IBOutlet private weak var pickerView: UIPickerView!
     
     var player: Player = .P1
@@ -26,7 +25,13 @@ class PickerViewController: UIViewController {
         adjustPicker(player)
     }
     
-    func adjustPicker(_ player: Player) {
+//    func test(max: Int) -> [Int] {
+//        for num in 0...max {
+//
+//        }
+//    }
+    
+    private func adjustPicker(_ player: Player) {
         switch player {
         case .P1: totalSec = userDefaults.integer(forKey: p1TimeKey)
         case .P2: totalSec = userDefaults.integer(forKey: p2TimeKey)
@@ -51,7 +56,7 @@ class PickerViewController: UIViewController {
     }
 }
 
-// MARK: - PickerView
+// MARK: - PickerView Delegate
 extension PickerViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return dataList.count

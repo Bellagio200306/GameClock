@@ -29,9 +29,9 @@ enum Player {
     case P2
 }
 
-enum GameStatus {
-    case Paused
-    case Playing
+enum GameStatus: String {
+    case Paused = "Playing"
+    case Playing = "Paused"
 }
 
 //MARK: - Func
