@@ -58,7 +58,7 @@ class MainViewController: UIViewController {
         player = .P1
         
         timer.invalidate()
-        changePauseImage(with: gameStatus)
+        pauseButton.setImage(UIImage(named: gameStatus.rawValue), for: .normal)
         mainModel.resetTime(player)
         pauseButton.isEnabled = true
         
@@ -73,25 +73,24 @@ class MainViewController: UIViewController {
         p2Button.isEnabled = true
     }
     
-    private func playerButtonPressed(playingTurn: UIButton, breakTurn: UIButton) {
+    private func playerButtonPressed(_ senderTag: Int) {
+        let isP1 = senderTag == 1
+        let playingTurn = isP1 ? p2Button : p1Button
+        let breakTurn = isP1 ? p1Button : p2Button
+        player = isP1 ? .P2 : .P1
         gameStatus = .Playing
         
-        changePauseImage(with: gameStatus)
+        pauseButton.setImage(UIImage(named: gameStatus.rawValue), for: .normal)
         mainModel.playSound(resource: seMove, ext: mp3)
         mainModel.resetTime(player)
         startTimer()
         
-        playingTurn.backgroundColor = UIColor(named: playingTurnColor)
-        playingTurn.setTitleColor(UIColor.white, for: .normal)
-        playingTurn.isEnabled = true
-        breakTurn.backgroundColor = UIColor(named: breakTurnColor)
-        breakTurn.setTitleColor(UIColor.darkGray, for: .normal)
-        breakTurn.isEnabled = false
-    }
-    
-    
-    private func changePauseImage(with gameStatus: GameStatus) {
-        pauseButton.setImage(UIImage(named: gameStatus.rawValue), for: .normal)
+        playingTurn?.backgroundColor = UIColor(named: playingTurnColor)
+        playingTurn?.setTitleColor(UIColor.white, for: .normal)
+        playingTurn?.isEnabled = true
+        breakTurn?.backgroundColor = UIColor(named: breakTurnColor)
+        breakTurn?.setTitleColor(UIColor.darkGray, for: .normal)
+        breakTurn?.isEnabled = false
     }
     
     private func startTimer() {
@@ -107,10 +106,6 @@ class MainViewController: UIViewController {
     
     private func countDown() {
         mainModel.count += 1
-        updateUI()
-    }
-    
-    private func updateUI() {
         let stringRemainCount = convertHMS(mainModel.remainCount())
         
         switch player {
@@ -146,9 +141,9 @@ class MainViewController: UIViewController {
     }
     
     //MARK: - Actions
-    @IBAction private func resetButtonPressed(_ sender: UIButton) {
+    @IBAction private func reset(_ sender: UIButton) {
         gameStatus = .Playing
-        pauseButtonPressed(resetButton)
+        pause(resetButton)
         let reset = UIAlertAction(title: "リセット", style: .destructive) {_ in
             self.setInitialState()
         }
@@ -158,13 +153,13 @@ class MainViewController: UIViewController {
         showAlert(title: "リセットしますか？", message: "", actions: [reset, cancel])
     }
     
-    @IBAction private func settingButtonPressed(_ sender: UIButton) {
+    @IBAction private func settings(_ sender: UIButton) {
         gameStatus = .Paused
-        changePauseImage(with: gameStatus)
+        pauseButton.setImage(UIImage(named: gameStatus.rawValue), for: .normal)
         timer.invalidate()
     }
     
-    @IBAction private func pauseButtonPressed(_ sender: UIButton) {
+    @IBAction private func pause(_ sender: UIButton) {
         switch gameStatus {
         case .Paused:
             gameStatus = .Playing
@@ -172,7 +167,6 @@ class MainViewController: UIViewController {
             p1Button.isEnabled = true
             p2Button.isEnabled = true
             mainModel.playSound(resource: seMove, ext: mp3)
-            changePauseImage(with: gameStatus)
             
             switch player {
             case .P1: p1Button.backgroundColor = UIColor(named: playingTurnColor)
@@ -185,34 +179,17 @@ class MainViewController: UIViewController {
             p1Button.isEnabled = false
             p2Button.isEnabled = false
             mainModel.playSound(resource: sePause, ext: mp3)
-            changePauseImage(with: gameStatus)
             
             switch player {
             case .P1: p1Button.backgroundColor = UIColor(named: breakTurnColor)
             case .P2: p2Button.backgroundColor = UIColor(named: breakTurnColor)
             }
         }
+        pauseButton.setImage(UIImage(named: gameStatus.rawValue), for: .normal)
     }
     
-    @IBAction private func p1ButtonPressed(_ sender: UIButton) {
-        player = .P2
-        playerButtonPressed(playingTurn: p2Button, breakTurn: p1Button)
+    @IBAction func switchPlayers(_ sender: UIButton) {
+        playerButtonPressed(sender.tag)
     }
-
-    @IBAction private func p2ButtonPressed(_ sender: UIButton) {
-        player = .P1
-        playerButtonPressed(playingTurn: p1Button, breakTurn: p2Button)
-    }
-
-//    @IBAction func playerButton(_ sender: UIButton) {
-//        if sender.tag == 1 {
-//            player = .P2
-//            playerButtonPressed(playingTurn: p2Button, breakTurn: p1Button)
-//        } else {
-//            player = .P1
-//            playerButtonPressed(playingTurn: p1Button, breakTurn: p2Button)
-//        }
-//    }
-    
 }
 

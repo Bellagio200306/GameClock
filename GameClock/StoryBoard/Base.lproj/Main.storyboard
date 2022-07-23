@@ -19,7 +19,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="G41-QO-bu5">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r8e-Eh-Oy2">
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r8e-Eh-Oy2">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="284"/>
                                         <color key="backgroundColor" red="0.47240302844622695" green="0.47240302844622695" blue="0.47240302844622695" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="80"/>
@@ -28,10 +28,10 @@
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="p2ButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bIg-Po-8cM"/>
+                                            <action selector="switchPlayers:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6Vh-cp-ONP"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nXf-k1-BNc">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nXf-k1-BNc">
                                         <rect key="frame" x="0.0" y="284" width="320" height="284"/>
                                         <color key="backgroundColor" red="0.70980392156862748" green="0.26666666666666666" blue="0.20392156862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="80"/>
@@ -40,7 +40,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="p1ButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jRb-t9-bY3"/>
+                                            <action selector="switchPlayers:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fTy-Qq-zt4"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -57,8 +57,7 @@
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="ResetButton"/>
                                         <connections>
-                                            <action selector="resetButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5jf-0v-QSi"/>
-                                            <action selector="settingButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CkP-3P-cI1"/>
+                                            <action selector="reset:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7eG-RG-rnC"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kNO-YD-98U">
@@ -70,7 +69,7 @@
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="Playing"/>
                                         <connections>
-                                            <action selector="pauseButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ELi-4o-T3q"/>
+                                            <action selector="pause:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WL4-1r-knk"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xyz-tZ-eKk">
@@ -82,7 +81,7 @@
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="SettingButton"/>
                                         <connections>
-                                            <action selector="settingButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="S2i-is-4Wf"/>
+                                            <action selector="settings:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Do4-i0-dtX"/>
                                             <segue destination="va9-7q-VHi" kind="presentation" identifier="" id="R94-ZA-lGY"/>
                                         </connections>
                                     </button>
