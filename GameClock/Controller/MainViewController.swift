@@ -17,9 +17,11 @@ class MainViewController: UIViewController {
     private var mainModel = MainModel()
     private var player: Player = .P1
     private var gameStatus: GameStatus = .Paused
+    private var timeMode: TimeMode = .Byoyomi
     private var timer = Timer()
     private var observedP1: NSKeyValueObservation?
     private var observedP2: NSKeyValueObservation?
+    private var observedTimeMode: NSKeyValueObservation?
     
     //MARK: - Life cycles
     override func viewDidLoad() {
@@ -34,6 +36,7 @@ class MainViewController: UIViewController {
         
         userDefaults.register(defaults: [p1TimeKey : 60])
         userDefaults.register(defaults: [p2TimeKey : 60])
+        userDefaults.register(defaults: [timeModeKey : "byoyomi"])
         
         observedP1 = userDefaults.observe(\.p1TimeKey, options: [.initial, .new], changeHandler: { [weak self] _, change in
             if let changeValue = change.newValue {
@@ -47,6 +50,18 @@ class MainViewController: UIViewController {
                 self?.mainModel.totalSec = changeValue
             }
             self?.p2Button.setTitle(self?.mainModel.updateUD(), for: .normal)
+        })
+        
+        observedTimeMode = userDefaults.observe(\.timeModeKey, options: [.initial, .new], changeHandler: {[weak self]  _, change in
+            if let changeValue = change.newValue {
+                switch changeValue {
+                case "byoyomi": self?.timeMode = .Byoyomi
+                case "kiremake": self?.timeMode = .Kiremake
+                case "fischer": self?.timeMode = .Fischer
+                default:
+                    print("observedTimeModeでエラー")
+                }
+            }
         })
     }
     
@@ -77,13 +92,18 @@ class MainViewController: UIViewController {
         let isP1 = senderTag == 1
         let playingTurn = isP1 ? p2Button : p1Button
         let breakTurn = isP1 ? p1Button : p2Button
+        
         player = isP1 ? .P2 : .P1
         gameStatus = .Playing
-        
+        switch timeMode {
+        case .Byoyomi: mainModel.resetTime(player)
+        case .Kiremake: mainModel.setAllottedTime(player)
+        case .Fischer: print("未実装")
+        }
         pauseButton.setImage(UIImage(named: gameStatus.rawValue), for: .normal)
         mainModel.playSound(resource: seMove, ext: mp3)
-        mainModel.resetTime(player)
         startTimer()
+        updateUI()
         
         playingTurn?.backgroundColor = UIColor(named: playingTurnColor)
         playingTurn?.setTitleColor(UIColor.white, for: .normal)
@@ -98,24 +118,26 @@ class MainViewController: UIViewController {
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerInterrupt(_:)), userInfo: nil, repeats: true)
     }
     
-    private func timeOut(_ player: UIButton) {
-        player.isEnabled = false
-        pauseButton.isEnabled = false
-        player.setTitle("Lose.", for: .normal)
-    }
-    
     private func countDown() {
         mainModel.count += 1
+        updateUI()
+    }
+    
+    private func updateUI() {
         let stringRemainCount = convertHMS(mainModel.remainCount())
-        
         switch player {
         case .P1: p1Button.setTitle(stringRemainCount, for: .normal)
         case .P2: p2Button.setTitle(stringRemainCount, for: .normal)
         }
     }
     
+    private func timeOut(_ player: UIButton) {
+        player.isEnabled = false
+        pauseButton.isEnabled = false
+        player.setTitle("Lose.", for: .normal)
+    }
+    
     @objc private func timerInterrupt(_ timer: Timer) {
-        
         switch  mainModel.remainCount() {
         case 11,21,31:/*１０秒前、２０秒前、３０秒前*/
             mainModel.playSound(resource: sePoon, ext: mp3)

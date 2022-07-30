@@ -12,6 +12,7 @@ let userDefaults = UserDefaults.standard
 
 let p1TimeKey = "p1TimeKey"
 let p2TimeKey = "p2TimeKey"
+let timeModeKey = "timeModeKey"
 
 let mp3 = "mp3"
 let seMove = "Move2"
@@ -32,6 +33,12 @@ enum Player {
 enum GameStatus: String {
     case Paused = "Playing"
     case Playing = "Paused"
+}
+
+enum TimeMode {
+    case Byoyomi
+    case Kiremake
+    case Fischer
 }
 
 //MARK: - Func

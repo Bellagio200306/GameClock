@@ -16,8 +16,8 @@ class TimePickerViewController: UIViewController {
     private var sec = 0
     private var totalSec = 0
     
-    let dataList = [[Int](0...9), [Int](0...60), [Int](0...60)]
-    
+    let times = [[Int](0...9),[Int](0...59),[Int](0...59)]
+
     override func viewDidLoad() {
         super.viewDidLoad()
         pickerView.delegate = self
@@ -39,7 +39,7 @@ class TimePickerViewController: UIViewController {
         min = m
         sec = s
         
-        for component in 0..<dataList.count {
+        for component in 0..<times.count {
             switch component {
             case 0: pickerView.selectRow(h, inComponent: component, animated: true)
             case 1: pickerView.selectRow(m, inComponent: component, animated: true)
@@ -53,22 +53,22 @@ class TimePickerViewController: UIViewController {
 // MARK: - PickerView Delegate
 extension TimePickerViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return dataList.count
+        return times.count
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return dataList[component].count
+        return times[component].count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return String(dataList[component][row])
+        return String(times[component][row])
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch component {
-        case 0: hour = row
-        case 1: min = row
-        case 2: sec = row
+        case 0: hour = times[component][row]
+        case 1: min = times[component][row]
+        case 2: sec = times[component][row]
         default: print("pickerでエラー")
         }
         

@@ -15,6 +15,10 @@ extension UserDefaults {
     @objc dynamic var p2TimeKey: Int {
         return integer(forKey: "p2TimeKey")
     }
+    
+    @objc dynamic var timeModeKey: String {
+        return string(forKey: "timeModeKey")!
+    }
 }
 
 public extension UIViewController {
