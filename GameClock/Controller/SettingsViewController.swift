@@ -11,7 +11,8 @@ class SettingsViewController: UITableViewController {
     @IBOutlet private weak var p1Detail: UILabel!
     @IBOutlet private weak var p2Detail: UILabel!
     
-    private var pickerView: UIPickerView?
+    var timeMode: TimeMode = .Byoyomi
+    
     private var observedP1: NSKeyValueObservation?
     private var observedP2: NSKeyValueObservation?
     
@@ -38,15 +39,29 @@ class SettingsViewController: UITableViewController {
                 self?.tableView.reloadData()
             }
         })
+        print(userDefaults.string(forKey: timeModeKey)!)
     }
+    
+    //設定画面に来たときに、timeModeのチェックを「設定されているtimeMode」に配置する。
+    //    func adjustTimeMode() {
+    //        let timeMode = userDefaults.string(forKey: timeModeKey)
+    //    }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let numberOfRows = tableView.numberOfRows(inSection: 1)
         for row in 0..<numberOfRows {
             if let cell = tableView.cellForRow(at: IndexPath(row: row, section: 1)) {
                 cell.accessoryType = row == indexPath.row ? .checkmark : .none
+                switch indexPath.row {
+                case 0: userDefaults.set("byoyomi", forKey: timeModeKey)
+                case 1: userDefaults.set("kiremake", forKey: timeModeKey)
+                case 2: userDefaults.set("fischer", forKey: timeModeKey)
+                default: print("no")
+                }
             }
         }
+        print(userDefaults.string(forKey: timeModeKey)!)
+        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
