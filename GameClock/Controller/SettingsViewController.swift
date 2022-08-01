@@ -39,14 +39,19 @@ class SettingsViewController: UITableViewController {
                 self?.tableView.reloadData()
             }
         })
-        print(userDefaults.string(forKey: timeModeKey)!)
+        
+        let currentTimeMode = userDefaults.string(forKey: timeModeKey)
+        var row: Int
+        switch currentTimeMode {
+        case "byoyomi": row = 0
+        case "kiremake": row = 1
+        case "fischer": row = 2
+        default: return
+        }
+        guard let cell = tableView.cellForRow(at: IndexPath(row: row, section: 1)) else { return }
+        cell.accessoryType = .checkmark
     }
-    
-    //設定画面に来たときに、timeModeのチェックを「設定されているtimeMode」に配置する。
-    //    func adjustTimeMode() {
-    //        let timeMode = userDefaults.string(forKey: timeModeKey)
-    //    }
-    
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let numberOfRows = tableView.numberOfRows(inSection: 1)
         for row in 0..<numberOfRows {
@@ -56,11 +61,10 @@ class SettingsViewController: UITableViewController {
                 case 0: userDefaults.set("byoyomi", forKey: timeModeKey)
                 case 1: userDefaults.set("kiremake", forKey: timeModeKey)
                 case 2: userDefaults.set("fischer", forKey: timeModeKey)
-                default: print("no")
+                default: print("didSelectRowAtでエラー")
                 }
             }
         }
-        print(userDefaults.string(forKey: timeModeKey)!)
         tableView.deselectRow(at: indexPath as IndexPath, animated: true)
     }
     
