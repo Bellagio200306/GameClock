@@ -12,9 +12,10 @@ class MainModel {
     private var player: Player = .P1
     var audioPlayer: AVAudioPlayer?
     var count = 0
-    var p1Count = 0
-    var p2Count = 0
     var totalSec = 0
+    private var p1Count = 0
+    private var p2Count = 0
+    
     
     let audioSession = AVAudioSession.sharedInstance()
     
@@ -34,7 +35,7 @@ class MainModel {
         }
     }
     
-    func setAllottedTime(_ player: Player) {
+    func setPlayerTime(_ player: Player) {
         switch player {
         case .P1:
             totalSec = userDefaults.integer(forKey: p1TimeKey)
@@ -47,7 +48,9 @@ class MainModel {
         }
     }
     
-    
+    func IncreasedFischerTime() {
+        count -= userDefaults.integer(forKey: fischerTimeKey)
+    }
     
     func playSound(resource: String, ext: String) {
         if let soundURL = Bundle.main.url(forResource: resource, withExtension: ext) {
@@ -61,7 +64,7 @@ class MainModel {
         }
     }
     
-    func updateUD() -> String {
+    func updateUserDefaults() -> String {
         count = 0
         let stringRemainCount = convertHMS(remainCount())
         return stringRemainCount

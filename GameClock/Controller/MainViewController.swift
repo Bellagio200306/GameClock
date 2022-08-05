@@ -42,14 +42,14 @@ class MainViewController: UIViewController {
             if let changeValue = change.newValue {
                 self?.mainModel.totalSec = changeValue
             }
-            self?.p1Button.setTitle(self?.mainModel.updateUD(), for: .normal)
+            self?.p1Button.setTitle(self?.mainModel.updateUserDefaults(), for: .normal)
         })
         
         observedP2 = userDefaults.observe(\.p2TimeKey, options: [.initial, .new], changeHandler: {[weak self]  _, change in
             if let changeValue = change.newValue {
                 self?.mainModel.totalSec = changeValue
             }
-            self?.p2Button.setTitle(self?.mainModel.updateUD(), for: .normal)
+            self?.p2Button.setTitle(self?.mainModel.updateUserDefaults(), for: .normal)
         })
         
         observedTimeMode = userDefaults.observe(\.timeModeKey, options: [.initial, .new], changeHandler: {[weak self]  _, change in
@@ -96,8 +96,10 @@ class MainViewController: UIViewController {
         gameStatus = .Playing
         switch timeMode {
         case .Byoyomi: mainModel.resetTime(player)
-        case .Kiremake: mainModel.setAllottedTime(player)
-        case .Fischer: print("未実装")
+        case .Kiremake: mainModel.setPlayerTime(player)
+        case .Fischer:
+            mainModel.IncreasedFischerTime()
+            mainModel.setPlayerTime(player)
         }
         pauseButton.setImage(UIImage(named: gameStatus.rawValue), for: .normal)
         mainModel.playSound(resource: seMove, ext: mp3)

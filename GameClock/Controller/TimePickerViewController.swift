@@ -1,5 +1,5 @@
 //
-//  SettingViewController.swift
+//  TimePickerViewController.swift
 //  GameClock
 //
 //  Created by IpoAbe on 2022/03/25.

@@ -22,6 +22,8 @@
 		34B4F23427EE0D1700939CF1 /* TimePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B4F23327EE0D1700939CF1 /* TimePickerViewController.swift */; };
 		34B9D87B280039F300D73C28 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B9D87A280039F300D73C28 /* SettingsViewController.swift */; };
 		34B9D87D280074ED00D73C28 /* Move2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 34B9D87C280074ED00D73C28 /* Move2.mp3 */; };
+		C94437F4289D390400DAB34A /* FischerPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C94437F3289D390400DAB34A /* FischerPicker.storyboard */; };
+		C94437F6289D391F00DAB34A /* FischerPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94437F5289D391F00DAB34A /* FischerPickerViewController.swift */; };
 		C97A6715286F29EB00D627C0 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C97A6714286F29EB00D627C0 /* Settings.storyboard */; };
 		C97A6717286F2B1000D627C0 /* Picker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C97A6716286F2B1000D627C0 /* Picker.storyboard */; };
 		C9A3DA1E2876B2A800C87D4F /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A3DA1D2876B2A800C87D4F /* MainModel.swift */; };
@@ -46,6 +48,8 @@
 		34B4F23327EE0D1700939CF1 /* TimePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerViewController.swift; sourceTree = "<group>"; };
 		34B9D87A280039F300D73C28 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		34B9D87C280074ED00D73C28 /* Move2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Move2.mp3; sourceTree = "<group>"; };
+		C94437F3289D390400DAB34A /* FischerPicker.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FischerPicker.storyboard; sourceTree = "<group>"; };
+		C94437F5289D391F00DAB34A /* FischerPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FischerPickerViewController.swift; sourceTree = "<group>"; };
 		C97A6714286F29EB00D627C0 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		C97A6716286F2B1000D627C0 /* Picker.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Picker.storyboard; sourceTree = "<group>"; };
 		C9A3DA1D2876B2A800C87D4F /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
@@ -110,6 +114,7 @@
 				3420882C27A76AAC00DEB7E8 /* MainViewController.swift */,
 				34B9D87A280039F300D73C28 /* SettingsViewController.swift */,
 				34B4F23327EE0D1700939CF1 /* TimePickerViewController.swift */,
+				C94437F5289D391F00DAB34A /* FischerPickerViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -142,6 +147,7 @@
 				3420882E27A76AAC00DEB7E8 /* Main.storyboard */,
 				C97A6714286F29EB00D627C0 /* Settings.storyboard */,
 				C97A6716286F2B1000D627C0 /* Picker.storyboard */,
+				C94437F3289D390400DAB34A /* FischerPicker.storyboard */,
 			);
 			path = StoryBoard;
 			sourceTree = "<group>";
@@ -204,6 +210,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C94437F4289D390400DAB34A /* FischerPicker.storyboard in Resources */,
 				3457371B284AD53B006AB99F /* beep.mp3 in Resources */,
 				34B9D87D280074ED00D73C28 /* Move2.mp3 in Resources */,
 				3420883527A76AAE00DEB7E8 /* LaunchScreen.storyboard in Resources */,
@@ -227,6 +234,7 @@
 				C9B37570287BA9D20020E615 /* Extension.swift in Sources */,
 				C9A3DA1E2876B2A800C87D4F /* MainModel.swift in Sources */,
 				3420882D27A76AAC00DEB7E8 /* MainViewController.swift in Sources */,
+				C94437F6289D391F00DAB34A /* FischerPickerViewController.swift in Sources */,
 				3420882927A76AAC00DEB7E8 /* AppDelegate.swift in Sources */,
 				3420882B27A76AAC00DEB7E8 /* SceneDelegate.swift in Sources */,
 				34B4F23427EE0D1700939CF1 /* TimePickerViewController.swift in Sources */,
