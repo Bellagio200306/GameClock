@@ -9,10 +9,10 @@ import Foundation
 
 //MARK: - Const
 let userDefaults = UserDefaults.standard
-
 let p1TimeKey = "p1TimeKey"
 let p2TimeKey = "p2TimeKey"
 let timeModeKey = "timeModeKey"
+let fischerTimeKey = "fischerTimeKey"
 
 let mp3 = "mp3"
 let seMove = "Move2"

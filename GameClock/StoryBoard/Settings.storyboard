@@ -125,6 +125,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="oSn-Te-9Yj" kind="presentation" identifier="toFischerPicker" id="cyH-aE-TTH"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -161,6 +164,14 @@
             </objects>
             <point key="canvasLocation" x="3171" y="-303"/>
         </scene>
+        <!--FischerPicker-->
+        <scene sceneID="fd1-cY-4CJ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="FischerPicker" id="oSn-Te-9Yj" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MZL-HE-PLC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3268" y="-99"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="vvS-Vu-qnm">
             <objects>
@@ -180,7 +191,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="74o-pK-HLm"/>
+        <segue reference="xvP-VH-hRy"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="xmark.circle" catalog="system" width="128" height="121"/>

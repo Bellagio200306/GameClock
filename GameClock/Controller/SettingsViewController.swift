@@ -8,13 +8,11 @@ import Foundation
 import UIKit
 
 class SettingsViewController: UITableViewController {
-    @IBOutlet private weak var p1Detail: UILabel!
-    @IBOutlet private weak var p2Detail: UILabel!
-    
     var timeMode: TimeMode = .Byoyomi
-    
     private var observedP1: NSKeyValueObservation?
     private var observedP2: NSKeyValueObservation?
+    @IBOutlet private weak var p1Detail: UILabel!
+    @IBOutlet private weak var p2Detail: UILabel!
     
     //MARK: - Life cycles
     override func viewDidLoad() {
@@ -51,12 +49,11 @@ class SettingsViewController: UITableViewController {
         guard let cell = tableView.cellForRow(at: IndexPath(row: row, section: 1)) else { return }
         cell.accessoryType = .checkmark
     }
-
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let numberOfRows = tableView.numberOfRows(inSection: 1)
-        for row in 0..<numberOfRows {
-            if let cell = tableView.cellForRow(at: IndexPath(row: row, section: 1)) {
-                cell.accessoryType = row == indexPath.row ? .checkmark : .none
+        for row in 0...2 {
+            if let timeModeCell = tableView.cellForRow(at: IndexPath(row: row, section: 1)) {
+                timeModeCell.accessoryType = row == indexPath.row ? .checkmark : .none
                 switch indexPath.row {
                 case 0: userDefaults.set("byoyomi", forKey: timeModeKey)
                 case 1: userDefaults.set("kiremake", forKey: timeModeKey)
@@ -71,15 +68,17 @@ class SettingsViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toTimePicker" {
             if let indexNum = tableView.indexPathForSelectedRow?.row {
-                guard let destinationVC = segue.destination as? TimePickerViewController
-                else {
-                    fatalError("toPickerSegueでエラー")
-                }
+                guard let destinationVC = segue.destination as? TimePickerViewController else { return }
                 switch indexNum {
                 case 0: destinationVC.player = .P1
                 case 1: destinationVC.player = .P2
                 default: print("toPickerSegueでエラー")
                 }
+            }
+        } else if segue.identifier == "toFischerPicker" {
+            guard let destinationVC = segue.destination as? FischerPickerViewController else { return }
+            if let sheet = destinationVC.sheetPresentationController {
+                sheet.detents = [.medium()]
             }
         }
     }
