@@ -27,9 +27,11 @@
                             <constraint firstItem="MUv-mR-fP8" firstAttribute="centerX" secondItem="OAd-YL-qPa" secondAttribute="centerX" id="VFS-cV-4Kz"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="RXR-PP-98V">
                         <barButtonItem key="backBarButtonItem" id="KZl-F0-tJ3"/>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="pickerView" destination="MUv-mR-fP8" id="baY-Zy-jmc"/>
                     </connections>

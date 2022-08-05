@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -74,15 +75,15 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="タイムモード" id="3hb-Xg-iCX">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="settingsTableViewCell" textLabel="MhS-JV-otu" style="IBUITableViewCellStyleDefault" id="g5z-n5-3is">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="settingsTableViewCell" textLabel="MhS-JV-otu" style="IBUITableViewCellStyleDefault" id="g5z-n5-3is">
                                         <rect key="frame" x="20" y="186.5" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="g5z-n5-3is" id="tid-3G-hHy">
-                                            <rect key="frame" x="0.0" y="0.0" width="333.5" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="秒読み" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MhS-JV-otu">
-                                                    <rect key="frame" x="20" y="0.0" width="305.5" height="43.5"/>
+                                                    <rect key="frame" x="20" y="0.0" width="334" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
@@ -134,7 +135,8 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="mEm-Nd-Uw0">
-                        <barButtonItem key="rightBarButtonItem" title="Done" style="done" id="UBv-jq-c27">
+                        <barButtonItem key="rightBarButtonItem" title="Item" style="done" id="UBv-jq-c27">
+                            <imageReference key="image" image="xmark.circle" catalog="system" symbolScale="large"/>
                             <connections>
                                 <action selector="doneButtonPressed:" destination="XSb-Ab-e5O" id="cRG-tC-uwV"/>
                             </connections>
@@ -162,7 +164,7 @@
         <!--Navigation Controller-->
         <scene sceneID="vvS-Vu-qnm">
             <objects>
-                <navigationController id="TV5-Zi-Rz4" sceneMemberID="viewController">
+                <navigationController toolbarHidden="NO" id="TV5-Zi-Rz4" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="fCD-XL-WLl"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="zwb-Wv-Sg1">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -178,6 +180,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="xvP-VH-hRy"/>
+        <segue reference="74o-pK-HLm"/>
     </inferredMetricsTieBreakers>
+    <resources>
+        <image name="xmark.circle" catalog="system" width="128" height="121"/>
+    </resources>
 </document>

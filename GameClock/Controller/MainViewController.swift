@@ -58,8 +58,7 @@ class MainViewController: UIViewController {
                 case "byoyomi": self?.timeMode = .Byoyomi
                 case "kiremake": self?.timeMode = .Kiremake
                 case "fischer": self?.timeMode = .Fischer
-                default:
-                    print("observedTimeModeでエラー")
+                default: print("observedTimeModeでエラー")
                 }
             }
         })
