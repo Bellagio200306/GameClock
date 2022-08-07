@@ -6,24 +6,6 @@
 //
 
 import Foundation
-
-//MARK: - Const
-let userDefaults = UserDefaults.standard
-let p1TimeKey = "p1TimeKey"
-let p2TimeKey = "p2TimeKey"
-let timeModeKey = "timeModeKey"
-let fischerTimeKey = "fischerTimeKey"
-
-let mp3 = "mp3"
-let seMove = "Move2"
-let sePause = "Pause"
-let sePi = "pi"
-let sePoon = "poon"
-let seBeep = "beep"
-
-let playingTurnColor = "PlayingTurnColor"
-let breakTurnColor = "BreakTurnColor"
-
 //MARK: - Enum
 enum Player {
     case P1
@@ -39,6 +21,11 @@ enum TimeMode {
     case Byoyomi
     case Kiremake
     case Fischer
+}
+
+enum PickerStatus {
+    case PlayerTime
+    case FischerTime
 }
 
 //MARK: - Func

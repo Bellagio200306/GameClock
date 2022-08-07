@@ -41,7 +41,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="MP1-1H-wTs" kind="show" identifier="toTimePicker" id="74o-pK-HLm"/>
+                                            <segue destination="MP1-1H-wTs" kind="presentation" identifier="toTimePicker" id="74o-pK-HLm"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="settingsTableViewCell" textLabel="W81-5O-E20" detailTextLabel="5qR-1Y-MzP" style="IBUITableViewCellStyleValue1" id="jae-YL-NVv">
@@ -68,7 +68,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="MP1-1H-wTs" kind="show" identifier="toTimePicker" id="xvP-VH-hRy"/>
+                                            <segue destination="MP1-1H-wTs" kind="presentation" identifier="toTimePicker" id="xvP-VH-hRy"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -126,7 +126,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="oSn-Te-9Yj" kind="presentation" identifier="toFischerPicker" id="cyH-aE-TTH"/>
+                                            <segue destination="MP1-1H-wTs" kind="presentation" identifier="toFischerPicker" id="wzY-uf-iIq"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -154,23 +154,15 @@
             </objects>
             <point key="canvasLocation" x="2551" y="-109"/>
         </scene>
-        <!--Picker-->
+        <!--TimePicker-->
         <scene sceneID="UXw-Jp-M7q">
             <objects>
-                <viewControllerPlaceholder storyboardName="Picker" id="MP1-1H-wTs" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="TimePicker" id="MP1-1H-wTs" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="Rfr-9Z-k5n"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z4N-Dj-r2X" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3171" y="-303"/>
-        </scene>
-        <!--FischerPicker-->
-        <scene sceneID="fd1-cY-4CJ">
-            <objects>
-                <viewControllerPlaceholder storyboardName="FischerPicker" id="oSn-Te-9Yj" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="MZL-HE-PLC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3268" y="-99"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="vvS-Vu-qnm">
