@@ -8,7 +8,6 @@ import Foundation
 import UIKit
 
 class SettingsViewController: UITableViewController {
-    var timeMode: TimeMode = .Byoyomi
     private var observedP1: NSKeyValueObservation?
     private var observedP2: NSKeyValueObservation?
     @IBOutlet private weak var p1Detail: UILabel!
@@ -41,9 +40,9 @@ class SettingsViewController: UITableViewController {
         let currentTimeMode = userDefaults.string(forKey: timeModeKey)
         var row: Int
         switch currentTimeMode {
-        case "byoyomi": row = 0
-        case "kiremake": row = 1
-        case "fischer": row = 2
+        case "byoyomi": row = selectByoyomi
+        case "kiremake": row = selectKiremake
+        case "fischer": row = selectFischer
         default: return
         }
         guard let cell = tableView.cellForRow(at: IndexPath(row: row, section: 1)) else { return }
@@ -51,14 +50,14 @@ class SettingsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        for row in 0...2 {
-            if let timeModeCell = tableView.cellForRow(at: IndexPath(row: row, section: 1)) {
+        for row in 0...sectionEndIndex {
+            if let timeModeCell = tableView.cellForRow(at: IndexPath(row: row, section: timeModeSection)) {
                 timeModeCell.accessoryType = row == indexPath.row ? .checkmark : .none
                 switch indexPath.row {
-                case 0: userDefaults.set("byoyomi", forKey: timeModeKey)
-                case 1: userDefaults.set("kiremake", forKey: timeModeKey)
-                case 2: userDefaults.set("fischer", forKey: timeModeKey)
-                default: print("didSelectRowAtでエラー")
+                case selectByoyomi: userDefaults.set("byoyomi", forKey: timeModeKey)
+                case selectKiremake: userDefaults.set("kiremake", forKey: timeModeKey)
+                case selectFischer: userDefaults.set("fischer", forKey: timeModeKey)
+                default: print("didSelectRowAtエラー")
                 }
             }
         }
@@ -66,20 +65,21 @@ class SettingsViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let destinationVC = segue.destination as? TimePickerViewController else { return }
+        if let sheet = destinationVC.sheetPresentationController {
+            sheet.detents = [.medium()]
+        }
         if segue.identifier == "toTimePicker" {
             if let indexNum = tableView.indexPathForSelectedRow?.row {
-                guard let destinationVC = segue.destination as? TimePickerViewController else { return }
+                destinationVC.pickerStatus = .PlayerTime
                 switch indexNum {
-                case 0: destinationVC.player = .P1
-                case 1: destinationVC.player = .P2
-                default: print("toPickerSegueでエラー")
+                case selectP1: destinationVC.player = .P1
+                case selectP2: destinationVC.player = .P2
+                default: print("toPickerSegueエラー")
                 }
             }
         } else if segue.identifier == "toFischerPicker" {
-            guard let destinationVC = segue.destination as? FischerPickerViewController else { return }
-            if let sheet = destinationVC.sheetPresentationController {
-                sheet.detents = [.medium()]
-            }
+            destinationVC.pickerStatus = .FischerTime
         }
     }
     

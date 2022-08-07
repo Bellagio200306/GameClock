@@ -16,15 +16,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MUv-mR-fP8">
-                                <rect key="frame" x="47" y="340" width="320" height="216"/>
-                            </pickerView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="9Mp-CG-h1N">
+                                <rect key="frame" x="47" y="328" width="320" height="240"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3U6-ws-Ubk">
+                                        <rect key="frame" x="136" y="0.0" width="48" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MUv-mR-fP8">
+                                        <rect key="frame" x="0.0" y="24" width="320" height="216"/>
+                                    </pickerView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="7u6-kq-0UU"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="MUv-mR-fP8" firstAttribute="centerY" secondItem="OAd-YL-qPa" secondAttribute="centerY" id="9Y2-MP-WpZ"/>
-                            <constraint firstItem="MUv-mR-fP8" firstAttribute="centerX" secondItem="OAd-YL-qPa" secondAttribute="centerX" id="VFS-cV-4Kz"/>
+                            <constraint firstItem="9Mp-CG-h1N" firstAttribute="centerX" secondItem="OAd-YL-qPa" secondAttribute="centerX" id="W5S-pX-iVk"/>
+                            <constraint firstItem="9Mp-CG-h1N" firstAttribute="centerY" secondItem="OAd-YL-qPa" secondAttribute="centerY" id="iRJ-ub-kl8"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -33,12 +44,13 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="pickerView" destination="MUv-mR-fP8" id="baY-Zy-jmc"/>
+                        <outlet property="picker" destination="MUv-mR-fP8" id="qU7-33-u3l"/>
+                        <outlet property="pickerTitle" destination="3U6-ws-Ubk" id="9H8-3a-9JV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ksV-ol-WxS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3365" y="-109"/>
+            <point key="canvasLocation" x="3363.7681159420295" y="-109.15178571428571"/>
         </scene>
     </scenes>
     <resources>
