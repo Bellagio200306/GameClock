@@ -16,10 +16,10 @@ class MainModel {
     private var p1Count = 0
     private var p2Count = 0
     
+    private let us = UserDefaults.standard
+    private let audioSession = AVAudioSession.sharedInstance()
     
-    let audioSession = AVAudioSession.sharedInstance()
-    
-    func remainCount() -> Int {
+    func timeRemaining() -> Int {
         return totalSec - count
     }
     
@@ -29,27 +29,28 @@ class MainModel {
         p2Count = 0
         switch player {
         case .P1:
-            totalSec = userDefaults.integer(forKey: p1TimeKey)
+            totalSec = us.integer(forKey: p1TimeKey)
         case .P2:
-            totalSec = userDefaults.integer(forKey: p2TimeKey)
+            totalSec = us.integer(forKey: p2TimeKey)
         }
     }
     
     func setPlayerTime(_ player: Player) {
         switch player {
         case .P1:
-            totalSec = userDefaults.integer(forKey: p1TimeKey)
+            totalSec = us.integer(forKey: p1TimeKey)
             p2Count = count
             count = p1Count
         case .P2:
-            totalSec = userDefaults.integer(forKey: p2TimeKey)
+            totalSec = us.integer(forKey: p2TimeKey)
             p1Count = count
             count = p2Count
         }
     }
     
     func IncreasedFischerTime() {
-        count -= userDefaults.integer(forKey: fischerTimeKey)
+        let fischerTime = fischerTimes[us.integer(forKey: fischerRowKey)]
+        count -= fischerTime
     }
     
     func playSound(resource: String, ext: String) {
@@ -66,7 +67,7 @@ class MainModel {
     
     func updateUserDefaults() -> String {
         count = 0
-        let stringRemainCount = convertHMS(remainCount())
+        let stringRemainCount = convertHMS(timeRemaining())
         return stringRemainCount
     }
     

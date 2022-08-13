@@ -12,6 +12,8 @@ class SettingsViewController: UITableViewController {
     private var observedP2: NSKeyValueObservation?
     @IBOutlet private weak var p1Detail: UILabel!
     @IBOutlet private weak var p2Detail: UILabel!
+    private let us = UserDefaults.standard
+    
     
     //MARK: - Life cycles
     override func viewDidLoad() {
@@ -23,22 +25,23 @@ class SettingsViewController: UITableViewController {
     private func setupView() {
         self.navigationController?.navigationBar.tintColor = .gray
         
-        observedP1 = userDefaults.observe(\.p1TimeKey, options: [.initial, .new], changeHandler: { [weak self] _, change in
+        observedP1 = us.observe(\.p1TimeKey, options: [.initial, .new], changeHandler: { [weak self] _, change in
             if let change = change.newValue {
                 self?.p1Detail.text = convertHMS(change)
                 self?.tableView.reloadData()
             }
         })
-        
-        observedP2 = userDefaults.observe(\.p2TimeKey, options: [.initial, .new], changeHandler: { [weak self] _, change in
+        observedP2 = us.observe(\.p2TimeKey, options: [.initial, .new], changeHandler: { [weak self] _, change in
             if let change = change.newValue {
                 self?.p2Detail.text = convertHMS(change)
                 self?.tableView.reloadData()
             }
         })
-        
-        let currentTimeMode = userDefaults.string(forKey: timeModeKey)
+        let currentTimeMode = us.string(forKey: timeModeKey)
         var row: Int
+        let selectByoyomi = 0
+        let selectKiremake = 1
+        let selectFischer = 2
         switch currentTimeMode {
         case "byoyomi": row = selectByoyomi
         case "kiremake": row = selectKiremake
@@ -50,13 +53,18 @@ class SettingsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let timeModeSection = 1
+        let sectionEndIndex = 2
         for row in 0...sectionEndIndex {
             if let timeModeCell = tableView.cellForRow(at: IndexPath(row: row, section: timeModeSection)) {
                 timeModeCell.accessoryType = row == indexPath.row ? .checkmark : .none
+                let selectByoyomi = 0
+                let selectKiremake = 1
+                let selectFischer = 2
                 switch indexPath.row {
-                case selectByoyomi: userDefaults.set("byoyomi", forKey: timeModeKey)
-                case selectKiremake: userDefaults.set("kiremake", forKey: timeModeKey)
-                case selectFischer: userDefaults.set("fischer", forKey: timeModeKey)
+                case selectByoyomi: us.set("byoyomi", forKey: timeModeKey)
+                case selectKiremake: us.set("kiremake", forKey: timeModeKey)
+                case selectFischer: us.set("fischer", forKey: timeModeKey)
                 default: print("didSelectRowAtエラー")
                 }
             }
@@ -72,13 +80,16 @@ class SettingsViewController: UITableViewController {
         if segue.identifier == "toTimePicker" {
             if let indexNum = tableView.indexPathForSelectedRow?.row {
                 destinationVC.pickerStatus = .PlayerTime
+                let selectP1 = 0
+                let selectP2 = 1
                 switch indexNum {
                 case selectP1: destinationVC.player = .P1
                 case selectP2: destinationVC.player = .P2
                 default: print("toPickerSegueエラー")
                 }
             }
-        } else if segue.identifier == "toFischerPicker" {
+        }
+        if segue.identifier == "toFischerPicker" {
             destinationVC.pickerStatus = .FischerTime
         }
     }

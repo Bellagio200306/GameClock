@@ -22,37 +22,37 @@ class MainViewController: UIViewController {
     private var observedP1: NSKeyValueObservation?
     private var observedP2: NSKeyValueObservation?
     private var observedTimeMode: NSKeyValueObservation?
+    private let us = UserDefaults.standard
     
     //MARK: - Life cycles
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        p2Button.transform = mainModel.flipUpsideDown()
         setInitialState()
     }
     
     //MARK: - Functions
     private func setupView() {
-        p2Button.transform = mainModel.flipUpsideDown()
+        us.register(defaults: [p1TimeKey : 60])
+        us.register(defaults: [p2TimeKey : 60])
+        us.register(defaults: [timeModeKey : "byoyomi"])
         
-        userDefaults.register(defaults: [p1TimeKey : 60])
-        userDefaults.register(defaults: [p2TimeKey : 60])
-        userDefaults.register(defaults: [timeModeKey : "byoyomi"])
-        
-        observedP1 = userDefaults.observe(\.p1TimeKey, options: [.initial, .new], changeHandler: { [weak self] _, change in
+        observedP1 = us.observe(\.p1TimeKey, options: [.initial, .new], changeHandler: { [weak self] _, change in
             if let changeValue = change.newValue {
                 self?.mainModel.totalSec = changeValue
             }
             self?.p1Button.setTitle(self?.mainModel.updateUserDefaults(), for: .normal)
         })
         
-        observedP2 = userDefaults.observe(\.p2TimeKey, options: [.initial, .new], changeHandler: {[weak self]  _, change in
+        observedP2 = us.observe(\.p2TimeKey, options: [.initial, .new], changeHandler: {[weak self]  _, change in
             if let changeValue = change.newValue {
                 self?.mainModel.totalSec = changeValue
             }
             self?.p2Button.setTitle(self?.mainModel.updateUserDefaults(), for: .normal)
         })
         
-        observedTimeMode = userDefaults.observe(\.timeModeKey, options: [.initial, .new], changeHandler: {[weak self]  _, change in
+        observedTimeMode = us.observe(\.timeModeKey, options: [.initial, .new], changeHandler: {[weak self]  _, change in
             if let changeValue = change.newValue {
                 switch changeValue {
                 case "byoyomi": self?.timeMode = .Byoyomi
@@ -65,8 +65,8 @@ class MainViewController: UIViewController {
     }
     
     private func setInitialState() {
-        let p1Time = userDefaults.integer(forKey: p1TimeKey)
-        let p2Time = userDefaults.integer(forKey: p2TimeKey)
+        let p1Time = us.integer(forKey: p1TimeKey)
+        let p2Time = us.integer(forKey: p2TimeKey)
         
         gameStatus = .Paused
         player = .P1
@@ -125,7 +125,7 @@ class MainViewController: UIViewController {
     }
     
     private func updateUI() {
-        let stringRemainCount = convertHMS(mainModel.remainCount())
+        let stringRemainCount = convertHMS(mainModel.timeRemaining())
         switch player {
         case .P1: p1Button.setTitle(stringRemainCount, for: .normal)
         case .P2: p2Button.setTitle(stringRemainCount, for: .normal)
@@ -139,17 +139,17 @@ class MainViewController: UIViewController {
     }
     
     @objc private func timerInterrupt(_ timer: Timer) {
-        switch  mainModel.remainCount() {
-        case 11,21,31:/*１０秒前、２０秒前、３０秒前*/
+        switch  mainModel.timeRemaining() {
+        case 11,21,31,61,181,301:/*10sec,20,30,1min,3,5*/
             mainModel.playSound(resource: sePoon, ext: mp3)
             countDown()
-        case 5...10:/*９秒前〜４秒前*/
+        case 5...10:/*4~9sec*/
             mainModel.playSound(resource: sePi, ext: mp3)
             countDown()
-        case 4:/*３秒前*/
+        case 4:/*3sec*/
             mainModel.playSound(resource: seBeep, ext: mp3)
             countDown()
-        case 1:/*時間切れ*/
+        case 1:/*timeouts*/
             timer.invalidate()
             mainModel.audioPlayer?.stop()
             switch player {
